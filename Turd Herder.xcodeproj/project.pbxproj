@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8437C1211F18529300EB3079 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1201F18529300EB3079 /* Types.swift */; };
 		8437C1231F18536B00EB3079 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1221F18536B00EB3079 /* HUD.swift */; };
-		8437C1251F185C2800EB3079 /* ParticleTest.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8437C1241F185C2800EB3079 /* ParticleTest.sks */; };
 		84561FE01F0F1E46006EACD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */; };
 		84561FE21F0F1E46006EACD8 /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84561FE11F0F1E46006EACD8 /* Scene.sks */; };
 		84561FE41F0F1E46006EACD8 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FE31F0F1E46006EACD8 /* Scene.swift */; };
@@ -17,12 +16,12 @@
 		84561FE91F0F1E46006EACD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84561FE71F0F1E46006EACD8 /* Main.storyboard */; };
 		84561FEB1F0F1E46006EACD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84561FEA1F0F1E46006EACD8 /* Assets.xcassets */; };
 		84561FEE1F0F1E46006EACD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84561FEC1F0F1E46006EACD8 /* LaunchScreen.storyboard */; };
+		84DD9DF71F2E80B800D0A8E7 /* TurdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DD9DF61F2E80B800D0A8E7 /* TurdNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8437C1201F18529300EB3079 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8437C1221F18536B00EB3079 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
-		8437C1241F185C2800EB3079 /* ParticleTest.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ParticleTest.sks; sourceTree = "<group>"; };
 		84561FDC1F0F1E46006EACD8 /* Turd Herder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turd Herder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84561FE11F0F1E46006EACD8 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
@@ -32,6 +31,7 @@
 		84561FEA1F0F1E46006EACD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84561FED1F0F1E46006EACD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84561FEF1F0F1E46006EACD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84DD9DF61F2E80B800D0A8E7 /* TurdNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TurdNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +64,11 @@
 		84561FDE1F0F1E46006EACD8 /* Turd Herder */ = {
 			isa = PBXGroup;
 			children = (
+				84DD9DF91F2E80FD00D0A8E7 /* Sounds */,
+				84DD9DF81F2E80E600D0A8E7 /* Scenes */,
+				84DD9DFA1F2E810D00D0A8E7 /* Nodes */,
 				84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */,
-				84561FE11F0F1E46006EACD8 /* Scene.sks */,
 				84561FE31F0F1E46006EACD8 /* Scene.swift */,
-				8437C1241F185C2800EB3079 /* ParticleTest.sks */,
 				8437C1221F18536B00EB3079 /* HUD.swift */,
 				8437C1201F18529300EB3079 /* Types.swift */,
 				84561FE51F0F1E46006EACD8 /* ViewController.swift */,
@@ -77,6 +78,29 @@
 				84561FEF1F0F1E46006EACD8 /* Info.plist */,
 			);
 			path = "Turd Herder";
+			sourceTree = "<group>";
+		};
+		84DD9DF81F2E80E600D0A8E7 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				84561FE11F0F1E46006EACD8 /* Scene.sks */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		84DD9DF91F2E80FD00D0A8E7 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		84DD9DFA1F2E810D00D0A8E7 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				84DD9DF61F2E80B800D0A8E7 /* TurdNode.swift */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +161,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8437C1251F185C2800EB3079 /* ParticleTest.sks in Resources */,
 				84561FE21F0F1E46006EACD8 /* Scene.sks in Resources */,
 				84561FEE1F0F1E46006EACD8 /* LaunchScreen.storyboard in Resources */,
 				84561FEB1F0F1E46006EACD8 /* Assets.xcassets in Resources */,
@@ -152,6 +175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DD9DF71F2E80B800D0A8E7 /* TurdNode.swift in Sources */,
 				84561FE61F0F1E46006EACD8 /* ViewController.swift in Sources */,
 				8437C1231F18536B00EB3079 /* HUD.swift in Sources */,
 				84561FE41F0F1E46006EACD8 /* Scene.swift in Sources */,

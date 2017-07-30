@@ -6,10 +6,12 @@
 //  Copyright © 2017 Brent Michalski. All rights reserved.
 //
 
-// TODO: Tap anywhere to continue
+// TODO: Tap anywhere to play again
 // TODO: Sound effects
 // TODO: Background music
 // TODO: Message to hold device in proper orientation?
+// TODO: Add haptic feedback every time a new turd is created?
+// TODO: Determine game states
 
 
 import SpriteKit
@@ -31,6 +33,16 @@ class Scene: SKScene {
         }
     }
     
+    var gameState: GameState = .initial {
+        didSet {
+            // Do something to manage the game state
+            // hud.updateGameState(from: oldValue, to: gameState)
+            updateUI(gameState: gameState)
+        }
+        
+    }
+    
+    
     override func didMove(to view: SKView) {
         // Setup your scene here
 
@@ -46,6 +58,7 @@ class Scene: SKScene {
         }
     }
     
+
     func setupRemainingLabel() {
         guard let myView = self.view else { return }
         
@@ -111,6 +124,18 @@ class Scene: SKScene {
 
     }
     
+    
+    func updateUI(gameState: GameState) {
+        // controller for updating the UI
+        
+        print("updateUI called with: \(gameState.rawValue)")
+        
+        
+        
+    }
+    
+    
+    
     func gameOver() {
         remainingLabel.removeFromParent()
         
@@ -137,16 +162,15 @@ class Scene: SKScene {
         
         let hit = nodes(at: location)
         
-        if let sprite = hit.first {
-            let scaleOut = SKAction.scale(to: 2, duration: 0.2)
-            let fadeOut = SKAction.fadeOut(withDuration: 0.2)
-            let group = SKAction.group([scaleOut, fadeOut])
-            let sequence = SKAction.sequence([group, SKAction.removeFromParent()])
-            sprite.run(sequence)
+        if let sprite = hit.first as? TurdNode {
+            
+            sprite.wasTapped()
             
             targetCount -= 1
             
             if targetsCreated == maxTargets && targetCount == 0 {
+                gameState = .win
+                
                 gameOver()
             }
         }
