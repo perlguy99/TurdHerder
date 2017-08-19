@@ -30,11 +30,49 @@ class ViewController: UIViewController, ARSKViewDelegate {
         }
     }
     
+    
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        
+//        if let scene = SKScene(fileNamed: "GameScene") {
+//            // Configure the view
+//            
+//            // Show statistics such as fps and node count
+//            sceneView.showsFPS       = true
+//            sceneView.showsNodeCount = true
+//            
+//            // Set the view's delegate
+//            sceneView.delegate = self
+//            
+//            // Load the SKScene from 'Scene.sks'
+//            //        if let scene = SKScene(fileNamed: "Scene") {
+//            sceneView.presentScene(scene)
+//        }
+//
+//        
+////        sceneView.showsNodeCount = true
+////        sceneView.delegate = self
+////
+////        // Build the menu scene:
+////        let menuScene = MenuScene()
+////        let skView = self.view as! SKView
+////
+////        // ignore drawing order of child nodes to increase performance
+////        //        skView.ignoresSiblingOrder = true
+////
+////        menuScene.size = view.bounds.size
+////
+////        // Show the menu
+////        skView.presentScene(menuScene)
+//    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Create a session configuration
-        let configuration = ARSessionConfiguration()
+        let configuration = ARWorldTrackingConfiguration()
+//        let configuration = ARSessionConfiguration()
         
         // Run the view's session
         sceneView.session.run(configuration)

@@ -19,67 +19,156 @@ import ARKit
 import GameplayKit
 
 class Scene: SKScene {
-    let maxTargets = 2
-    var hud = HUD()
+    var targetCreationRate:TimeInterval = 1
     
-    let startTime = Date()
-    let remainingLabel = SKLabelNode()
-    let timeLabel = SKLabelNode()
+    let maxTargets       = 2
+    var currentFartIndex = 0
+    
+    var hud = HUD()
+//    let hud2 = HUD2()
+    
+    
+    var startTime: Date!
     var timer: Timer?
     var targetsCreated = 0
     var targetCount = 0 {
         didSet {
-            remainingLabel.text = "Remaining: \(targetCount)"
+            hud.updateTurdsRemainingLabel(turds: targetCount)
+//            hud2.setTurdCountDisplay(newTurdCount: targetCount)
         }
     }
     
     var gameState: GameState = .initial {
         didSet {
-            // Do something to manage the game state
-            // hud.updateGameState(from: oldValue, to: gameState)
-            updateUI(gameState: gameState)
+            if oldValue != gameState {
+                hud.updateGameState(from: oldValue, to: gameState)
+                
+                if gameState == .win {
+                    gameOver()
+                }
+            }
         }
-        
     }
+    
+    
+    // Sound effects
+
+    let shortFarts = [
+        SKAction.playSoundFileNamed("fart2.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart3.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart4.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart5.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart6.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart7.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart8.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart9.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart10.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart11.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart12.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart13.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart14.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart16.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart17.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart18.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart20.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart21.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart23.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart24.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart25.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart26.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart27.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart28.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart34.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart36.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart38.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart39.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart40.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart41.wav", waitForCompletion: false),
+    ]
+    
+    let targetCreationFarts = [
+        SKAction.playSoundFileNamed("fart29.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart35.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart37.wav", waitForCompletion: false),
+        ]
+
+    let toiletFlushes = [
+        SKAction.playSoundFileNamed("toilet-flush1.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("toilet-flush2.wav", waitForCompletion: false)
+        ]
+
+    let toiletFlushHighScore = SKAction.playSoundFileNamed("toilet-flush-highscore.wav", waitForCompletion: false)
+    let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
     
     
     override func didMove(to view: SKView) {
         // Setup your scene here
-
+//        self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+//        self.addChild(self.camera!)
+//        self.camera!.zPosition = 50
+        
+//        hud2.createHudNodes(screenSize: self.size)
+//        hud2.zPosition = 50
+//        hud2.position = CGPoint(x: 100, y: 100)
+//        self.addChild(hud2)
+//
+//        print("\n\nHUD2 Position: \(hud2.position)\n\n")
+        
+        print("\(#file):\(#line) : \(#function)")
+        print("\n\nDid Move To...\n\n")
         setupGame()
+        
     }
     
     func setupGame() {
-        setupRemainingLabel()
-        targetCount = 0
+        startGame()
+    }
+    
+
+    func startGame() {
+        targetCount    = 0
+        targetsCreated = 0
+        gameState      = .start
+        startTime      = Date()
         
-        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { timer in
+        setupHUD(startTime: startTime)
+        startCreatingTargets()
+    }
+    
+    
+    func startCreatingTargets() {
+        gameState = .playing
+        
+        timer = Timer.scheduledTimer(withTimeInterval: targetCreationRate, repeats: true) { timer in
             self.createTarget()
         }
     }
     
-
-    func setupRemainingLabel() {
-        guard let myView = self.view else { return }
-        
-        remainingLabel.fontSize = HUDSettings.fontSize
-        remainingLabel.fontName = HUDSettings.font
-        remainingLabel.color    = .white
-        remainingLabel.position = CGPoint(x: 0, y: myView.frame.midY - 50)
-        addChild(remainingLabel)
+    
+    func setupHUD(startTime: Date) {
+        self.addChild(hud)
+        hud.addTimer(startTime: startTime)
+        hud.addRemainingTurdsLabel()
     }
     
+    
     func createTarget() {
-        print("Call to createTarget()")
-        
         if targetsCreated == maxTargets {
             timer?.invalidate()
             timer = nil
             return
         }
         
+        print("Call to createTarget()")
+        
+        let randomFart = Int.random(targetCreationFarts.count)
+        run(targetCreationFarts[randomFart])
+        
         targetsCreated += 1
         targetCount    += 1
+        
+        print("Targets Created: \(targetsCreated)")
+        print("Target Count: \(targetCount)\n")
         
         // find the scene view we are drawing into
         guard let sceneView = self.view as? ARSKView else { return }
@@ -88,10 +177,12 @@ class Scene: SKScene {
         let random = GKRandomSource.sharedRandom()
         
         // create a random X rotation
-        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
         
         // create a random Y rotation
-        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
         
         // combine them together
         let rotation = simd_mul(xRotation, yRotation)
@@ -107,74 +198,54 @@ class Scene: SKScene {
         let anchor = ARAnchor(transform: transform)
         sceneView.session.add(anchor: anchor)
         
-        
+        print("New Turd at: \(anchor.debugDescription)")
     }
     
-    func displayTimeTakenLabel() {
-        guard let myView = self.view else { return }
-        
-        let timeTaken = Date().timeIntervalSince(startTime)
-        timeLabel.text = "Time taken: \(Int(timeTaken)) seconds"
-        timeLabel.fontSize = HUDSettings.fontSize
-        timeLabel.fontName = HUDSettings.font
-        timeLabel.color = .white
-        timeLabel.position = CGPoint(x: 0, y: -myView.frame.midY + 50)
-        
-        addChild(timeLabel)
 
-    }
-    
-    
-    func updateUI(gameState: GameState) {
-        // controller for updating the UI
-        
-        print("updateUI called with: \(gameState.rawValue)")
-        
-        
-        
-    }
-    
-    
     
     func gameOver() {
-        remainingLabel.removeFromParent()
-        
-        let gameOver = SKSpriteNode(imageNamed: "gameOver")
-        addChild(gameOver)
-
-        displayTimeTakenLabel()
-
+        print("\n\nFLUSHING\n\n")
+        run(toiletFlushHighScore)
     }
     
     
     func restartGame() {
-        timeLabel.removeFromParent()
         
     }
     
+    
+    func checkEndGame() {
+        if targetsCreated == maxTargets && targetCount == 0 {
+            gameState = .win
+        }
+    }
+    
+    
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        hud.updateTimer()
+        
+        checkEndGame()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        let location = touch.location(in: self)
         
-        let hit = nodes(at: location)
+        let location = touch.location(in: self)
+        let hit      = nodes(at: location)
+        
         
         if let sprite = hit.first as? TurdNode {
-            
+            let randomFart = Int.random(shortFarts.count)
+            run(shortFarts[randomFart])
             sprite.wasTapped()
-            
             targetCount -= 1
-            
-            if targetsCreated == maxTargets && targetCount == 0 {
-                gameState = .win
-                
-                gameOver()
-            }
         }
         
     }
+    
+    
+    
 }
 
