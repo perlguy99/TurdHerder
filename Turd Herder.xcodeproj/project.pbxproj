@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8400D3431F47C05400E750B2 /* Toilet.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8400D3421F47C05400E750B2 /* Toilet.sks */; };
 		840421EE1F4288740026730E /* AirBiscuit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840421ED1F4288700026730E /* AirBiscuit.mp3 */; };
 		841DEEEA1F3EBFFB007C76C6 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEDF1F3EBF82007C76C6 /* CGFloat+Extensions.swift */; };
 		841DEEEB1F3EBFFB007C76C6 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEE21F3EBFA1007C76C6 /* CGPoint+Extensions.swift */; };
@@ -31,6 +32,8 @@
 		84561FEE1F0F1E46006EACD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84561FEC1F0F1E46006EACD8 /* LaunchScreen.storyboard */; };
 		84804FFE1F4674D0002F6B5F /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84804FFD1F4674D0002F6B5F /* MenuScene.swift */; };
 		848050001F467D5B002F6B5F /* HUD2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84804FFF1F467D5B002F6B5F /* HUD2.swift */; };
+		8495F0481F47C2B900321494 /* MessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495F0471F47C2B900321494 /* MessageBox.swift */; };
+		8495F04A1F47C50500321494 /* ToiletNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8495F0491F47C50500321494 /* ToiletNode.swift */; };
 		84A2A63D1F3F6DCC0064A82B /* fart_walking_many.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A6341F3F6D3B0064A82B /* fart_walking_many.wav */; };
 		84A2A63E1F3F6DCC0064A82B /* fart2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A61B1F3F6D370064A82B /* fart2.mp3 */; };
 		84A2A63F1F3F6DCC0064A82B /* fart3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A6271F3F6D380064A82B /* fart3.mp3 */; };
@@ -74,6 +77,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8400D3421F47C05400E750B2 /* Toilet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Toilet.sks; sourceTree = "<group>"; };
 		840421ED1F4288700026730E /* AirBiscuit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AirBiscuit.mp3; sourceTree = "<group>"; };
 		841DEEDF1F3EBF82007C76C6 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		841DEEE01F3EBFA1007C76C6 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		84561FEF1F0F1E46006EACD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84804FFD1F4674D0002F6B5F /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		84804FFF1F467D5B002F6B5F /* HUD2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD2.swift; sourceTree = "<group>"; };
+		8495F0471F47C2B900321494 /* MessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBox.swift; sourceTree = "<group>"; };
+		8495F0491F47C50500321494 /* ToiletNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletNode.swift; sourceTree = "<group>"; };
 		84A2A61A1F3F6D360064A82B /* fart41.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fart41.wav; sourceTree = "<group>"; };
 		84A2A61B1F3F6D370064A82B /* fart2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fart2.mp3; sourceTree = "<group>"; };
 		84A2A61C1F3F6D370064A82B /* fart7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fart7.mp3; sourceTree = "<group>"; };
@@ -199,11 +205,14 @@
 				84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */,
 				84561FE51F0F1E46006EACD8 /* ViewController.swift */,
 				84804FFD1F4674D0002F6B5F /* MenuScene.swift */,
+				8495F0471F47C2B900321494 /* MessageBox.swift */,
 				84561FE31F0F1E46006EACD8 /* Scene.swift */,
+				8495F0491F47C50500321494 /* ToiletNode.swift */,
 				8437C1221F18536B00EB3079 /* HUD.swift */,
 				8437C1201F18529300EB3079 /* Types.swift */,
 				84561FE71F0F1E46006EACD8 /* Main.storyboard */,
 				84561FEA1F0F1E46006EACD8 /* Assets.xcassets */,
+				8400D3421F47C05400E750B2 /* Toilet.sks */,
 				84561FEC1F0F1E46006EACD8 /* LaunchScreen.storyboard */,
 				84561FEF1F0F1E46006EACD8 /* Info.plist */,
 				84A2A6651F40254E0064A82B /* AFDateHelper.swift */,
@@ -362,6 +371,7 @@
 				84A2A6641F4014330064A82B /* KenVector Future.ttf in Resources */,
 				84A2A6541F3F6DCC0064A82B /* fart27.wav in Resources */,
 				84A2A66C1F4037970064A82B /* toilet-flush-highscore.wav in Resources */,
+				8400D3431F47C05400E750B2 /* Toilet.sks in Resources */,
 				84A2A64D1F3F6DCC0064A82B /* fart18.wav in Resources */,
 				84A2A6591F3F6DCC0064A82B /* fart36.wav in Resources */,
 				840421EE1F4288740026730E /* AirBiscuit.mp3 in Resources */,
@@ -399,6 +409,7 @@
 				8437C1231F18536B00EB3079 /* HUD.swift in Sources */,
 				84561FE41F0F1E46006EACD8 /* Scene.swift in Sources */,
 				841DEEF41F3EBFFB007C76C6 /* Vector3.swift in Sources */,
+				8495F0481F47C2B900321494 /* MessageBox.swift in Sources */,
 				841DEEF11F3EBFFB007C76C6 /* SKNode+Extensions.swift in Sources */,
 				841DEEEE1F3EBFFB007C76C6 /* SKAction+Extensions.swift in Sources */,
 				841DEEEF1F3EBFFB007C76C6 /* SKAction+SpecialEffects.swift in Sources */,
@@ -406,6 +417,7 @@
 				8437C1211F18529300EB3079 /* Types.swift in Sources */,
 				841DEEED1F3EBFFB007C76C6 /* Int+Extensions.swift in Sources */,
 				84A2A6661F40254E0064A82B /* AFDateHelper.swift in Sources */,
+				8495F04A1F47C50500321494 /* ToiletNode.swift in Sources */,
 				841DEEF01F3EBFFB007C76C6 /* SKColor+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

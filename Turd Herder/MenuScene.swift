@@ -81,13 +81,9 @@ class MenuScene: SKScene {
             let nodeTouched = atPoint(location)
             
             if nodeTouched.name == "StartButton" {
-//                self.anchorPoint = self.oldAnchorPoint
-//                self.view?.presentScene(GameScene(size: self.size))
-                
-                self.view?.presentScene(GameScene(size: self.size))
-                
-                print("\n\nScreen Size: \(self.size)\n\n")
-                
+                if let scene = SKScene(fileNamed: "Scene") {
+                    self.view?.presentScene(scene)
+                }
             }
         }
     }
