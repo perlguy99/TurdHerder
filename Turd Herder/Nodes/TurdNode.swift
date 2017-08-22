@@ -48,6 +48,7 @@ class TurdNode: SKSpriteNode {
         let emitter         = SKEmitterNode()
         let particleTexture = SKTexture(imageNamed: "spark")
         
+        emitter.name = "turd"
         emitter.zPosition = -2
         emitter.particleTexture = particleTexture
         

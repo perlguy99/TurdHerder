@@ -146,6 +146,19 @@ class HUD: SKNode {
     }
     
     
+    
+    func presentMenu() {
+        // Build the menu scene:
+        let menuScene = MenuScene()
+        
+//        menuScene.size =
+//        view!.bounds.size
+        
+        // Show the menu
+//        self.view!.presentScene(menuScene)
+    }
+    
+    
     func updateTimer() {
         let now          = Date()
         let seconds      = now.since(startTime, in: .second)

@@ -30,7 +30,7 @@ class Scene: SKScene {
     var currentFartIndex = 0
     
     var hud = HUD()
-    let hud2 = HUD2()
+//    let hud2 = HUD2()
     
     
     var startTime: Date!
@@ -39,7 +39,7 @@ class Scene: SKScene {
     var targetCount = 0 {
         didSet {
             hud.updateTurdsRemainingLabel(turds: targetCount)
-            hud2.setTurdCountDisplay(newTurdCount: targetCount)
+//            hud2.setTurdCountDisplay(newTurdCount: targetCount)
         }
     }
     
@@ -112,22 +112,22 @@ class Scene: SKScene {
 //        self.addChild(self.camera!)
 //        self.camera!.zPosition = 50
         
-        hud2.createHudNodes(screenSize: self.size)
-        hud2.zPosition = 50
-        hud2.position = CGPoint(x: 100, y: 100)
-        self.addChild(hud2)
-
-        print("\n\nHUD2 Position: \(hud2.position)\n\n")
+//        hud2.createHudNodes(screenSize: self.size)
+//        hud2.zPosition = 50
+//        hud2.position = CGPoint(x: 100, y: 100)
+//        self.addChild(hud2)
+//
+//        print("\n\nHUD2 Position: \(hud2.position)\n\n")
         
         print("\(#file):\(#line) : \(#function)")
         print("\n\nDid Move To...\n\n")
         setupGame()
         
-        enumerateChildNodes(withName: "//*", using: { node, _ in
-            if let eventListenerNode = node as? EventListenerNode {
-                eventListenerNode.didMoveToScene()
-            }
-        })
+//        enumerateChildNodes(withName: "//*", using: { node, _ in
+//            if let eventListenerNode = node as? EventListenerNode {
+//                eventListenerNode.didMoveToScene()
+//            }
+//        })
     }
     
     func setupGame() {
@@ -217,15 +217,18 @@ class Scene: SKScene {
         print("\n\nFLUSHING\n\n")
         run(toiletFlushHighScore)
         
-        let messageBox = MessageBox()
-        messageBox.createMessageBox(size: CGSize(width: 400, height: 300), message: "Test")
-        
-        messageBox.position = .zero
-        self.addChild(messageBox)
-        
-        
+//        let messageBox = MessageBox()
+//        messageBox.createMessageBox(size: CGSize(width: 400, height: 300), message: "Test")
+//
+//        messageBox.position = .zero
+//        self.addChild(messageBox)
         
         
+        // Build the menu scene:
+        let menuScene = MenuScene()
+        menuScene.size = self.view!.bounds.size
+        // Show the menu
+        self.view!.presentScene(menuScene)
     }
     
     
