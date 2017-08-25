@@ -105,8 +105,8 @@ class ViewController: UIViewController, ARSKViewDelegate {
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
         
         return TurdNode()
-//        return SKSpriteNode(imageNamed: "turd")
         
+//        return SKSpriteNode(imageNamed: "turd")
 //        // Create and configure a node for the anchor added to the view's session.
 //        let labelNode = SKLabelNode(text: "👾")
 //        labelNode.horizontalAlignmentMode = .center

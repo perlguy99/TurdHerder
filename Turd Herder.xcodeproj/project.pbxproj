@@ -212,7 +212,6 @@
 				8437C1201F18529300EB3079 /* Types.swift */,
 				84561FE71F0F1E46006EACD8 /* Main.storyboard */,
 				84561FEA1F0F1E46006EACD8 /* Assets.xcassets */,
-				8400D3421F47C05400E750B2 /* Toilet.sks */,
 				84561FEC1F0F1E46006EACD8 /* LaunchScreen.storyboard */,
 				84561FEF1F0F1E46006EACD8 /* Info.plist */,
 				84A2A6651F40254E0064A82B /* AFDateHelper.swift */,
@@ -225,6 +224,7 @@
 			children = (
 				842EC5081F3006AE00868770 /* spark.png */,
 				84561FE11F0F1E46006EACD8 /* Scene.sks */,
+				8400D3421F47C05400E750B2 /* Toilet.sks */,
 				8422126A1F3CF88C00175FCC /* Assets.xcassets */,
 			);
 			path = Scenes;

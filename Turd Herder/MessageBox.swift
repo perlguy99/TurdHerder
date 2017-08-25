@@ -10,7 +10,8 @@ import SpriteKit
 
 class MessageBox: SKNode {
     
-    var toiletNode: ToiletNode!
+//    var toiletNode: ToiletNode!
+    
     
     
     
@@ -34,7 +35,11 @@ class MessageBox: SKNode {
         background.position = .zero
         self.addChild(background)
         
-        background.addChild(toiletNode)
+        
+
+
+        
+//        background.addChild(toiletNode)
         
         
         
