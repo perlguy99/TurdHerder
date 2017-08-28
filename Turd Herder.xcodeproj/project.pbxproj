@@ -21,6 +21,12 @@
 		841DEEF31F3EBFFB007C76C6 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEE91F3EBFBD007C76C6 /* SKTTimingFunctions.swift */; };
 		841DEEF41F3EBFFB007C76C6 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEE61F3EBFBD007C76C6 /* Vector3.swift */; };
 		8422126C1F3CF88C00175FCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8422126A1F3CF88C00175FCC /* Assets.xcassets */; };
+		84319DB21F4FB1D30090CDB0 /* Toilet2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84319DB11F4FB1D30090CDB0 /* Toilet2.sks */; };
+		84319DB41F4FB7470090CDB0 /* RotateFumes5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84319DB31F4FB7470090CDB0 /* RotateFumes5.sks */; };
+		84319DB61F4FB85D0090CDB0 /* MyActions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84319DB51F4FB85D0090CDB0 /* MyActions.sks */; };
+		843709291F5393B400D057F5 /* PAPER FOR YOUR ASS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843709251F5392E000D057F5 /* PAPER FOR YOUR ASS.ttf */; };
+		8437092A1F5393B400D057F5 /* turds soft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843709261F5392E000D057F5 /* turds soft.ttf */; };
+		8437092B1F5393B400D057F5 /* turds.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843709271F5392E000D057F5 /* turds.ttf */; };
 		8437C1211F18529300EB3079 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1201F18529300EB3079 /* Types.swift */; };
 		8437C1231F18536B00EB3079 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1221F18536B00EB3079 /* HUD.swift */; };
 		84561FE01F0F1E46006EACD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */; };
@@ -92,6 +98,12 @@
 		841DEEE91F3EBFBD007C76C6 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		8422126A1F3CF88C00175FCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842EC5081F3006AE00868770 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		84319DB11F4FB1D30090CDB0 /* Toilet2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Toilet2.sks; sourceTree = "<group>"; };
+		84319DB31F4FB7470090CDB0 /* RotateFumes5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RotateFumes5.sks; sourceTree = "<group>"; };
+		84319DB51F4FB85D0090CDB0 /* MyActions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyActions.sks; sourceTree = "<group>"; };
+		843709251F5392E000D057F5 /* PAPER FOR YOUR ASS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PAPER FOR YOUR ASS.ttf"; sourceTree = "<group>"; };
+		843709261F5392E000D057F5 /* turds soft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "turds soft.ttf"; sourceTree = "<group>"; };
+		843709271F5392E000D057F5 /* turds.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = turds.ttf; sourceTree = "<group>"; };
 		8437C1201F18529300EB3079 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8437C1221F18536B00EB3079 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		84561FDC1F0F1E46006EACD8 /* Turd Herder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turd Herder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,9 +190,23 @@
 			path = SKTUtils;
 			sourceTree = "<group>";
 		};
+		843709281F5392EA00D057F5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				84A2A6631F40142F0064A82B /* KenVector Future.ttf */,
+				843709251F5392E000D057F5 /* PAPER FOR YOUR ASS.ttf */,
+				843709261F5392E000D057F5 /* turds soft.ttf */,
+				843709271F5392E000D057F5 /* turds.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		84561FD31F0F1E46006EACD8 = {
 			isa = PBXGroup;
 			children = (
+				843709281F5392EA00D057F5 /* Fonts */,
+				84319DB51F4FB85D0090CDB0 /* MyActions.sks */,
+				84319DB31F4FB7470090CDB0 /* RotateFumes5.sks */,
 				84561FDE1F0F1E46006EACD8 /* Turd Herder */,
 				84561FDD1F0F1E46006EACD8 /* Products */,
 			);
@@ -197,7 +223,6 @@
 		84561FDE1F0F1E46006EACD8 /* Turd Herder */ = {
 			isa = PBXGroup;
 			children = (
-				84A2A6631F40142F0064A82B /* KenVector Future.ttf */,
 				841DEEDE1F3EBF5D007C76C6 /* SKTUtils */,
 				84DD9DF91F2E80FD00D0A8E7 /* Sounds */,
 				84DD9DF81F2E80E600D0A8E7 /* Scenes */,
@@ -225,6 +250,7 @@
 				842EC5081F3006AE00868770 /* spark.png */,
 				84561FE11F0F1E46006EACD8 /* Scene.sks */,
 				8400D3421F47C05400E750B2 /* Toilet.sks */,
+				84319DB11F4FB1D30090CDB0 /* Toilet2.sks */,
 				8422126A1F3CF88C00175FCC /* Assets.xcassets */,
 			);
 			path = Scenes;
@@ -342,6 +368,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843709291F5393B400D057F5 /* PAPER FOR YOUR ASS.ttf in Resources */,
+				8437092A1F5393B400D057F5 /* turds soft.ttf in Resources */,
+				8437092B1F5393B400D057F5 /* turds.ttf in Resources */,
 				84A2A64F1F3F6DCC0064A82B /* fart21.wav in Resources */,
 				84A2A6421F3F6DCC0064A82B /* fart6.mp3 in Resources */,
 				84A2A63D1F3F6DCC0064A82B /* fart_walking_many.wav in Resources */,
@@ -355,11 +384,13 @@
 				84A2A6481F3F6DCC0064A82B /* fart12.mp3 in Resources */,
 				84A2A6471F3F6DCC0064A82B /* fart11.mp3 in Resources */,
 				84A2A66E1F40379E0064A82B /* toilet-flush1.wav in Resources */,
+				84319DB41F4FB7470090CDB0 /* RotateFumes5.sks in Resources */,
 				84A2A6441F3F6DCC0064A82B /* fart8.mp3 in Resources */,
 				84A2A6461F3F6DCC0064A82B /* fart10.mp3 in Resources */,
 				84A2A63E1F3F6DCC0064A82B /* fart2.mp3 in Resources */,
 				84A2A6411F3F6DCC0064A82B /* fart5.mp3 in Resources */,
 				84A2A6551F3F6DCC0064A82B /* fart28.wav in Resources */,
+				84319DB61F4FB85D0090CDB0 /* MyActions.sks in Resources */,
 				84A2A6501F3F6DCC0064A82B /* fart23.mp3 in Resources */,
 				84A2A65E1F3F6DCC0064A82B /* fart41.wav in Resources */,
 				84A2A65C1F3F6DCC0064A82B /* fart39.wav in Resources */,
@@ -381,6 +412,7 @@
 				84A2A65B1F3F6DCC0064A82B /* fart38.wav in Resources */,
 				84561FEB1F0F1E46006EACD8 /* Assets.xcassets in Resources */,
 				84A2A6451F3F6DCC0064A82B /* fart9.mp3 in Resources */,
+				84319DB21F4FB1D30090CDB0 /* Toilet2.sks in Resources */,
 				84A2A6521F3F6DCC0064A82B /* fart25.wav in Resources */,
 				84A2A6581F3F6DCC0064A82B /* fart35.wav in Resources */,
 				84A2A6561F3F6DCC0064A82B /* fart29.wav in Resources */,

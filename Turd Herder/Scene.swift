@@ -108,93 +108,21 @@ class Scene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        // Setup your scene here
-//        self.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-//        self.addChild(self.camera!)
-//        self.camera!.zPosition = 50
-        
-//        hud2.createHudNodes(screenSize: self.size)
-//        hud2.zPosition = 50
-//        hud2.position = CGPoint(x: 100, y: 100)
-//        self.addChild(hud2)
-//
-//        print("\n\nHUD2 Position: \(hud2.position)\n\n")
+
         
         print("\(#file):\(#line) : \(#function)")
         print("\n\nDid Move To...\n\n")
         setupGame()
         
         
-        let toiletScene = SKScene(fileNamed: "Toilet")!
-        let theToilet = toiletScene.childNode(withName: "toilet_body") as! SKSpriteNode
-        
-        theToilet.position = CGPoint(x: 100, y: 100)
-        theToilet.zPosition = 2
-        
-        self.addChild(theToilet)
-        
-        
-        
-        
-//        if let toilet2 = SKSpriteNode(fileNamed: "Toilet") {
+//        let toiletScene = SKScene(fileNamed: "Toilet")!
+//        let theToilet = toiletScene.childNode(withName: "toilet_body") as! SKSpriteNode
 //
-//            toilet2.removeFromParent()
-//            print("----")
-//            print(toilet2.children)
-//            print("----")
+//        theToilet.position = CGPoint(x: 100, y: 100)
+//        theToilet.zPosition = 2
 //
-//            if let foo2 = toilet2.childNode(withName: "toiletNode") {
-//                foo2.removeFromParent()
-//
-//                print("****")
-//                print(foo2.children)
-//                print("****")
-//
-//                foo2.position = CGPoint(x: 0, y: 0)
-//                foo2.zPosition = 2
-//                self.addChild(foo2)
-//            }
-//        }
-        
-        
-//        let toiletReference = SKReferenceNode(fileNamed: "Toilet") as SKReferenceNode
-//        toiletReference.removeFromParent()
-//        toiletReference.position = CGPoint(x: 150, y: 150)
-//        let theNode = toiletReference.getBasedChildNode()!
-//        theNode.removeFromParent()
-//        self.addChild(theNode)
-        
-        
-//        toiletNode = toiletReference.getBasedChildNode() as! ToiletNode
-//        
-//        toiletNode.removeFromParent()
-//        
-//        print("---")
-//        print(toiletNode)
-//        print("---")
-//        
-//        toiletNode.position = CGPoint(x: 100, y: 100)
-//        
-//        self.addChild(toiletNode)
-
-//        toiletNode.run
-        
-    
 //        self.addChild(theToilet)
-//        print()
-//        print(toiletReference.children)
-//        print()
-        
-//        let toiletReference = SKReferenceNode(url: URL(fileURLWithPath: path!)) as! ToiletNode
-        
-//        var toiletNode = ToiletNode()
-//        toiletNode = childNode(withName: "//toilet_body") as! ToiletNode
-//        toiletNode.setScale(1.5)
 
-//        toiletReference.setScale(1.5)
-//        addChild(toiletReference)
-        
-        
         
         enumerateChildNodes(withName: "//*", using: { node, _ in
             if let eventListenerNode = node as? EventListenerNode {
@@ -297,11 +225,16 @@ class Scene: SKScene {
 //        self.addChild(messageBox)
         
         
-        // Build the menu scene:
-        let menuScene = MenuScene()
-        menuScene.size = self.view!.bounds.size
-        // Show the menu
-        self.view!.presentScene(menuScene)
+        
+        
+        // Don't present it yet...
+        
+        
+//        // Build the menu scene:
+//        let menuScene = MenuScene()
+//        menuScene.size = self.view!.bounds.size
+//        // Show the menu
+//        self.view!.presentScene(menuScene)
     }
     
     

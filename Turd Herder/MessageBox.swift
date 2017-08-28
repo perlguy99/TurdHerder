@@ -35,6 +35,18 @@ class MessageBox: SKNode {
         background.position = .zero
         self.addChild(background)
         
+        let message1 = SKLabelNode()
+        message1.fontName = HUDSettings.font
+        message1.fontColor = HUDSettings.fontColor
+        message1.fontSize = 50
+        message1.text = message
+        message1.verticalAlignmentMode = .center
+        message1.position = CGPoint(x: 0, y: 50)
+        
+        self.addChild(message1)
+        
+        
+        
         
 
 

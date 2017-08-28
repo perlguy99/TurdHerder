@@ -23,8 +23,11 @@ enum HUDMessages {
 
 
 enum HUDSettings {
-    static let font              = "KenVector Future"
-    static let fontSize: CGFloat = 30
+    static let font               = "turds"
+//    static let font               = "<PAPER FOR YOUR ASS>"
+    static let fontColor: UIColor = UIColor.brown
+    static let fontSize: CGFloat  = 30
+    static let titleSize: CGFloat = 50
 }
 
 
@@ -57,6 +60,8 @@ class HUD: SKNode {
         
         addChild(label)
         label.fontSize = fontSize
+        label.fontColor = HUDSettings.fontColor
+        label.color = HUDSettings.fontColor
         label.position = position
         
     }
@@ -85,12 +90,16 @@ class HUD: SKNode {
         case .win:
             print("++ updateUI.win")
             
-            addHUDImage(name: "gameOver", position: .zero)
+//            addHUDImage(name: "gameOver", position: .zero)
             addTimeTakenLabel()
             remove(message: "Timer")
             remove(message: "RemainingTurdsLabel")
             
-            perform(#selector(changeHUDImage), with: nil, afterDelay: 3)
+            
+//            addMessageBox(title: "My Menu Test", size: CGSize(width: 600, height: 350))
+            addMessageBox(title: "New Menu Test", message1: "Message 1", message2: "Message 2", bottomMessage: "Bottom Message")
+            
+//            perform(#selector(changeHUDImage), with: nil, afterDelay: 3)
             
         case .restart:
             print("++ updateUI.restart")
@@ -251,9 +260,217 @@ class HUD: SKNode {
         
         addChild(label)
         
+        label.fontColor = HUDSettings.fontColor
         label.fontSize = fontSize
         label.position = position
     }
+    
+    
+    func makeMenuBackground(size: CGSize) -> SKSpriteNode {
+        print("\n\nMake Menu Background\n\n")
+        
+        let menuBackground = SKSpriteNode()
+        
+//        menuBackground.anchorPoint = CGPoint(x: 0.0, y: 0.0)
+        
+        var toiletNode: SKSpriteNode!
+        
+//        self.addChild(toiletNode)
+        
+        
+//        let border = SKShapeNode(rectOf: CGSize(width: 600, height: 350) , cornerRadius: 8.0)
+        let border = SKShapeNode(rectOf: size, cornerRadius: 8.0)
+        border.strokeColor = UIColor.black
+        border.fillColor = UIColor.brown
+        border.alpha = 0.35
+        border.lineWidth = 5.0
+        menuBackground.addChild(border)
+
+        
+        
+        if let theToiletScene = SKScene(fileNamed: "Toilet2") {
+            toiletNode = theToiletScene.childNode(withName: "MyToilet") as! SKSpriteNode
+            toiletNode.removeFromParent()
+        }
+        
+        let originalToiletSize = CGSize(width: 537, height: 454)
+        let newToiletSize      = CGSize(width: 207, height: 175)
+        
+        //        toiletNode.position = CGPoint(x: -175, y: 75)
+        toiletNode.scale(to: newToiletSize)
+        
+        let bw = border.frame.width
+        let tw = toiletNode.frame.width
+        print("\n\nBW: \(bw) -- TW: \(tw)\n\n")
+        
+        let tx = -(border.frame.width  / 2)
+        let ty = border.frame.height / 2
+
+        
+        // D5X: -303.350006103516  D5Y: 178.350006103516
+        toiletNode.position = CGPoint(x: tx, y: ty)
+        
+        
+        menuBackground.addChild(toiletNode)
+
+        
+        
+        // DOT 1
+        // X: 0, Y: 0
+        let dot1 = SKShapeNode(circleOfRadius: 5)
+        dot1.fillColor = UIColor.magenta
+        dot1.position = CGPoint(x: 0, y: 0)
+        dot1.zPosition = 500
+        menuBackground.addChild(dot1)
+        
+        // DOT 2
+        // D2X: 303.350006103516  D2Y: 178.350006103516
+        let dot2 = SKShapeNode(circleOfRadius: 5)
+        dot2.fillColor = UIColor.cyan
+        let d2x = border.frame.width  / 2 // 303
+        let d2y = border.frame.height / 2 // 178
+        print("\n\nD2X: \(d2x)  D2Y: \(d2y)\n\n")
+        dot2.position = CGPoint(x: d2x, y: d2y)
+        dot2.zPosition = 500
+        menuBackground.addChild(dot2)
+        
+        // DOT 3
+        // D3X: -303.350006103516  D3Y: -178.350006103516
+        let dot3 = SKShapeNode(circleOfRadius: 5)
+        dot3.fillColor = UIColor.blue
+        let d3x = -(border.frame.width  / 2)
+        let d3y = -(border.frame.height / 2)
+        print("\n\nD3X: \(d3x)  D3Y: \(d3y)\n\n")
+        dot3.position = CGPoint(x: d3x, y: d3y)
+        dot3.zPosition = 500
+        menuBackground.addChild(dot3)
+        
+        // DOT 4
+        // D4X: 303.350006103516  D4Y: -178.350006103516
+        let dot4 = SKShapeNode(circleOfRadius: 5)
+        dot4.fillColor = UIColor.red
+        let d4x = border.frame.width  / 2
+        let d4y = -(border.frame.height / 2)
+        print("\n\nD4X: \(d4x)  D4Y: \(d4y)\n\n")
+        dot4.position = CGPoint(x: d4x, y: d4y)
+        dot4.zPosition = 500
+        menuBackground.addChild(dot4)
+        
+        // DOT 5
+        // D5X: -303.350006103516  D5Y: 178.350006103516
+        let dot5 = SKShapeNode(circleOfRadius: 5)
+        dot5.fillColor = UIColor.yellow
+        let d5x = -(border.frame.width  / 2)
+        let d5y = border.frame.height / 2
+        print("\n\nD5X: \(d5x)  D5Y: \(d5y)\n\n")
+        dot5.position = CGPoint(x: d5x, y: d5y)
+        dot5.zPosition = 500
+        menuBackground.addChild(dot5)
+        
+        
+        
+        
+
+        return menuBackground
+        
+        
+    }
+
+    
+    
+//    func addMessageBox(message: String, position: CGPoint, fontSize: CGFloat = HUDSettings.fontSize) {
+    func addMessageBox(title: String, message1: String?, message2: String?, bottomMessage: String?, size: CGSize = CGSize(width: 600, height: 350)) {
+        print("\n\nAdding Message Box \(title) to the scene. SIZE: \(size)\n\n")
+        
+        let menuBackground = makeMenuBackground(size: size)
+        addChild(menuBackground)
+        
+        let menuTitle: SKLabelNode
+        menuTitle = SKLabelNode(fontNamed: HUDSettings.font)
+        menuTitle.text = title
+        menuTitle.zPosition = 100
+        menuTitle.fontColor = HUDSettings.fontColor
+        menuTitle.fontSize = HUDSettings.titleSize
+        
+        let menuXpos = menuTitle.frame.width
+        let menuYpos = menuTitle.frame.height
+
+        
+        
+//        let foo = (menuBackground.calculateAccumulatedFrame().height / 2) - menuTitle.frame.height - 10
+        
+        let foo = (size.height / 2) - menuTitle.frame.height - 10
+
+        menuTitle.position = CGPoint(x: 0, y: foo)
+        
+        print("\n\nW: \(menuTitle.frame.width) -- H: \(menuTitle.frame.height) - FOO: \(foo)\n\n")
+        
+        addChild(menuTitle)
+        
+
+        if let message1 = message1 {
+            let messageLabel = SKLabelNode(fontNamed: HUDSettings.font)
+            messageLabel.fontSize = 30
+            messageLabel.zPosition = 100
+            messageLabel.text = message1
+            messageLabel.fontColor = UIColor.green
+            
+            messageLabel.position = .zero
+            addChild(messageLabel)
+        }
+
+        
+        if let message2 = message2 {
+            let messageLabel = SKLabelNode(fontNamed: HUDSettings.font)
+            messageLabel.fontSize = 30
+            messageLabel.zPosition = 100
+            messageLabel.text = message2
+            messageLabel.fontColor = UIColor.orange
+            
+            let y = messageLabel.frame.height
+            
+            print("\n\nY: \(y)\n\n")
+            
+            messageLabel.position = CGPoint(x: 0, y: -y)
+            addChild(messageLabel)
+        }
+
+        
+        if let bottomMessage = bottomMessage {
+            let messageLabel = SKLabelNode(fontNamed: HUDSettings.font)
+            messageLabel.fontSize = 30
+            messageLabel.zPosition = 100
+            messageLabel.text = bottomMessage
+            messageLabel.fontColor = UIColor.red
+            
+//            let foo = -((menuBackground.calculateAccumulatedFrame().height / 2) - (menuTitle.frame.height / 2))
+            let foo = -((size.height / 2) - (menuTitle.frame.height / 2))
+            
+            print("\n\nFOO: \(foo)\n\n")
+            
+            messageLabel.position = CGPoint(x: 0, y: foo)
+            addChild(messageLabel)
+        }
+
+
+        
+        
+//        let label: SKLabelNode
+//        label           = SKLabelNode(fontNamed: HUDSettings.font)
+//        label.text      = message
+//        label.name      = message
+//        label.zPosition = 100
+//
+//        addChild(label)
+//
+//        label.fontColor = HUDSettings.fontColor
+//        label.fontSize = fontSize
+//        label.position = position
+//
+        
+    }
+
+    
     
     
 //    guard let scene = scene else { return }

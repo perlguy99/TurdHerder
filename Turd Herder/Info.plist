@@ -4,7 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>turds.ttf</string>
+		<string>turds soft.ttf</string>
 		<string>KenVector Future.ttf</string>
+		<string>PAPER FOR YOUR ASS.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

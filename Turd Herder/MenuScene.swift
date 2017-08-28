@@ -13,12 +13,18 @@ class MenuScene: SKScene {
     
     let textureAtlas:SKTextureAtlas = SKTextureAtlas(named: "HUD")
     
+    var theToilet: SKSpriteNode!
+    
+    
     // Instantiate a sprite node for the start button
     let startButton = SKSpriteNode()
     
 //    var oldAnchorPoint:CGPoint!
     
     override func didMove(to view: SKView) {
+        
+        self.name = "MenuScene"
+        
         // Position the nodes from the center of the scene:
 //        oldAnchorPoint = self.anchorPoint
         
@@ -70,7 +76,79 @@ class MenuScene: SKScene {
         startText.run(SKAction.repeatForever(pulseAction))
         // ----------------------
         
+        
+        theToilet = loadToilet("Toilet")
+        
+        
+//        print("---")
+//        print(theToilet?.isHidden)
+//        print(theToilet?.position)
+//        print(self.children)
+//        print("---")
+        
+//        theToilet.removeFromParent()
+        
+//        let toiletScene = SKScene(fileNamed: "Toilet")!
+//        let theToilet = toiletScene.childNode(withName: "toilet_body") as! SKSpriteNode
+        
+        
+        let newToilet = self.theToilet.copy() as! SKSpriteNode
+        
+        newToilet.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        newToilet.position = CGPoint(x: 100, y: 100)
+        newToilet.zPosition = 2
+
+//        print("+++")
+//        print(theToilet.parent)
+//        print("+++")
+
+        
+        
+        self.addChild(newToilet)
+
+//        print("***")
+//        print(theToilet.parent)
+//        print("***")
+        
     }
+    
+    
+    func loadToilet(_ fileName: String) -> SKSpriteNode {
+        let toiletScene = SKScene(fileNamed: fileName)!
+        toiletScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+//        let toiletTemplate = toiletScene.childNode(withName: "//toilet_body")
+//        let toiletTemplate = toiletScene.childNode(withName: "*")
+        let toiletTemplate = toiletScene.childNode(withName: "toilet_body")
+        
+//        print("---")
+//        print(toiletTemplate?.children)
+//        print(toiletTemplate?.parent)
+//        print("---")
+        
+//        let toiletTemplate = toiletScene.childNode(withName: "//MyToilet")
+        
+        toiletTemplate?.position = CGPoint(x: 150, y: 150)
+        toiletTemplate?.zPosition = 2
+        
+//        toiletScene.position = CGPoint(x: 150, y: 150)
+//        toiletScene.zPosition = 4
+//
+//        toiletScene.removeFromParent()
+//
+//        self.addChild(toiletScene)
+        
+//        print("---")
+//        print(toiletTemplate?.isHidden)
+//        print(toiletTemplate?.position)
+//        print(self.children)
+//        print("---")
+        
+//        toiletTemplate?.removeFromParent()
+        
+        return toiletTemplate as! SKSpriteNode
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in (touches) {
