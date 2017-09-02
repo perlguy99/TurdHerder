@@ -13,7 +13,14 @@ class TurdNode: SKSpriteNode {
 
     init() {
         let texture = SKTexture(imageNamed: "turd")
-        super.init(texture: texture, color: .clear, size: texture.size())
+        
+        print("\n\nTexture Size: \(texture.size())\n\n")
+        
+        let poopSize = CGSize(width: 125, height: 125)
+        
+//        super.init(texture: texture, color: .clear, size: texture.size())
+        super.init(texture: texture, color: .clear, size: poopSize)
+        
         name = "turd"
         
         let smoke:SKEmitterNode = smokeRising()
@@ -52,27 +59,27 @@ class TurdNode: SKSpriteNode {
         emitter.zPosition = -2
         emitter.particleTexture = particleTexture
         
-        emitter.particleBirthRate = 10
+        emitter.particleBirthRate = 40
         
-        emitter.particleLifetime = 1
+        emitter.particleLifetime = 10
         emitter.particleLifetimeRange = 0
         
-        emitter.particlePositionRange.dx = 20
+        emitter.particlePositionRange.dx = 40
         emitter.particlePositionRange.dy = 5
         
         emitter.particleZPosition = 0
         
         emitter.emissionAngle = CGFloat(90.0).degreesToRadians()
         emitter.emissionAngleRange = CGFloat(20.0).degreesToRadians()
-        emitter.particleSpeed = 20
-        emitter.particleSpeedRange = 10
+        emitter.particleSpeed = 40
+        emitter.particleSpeedRange = 40
         
         emitter.xAcceleration = 0
-        emitter.yAcceleration = 50
+        emitter.yAcceleration = 10
         
         emitter.particleAlpha = 0.4
         emitter.particleAlphaRange = 0.3
-        emitter.particleAlphaSpeed = 0.5
+        emitter.particleAlphaSpeed = -0.15
         
         emitter.particleScale = 0.5
         emitter.particleScaleRange = 0.3

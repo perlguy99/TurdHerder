@@ -8,50 +8,39 @@
 
 import SpriteKit
 
-class ToiletNode: SKSpriteNode {
+class ToiletNode {
 
-    var theToilet: SKNode!
-
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//
-//        print("\n\nToilet added to scene\n\n")
-//
-//        self.name = "toiletNode"
-//
-//
-////        self.position = CGPoint(x: 100, y: 100)
-////        print(self.children)
-//
-//
-////        self.removeFromParent()
-//
-//    }
     
-    
-    
-    
-    
-    func getTheNode() -> SKNode {
+    class func getToilet() -> SKNode {
         
-        if let scene = SKScene(fileNamed: "Toilet") {
-            theToilet = scene.childNode(withName: "toilet_body")
-        }
+        // Pulse the start text in and out gently
+        let fumesPulse = SKAction.sequence([
+            SKAction.fadeAlpha(to: 0.3, duration: 1.5),
+            SKAction.fadeAlpha(to: 1, duration: 1.5)
+            ])
         
+        let rotateLeft   = SKAction.rotate(byAngle: CGFloat(7.0).degreesToRadians(), duration: 1.5)
+        let rotateRight  = SKAction.rotate(byAngle: CGFloat(-7.0).degreesToRadians(), duration: 1.5)
+        let backAndForth = SKAction.sequence([rotateLeft, rotateRight])
+        let grouped      = SKAction.group([backAndForth, fumesPulse])
+        let fumeAction   = SKAction.repeatForever(grouped)
+        //        let fumeAction = SKAction.repeatForever(backAndForth)
+        
+        let toilet = SKSpriteNode(imageNamed: "toilet_plain1")
+        let fumes  = SKSpriteNode(imageNamed: "fumes1")
+        
+        toilet.position = CGPoint(x: 0, y: 0)
+        fumes.position  = CGPoint(x: -50, y: 75)
+        fumes.zPosition = 5
+        fumes.run(fumeAction)
+        
+        let theToilet = SKNode()
+        theToilet.addChild(toilet)
+        theToilet.addChild(fumes)
+        
+        theToilet.name = "Toilet"
         return theToilet
-        
     }
-    
-    
-//    func didMoveToScene() {
-//        print("\n\nToilet added to scene\n\n")
-//
-//
-//
-////        _ = SKTexture(imageNamed: "toilet_body")
-//    }
-    
-    
     
     
 }

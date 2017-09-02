@@ -21,60 +21,24 @@ class ViewController: UIViewController, ARSKViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and node count
-        sceneView.showsFPS = true
-        sceneView.showsNodeCount = true
-        
-        // Load the SKScene from 'Scene.sks'
-//        if let scene = SKScene(fileNamed: "Scene") {
-//            sceneView.presentScene(scene)
-//        }
+//        sceneView.showsFPS      = true
+//        sceneView.showsNodeCount = true
         
         // Build the menu scene:
         let menuScene = MenuScene()
-        let skView = self.view as! SKView
-
-        menuScene.size = view.bounds.size
         
-        // Show the menu
-        skView.presentScene(menuScene)
+        menuScene.size = CGSize(width: 2048, height: 1536)
+        menuScene.scaleMode = .fill
+        
+//        print(menuScene.size)
+//        print("Screen Size (nativeBounds): \(UIScreen.main.nativeBounds.size)")
+//        print("Screen Size (bounds): \(UIScreen.main.bounds.size)")
+//        print("Screen Size (nativeScale): \(UIScreen.main.nativeScale)")
 
+        // Show the menu
+        sceneView.presentScene(menuScene)
     }
     
-    
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        
-//        if let scene = SKScene(fileNamed: "GameScene") {
-//            // Configure the view
-//            
-//            // Show statistics such as fps and node count
-//            sceneView.showsFPS       = true
-//            sceneView.showsNodeCount = true
-//            
-//            // Set the view's delegate
-//            sceneView.delegate = self
-//            
-//            // Load the SKScene from 'Scene.sks'
-//            //        if let scene = SKScene(fileNamed: "Scene") {
-//            sceneView.presentScene(scene)
-//        }
-//
-//        
-////        sceneView.showsNodeCount = true
-////        sceneView.delegate = self
-////
-////        // Build the menu scene:
-////        let menuScene = MenuScene()
-////        let skView = self.view as! SKView
-////
-////        // ignore drawing order of child nodes to increase performance
-////        //        skView.ignoresSiblingOrder = true
-////
-////        menuScene.size = view.bounds.size
-////
-////        // Show the menu
-////        skView.presentScene(menuScene)
-//    }
     
     
     override func viewWillAppear(_ animated: Bool) {

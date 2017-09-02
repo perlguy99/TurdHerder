@@ -13,55 +13,78 @@ class MenuScene: SKScene {
     
     let textureAtlas:SKTextureAtlas = SKTextureAtlas(named: "HUD")
     
-    var theToilet: SKSpriteNode!
-    
-    
     // Instantiate a sprite node for the start button
     let startButton = SKSpriteNode()
     
-//    var oldAnchorPoint:CGPoint!
+    
+    func getDot() -> SKShapeNode {
+        let dot1 = SKShapeNode(circleOfRadius: 20)
+        dot1.fillColor = UIColor.magenta
+        dot1.zPosition = 500
+        
+        return dot1
+    }
+    
+    func placeDot(position: CGPoint, color: UIColor = UIColor.magenta) {
+        let dot = SKShapeNode(circleOfRadius: 20)
+        dot.fillColor = color
+        dot.zPosition = 500
+        dot.position = position
+        addChild(dot)
+    }
     
     override func didMove(to view: SKView) {
         
         self.name = "MenuScene"
         
         // Position the nodes from the center of the scene:
-//        oldAnchorPoint = self.anchorPoint
-        
-//        print(oldAnchorPoint.debugDescription)
-        
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-        // Add any background images, set zPosition to -1
-        
-        let logoText = SKLabelNode(fontNamed: "AvenirNext-Heavy")
-        logoText.text     = "Turd Herder"
-        logoText.position = CGPoint(x: 0, y: 100)
-        logoText.fontSize = 60
-        self.addChild(logoText)
 
-        let logoTextBottom = SKLabelNode(fontNamed: "AvenirNext-Heavy")
-        logoTextBottom.text     = "Don't Make a Stink!"
-        logoTextBottom.position = CGPoint(x: 0, y: 50)
-        logoTextBottom.fontSize = 40
-        self.addChild(logoTextBottom)
+//        placeDot(position: CGPoint(x: 0, y: 0), color: UIColor.magenta)
+//        placeDot(position: CGPoint(x: 0, y: 100), color: UIColor.red)
+//        placeDot(position: CGPoint(x: 0, y: 200), color: UIColor.green)
+//        placeDot(position: CGPoint(x: 0, y: 300), color: UIColor.blue)
+//        placeDot(position: CGPoint(x: 0, y: 400), color: UIColor.white)
+//        placeDot(position: CGPoint(x: 0, y: 500), color: UIColor.yellow)
+//        placeDot(position: CGPoint(x: 0, y: 520), color: UIColor.red)
+//        placeDot(position: CGPoint(x: 0, y: 600), color: UIColor.orange)
+//        placeDot(position: CGPoint(x: 0, y: 700), color: UIColor.purple)
+//        placeDot(position: CGPoint(x: 0, y: 800), color: UIColor.red)
+//
+//        let topPhone = 1080.0 / 2.0
+//        let topPad   = 1668.0 / 2.0
+//
+//        print("%%%%%%%%%%")
+//        print(view.scene?.size)
+//        print("Top iPhone: \(topPhone)")
+//        print("Top iPad: \(topPad)\n")
+//
+//        print("Screen Size (nativeBounds): \(UIScreen.main.nativeBounds.size)")
+//        print("Screen Size (bounds): \(UIScreen.main.bounds.size)")
+//        print("Screen Size (nativeScale): \(UIScreen.main.nativeScale)")
+//        print("%%%%%%%%%%")
+        
+        
 
         // ----------------------
         // Build the start button
-        startButton.texture = textureAtlas.textureNamed("button")
-        startButton.size = CGSize(width: 295, height: 76)
+        let buttonWidth  = 750
+        let buttonHeight = 275
+        startButton.texture = textureAtlas.textureNamed("green_button")
+        startButton.size = CGSize(width: buttonWidth, height: buttonHeight)
         
         // Name the start node for touch detection
         startButton.name  = "StartButton"
-        startButton.position = CGPoint(x: 0, y: -20)
+        startButton.position = CGPoint(x: 0, y: 0)
         self.addChild(startButton)
         
         // Add text to the button
-        let startText = SKLabelNode(fontNamed: "AvenirNext-HeavyItalic")
+        let startText = SKLabelNode(fontNamed: HUDSettings.font)
         startText.text = "START GAME"
         startText.verticalAlignmentMode = .center
+        startText.fontColor = UIColor.red
         startText.position = CGPoint(x: 0, y: 2)
-        startText.fontSize = 40
+        startText.fontSize = 100
         
         // Name the text node for touch detection
         startText.name = "StartButton"
@@ -74,81 +97,47 @@ class MenuScene: SKScene {
             SKAction.fadeAlpha(to: 1, duration: 0.9)
             ])
         startText.run(SKAction.repeatForever(pulseAction))
+        // Build the start button
+        // ----------------------
+
+        
+        // ----------------------
+        // Main Title
+        let logoText = SKLabelNode(fontNamed: HUDSettings.font)
+        logoText.text     = "Turd Herder"
+        logoText.fontColor = UIColor.brown
+        logoText.position = CGPoint(x: 0, y: (buttonHeight/2) + 50)
+        logoText.fontSize = 288
+        logoText.name = "logoText"
+        self.addChild(logoText)
+        // Main Logo
         // ----------------------
         
         
-        theToilet = loadToilet("Toilet")
-        
-        
-//        print("---")
-//        print(theToilet?.isHidden)
-//        print(theToilet?.position)
-//        print(self.children)
-//        print("---")
-        
-//        theToilet.removeFromParent()
-        
-//        let toiletScene = SKScene(fileNamed: "Toilet")!
-//        let theToilet = toiletScene.childNode(withName: "toilet_body") as! SKSpriteNode
-        
-        
-        let newToilet = self.theToilet.copy() as! SKSpriteNode
-        
-        newToilet.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        newToilet.position = CGPoint(x: 100, y: 100)
-        newToilet.zPosition = 2
-
-//        print("+++")
-//        print(theToilet.parent)
-//        print("+++")
+//        let logoTextBottom = SKLabelNode(fontNamed: HUDSettings.font)
+//        logoTextBottom.text     = "Don't Make a Stink!"
+//        logoTextBottom.fontColor = UIColor.brown
+//        logoTextBottom.position = CGPoint(x: 0, y: 50)
+//        logoTextBottom.fontSize = 80
+//        self.addChild(logoTextBottom)
 
         
+        let tX = logoText.frame.origin.x - 150
+        let tY = startButton.frame.origin.y - startButton.frame.size.height
         
-        self.addChild(newToilet)
+        print("\n\nTx: \(tX)\nTy: \(tY)\n\n")
+        
+        let theToilet = ToiletNode.getToilet()
+        
+//        theToilet.position = CGPoint(x: tX, y: tY)
+        theToilet.position = CGPoint(x: 0, y: tY)
+        
+        self.addChild(theToilet)
+        
 
-//        print("***")
-//        print(theToilet.parent)
-//        print("***")
-        
     }
     
-    
-    func loadToilet(_ fileName: String) -> SKSpriteNode {
-        let toiletScene = SKScene(fileNamed: fileName)!
-        toiletScene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-//        let toiletTemplate = toiletScene.childNode(withName: "//toilet_body")
-//        let toiletTemplate = toiletScene.childNode(withName: "*")
-        let toiletTemplate = toiletScene.childNode(withName: "toilet_body")
-        
-//        print("---")
-//        print(toiletTemplate?.children)
-//        print(toiletTemplate?.parent)
-//        print("---")
-        
-//        let toiletTemplate = toiletScene.childNode(withName: "//MyToilet")
-        
-        toiletTemplate?.position = CGPoint(x: 150, y: 150)
-        toiletTemplate?.zPosition = 2
-        
-//        toiletScene.position = CGPoint(x: 150, y: 150)
-//        toiletScene.zPosition = 4
-//
-//        toiletScene.removeFromParent()
-//
-//        self.addChild(toiletScene)
-        
-//        print("---")
-//        print(toiletTemplate?.isHidden)
-//        print(toiletTemplate?.position)
-//        print(self.children)
-//        print("---")
-        
-//        toiletTemplate?.removeFromParent()
-        
-        return toiletTemplate as! SKSpriteNode
-    }
-    
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in (touches) {
@@ -159,9 +148,18 @@ class MenuScene: SKScene {
             let nodeTouched = atPoint(location)
             
             if nodeTouched.name == "StartButton" {
-                if let scene = SKScene(fileNamed: "Scene") {
-                    self.view?.presentScene(scene)
-                }
+
+                print("TOUCHED")
+                
+                let scene = GameScene(size: CGSize(width: 2048, height: 1536))
+                scene.scaleMode = .fill
+                self.view?.presentScene(scene)
+                
+//                if let scene = SKScene(fileNamed: "Scene") {
+//                    scene.scaleMode = .aspectFill
+//                    
+//                    self.view?.presentScene(scene)
+//                }
             }
         }
     }

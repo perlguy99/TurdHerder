@@ -12,22 +12,25 @@ enum HUDMessages {
     static let tapToStart = "Tap to Start"
     static let win        = "You Win!"
     static let lose       = "Out of Time!"
-    static let yourTime   = "Your Time: "
+    static let yourTime   = "Turd Herding Time: "
     static let playAgain  = "Tap to Play Again"
+    static let newRecord  = "A New Record Time of: "
     static let three      = "3"
     static let two        = "2"
     static let one        = "1"
     static let go         = "Go"
-    
 }
 
 
 enum HUDSettings {
-    static let font               = "turds"
+//    static let font               = "turds"
+    static let font               = "Freckle Face"
+//    static let font               = "Dingle Berries"
+//    static let font               = "StayPuft"
 //    static let font               = "<PAPER FOR YOUR ASS>"
     static let fontColor: UIColor = UIColor.brown
-    static let fontSize: CGFloat  = 30
-    static let titleSize: CGFloat = 50
+    static let fontSize: CGFloat  = 100
+    static let titleSize: CGFloat = 150
 }
 
 
@@ -41,7 +44,24 @@ class HUD: SKNode {
     
     var hudImage: SKSpriteNode?
     
+    var bestTimeFlag: Bool?
+    
     let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
+    
+    let winningTitles = [
+        "Great Job Turd Herder",
+        "Well Done Turd Herder",
+        "Awesome Turd Herding",
+    ]
+    
+    let winningMessages = [
+        "You must have been practicing your turd herding skills!",
+        "Whoa, you really ripped one that time!",
+    ]
+    
+
+    
+    
     
     override init() {
         super.init()
@@ -53,24 +73,43 @@ class HUD: SKNode {
         super.init(coder: aDecoder)
     }
     
-    func addRemainingInfo(position: CGPoint, fontSize: CGFloat = HUDSettings.fontSize) {
-        let label: SKLabelNode
-        label = SKLabelNode(fontNamed: HUDSettings.font)
-        label.name = "remainingInfo"
-        
-        addChild(label)
-        label.fontSize = fontSize
-        label.fontColor = HUDSettings.fontColor
-        label.color = HUDSettings.fontColor
-        label.position = position
-        
-    }
+//    func addRemainingInfo(position: CGPoint, fontSize: CGFloat = HUDSettings.fontSize) {
+//        let label: SKLabelNode
+//        label = SKLabelNode(fontNamed: HUDSettings.font)
+//        label.name = "remainingInfo"
+//
+//        addChild(label)
+//        label.fontSize = fontSize
+//        label.fontColor = HUDSettings.fontColor
+//        label.color = HUDSettings.fontColor
+//        label.position = position
+//
+//    }
     
     
     func updateGameState(from: GameState, to: GameState) {
         clearUI(gameState: from)
         updateUI(gameState: to)
     }
+    
+    
+    
+    func checkForBestTime() {
+        
+        print("Checking for best time")
+        // get best time stored in user defaults
+//        if let bestTime = UserDefaults.standard.
+        
+        
+        // compare it with the current score
+        
+        // Better time?
+        // Update the user defaults
+        // Set high score flag
+        
+        
+    }
+    
     
     
     private func updateUI(gameState: GameState) {
@@ -91,13 +130,15 @@ class HUD: SKNode {
             print("++ updateUI.win")
             
 //            addHUDImage(name: "gameOver", position: .zero)
-            addTimeTakenLabel()
+//            addTimeTakenLabel()
             remove(message: "Timer")
             remove(message: "RemainingTurdsLabel")
             
+            let randomMessage = Int.random(winningTitles.count)
             
-//            addMessageBox(title: "My Menu Test", size: CGSize(width: 600, height: 350))
-            addMessageBox(title: "New Menu Test", message1: "Message 1", message2: "Message 2", bottomMessage: "Bottom Message")
+            let titleText = winningTitles[randomMessage]
+            
+            addMessageBox(title: titleText, message1: "Message 1", message2: "Message 2", bottomMessage: getTimeTakenText())
             
 //            perform(#selector(changeHUDImage), with: nil, afterDelay: 3)
             
@@ -156,23 +197,26 @@ class HUD: SKNode {
     
     
     
-    func presentMenu() {
-        // Build the menu scene:
-        let menuScene = MenuScene()
-        
-//        menuScene.size =
-//        view!.bounds.size
-        
-        // Show the menu
-//        self.view!.presentScene(menuScene)
-    }
+//    func presentMenu() {
+//        // Build the menu scene:
+//        let menuScene = MenuScene()
+//        
+////        menuScene.size =
+////        view!.bounds.size
+//        
+//        // Show the menu
+////        self.view!.presentScene(menuScene)
+//    }
     
     
     func updateTimer() {
         let now          = Date()
         let seconds      = now.since(startTime, in: .second)
         let minutes      = now.since(startTime, in: .minute)
-        let timeText     = String(format: "%02d:%02d", minutes, seconds)
+        
+        let sec2 = seconds - (minutes * 60)
+        
+        let timeText     = String(format: "%02d:%02d", minutes, sec2)
         timerLabel?.text = timeText
     }
     
@@ -184,7 +228,11 @@ class HUD: SKNode {
     func addRemainingTurdsLabel() {
         guard let scene = scene else { return }
         
-        let position = CGPoint(x: 0, y: scene.frame.midY - 50)
+///////
+        let position = CGPoint(x: scene.frame.midX, y: scene.frame.minY + 50)
+        
+        print("\nScene Position: \(scene.frame)\n")
+        
         add(message: "RemainingTurdsLabel", position: position, fontSize: HUDSettings.fontSize)
         
         remainingLabel = childNode(withName: "RemainingTurdsLabel") as? SKLabelNode
@@ -202,18 +250,31 @@ class HUD: SKNode {
         timeTakenLabel = childNode(withName: "TimeTaken") as? SKLabelNode
         timeTakenLabel?.verticalAlignmentMode = .bottom
         
-        
         let minutes = Date().since(startTime, in: .minute)
         let seconds = Date().since(startTime, in: .second)
         
+//        print("\nSeconds Taken: \(seconds)\n")
+        
         let timeTaken             = Date().timeIntervalSince(startTime)
 //        timeTakenLabel?.text      = "Time taken:  \(Int(timeTaken)) seconds"
+        
+        // High score text
+        
         
         timeTakenLabel?.text      = String(format: "Turd Herding Time - %02d:%02d", minutes, seconds)
         
         timeTakenLabel?.fontColor = .yellow
     }
     
+    
+    func getTimeTakenText() -> String {
+        let minutes = Date().since(startTime, in: .minute)
+        let seconds = Date().since(startTime, in: .second)
+        
+        let sec2 = seconds - (minutes * 60)
+
+        return String(format: "Turd Herding Time - %02d:%02d", minutes, sec2)
+    }
     
     func addTimer(startTime: Date) {
         guard let scene = scene else { return }
@@ -230,7 +291,7 @@ class HUD: SKNode {
     
     
     func addHUDImage(name: String, position: CGPoint) {
-        print("\n\nAdding hudImage \(name) to the scene\n\n")
+//        print("\n\nAdding hudImage \(name) to the scene\n\n")
         
         let image      = SKSpriteNode(imageNamed: name)
         image.name     = name
@@ -250,7 +311,7 @@ class HUD: SKNode {
     
     
     func add(message: String, position: CGPoint, fontSize: CGFloat = HUDSettings.fontSize) {
-        print("\n\nAdding \(message) to the scene\n\n")
+//        print("\n\nAdding \(message) to the scene\n\n")
         
         let label: SKLabelNode
         label           = SKLabelNode(fontNamed: HUDSettings.font)
@@ -267,37 +328,18 @@ class HUD: SKNode {
     
     
     func makeMenuBackground(size: CGSize) -> SKSpriteNode {
-        print("\n\nMake Menu Background\n\n")
+//        print("\n\nMake Menu Background\n\n")
         
         let menuBackground = SKSpriteNode()
-        
-//        menuBackground.anchorPoint = CGPoint(x: 0.0, y: 0.0)
-        
-        var toiletNode: SKSpriteNode!
-        
-//        self.addChild(toiletNode)
-        
-        
-//        let border = SKShapeNode(rectOf: CGSize(width: 600, height: 350) , cornerRadius: 8.0)
-        let border = SKShapeNode(rectOf: size, cornerRadius: 8.0)
+
+        let border         = SKShapeNode(rectOf: size, cornerRadius: 8.0)
         border.strokeColor = UIColor.black
-        border.fillColor = UIColor.brown
-        border.alpha = 0.35
-        border.lineWidth = 5.0
+        border.fillColor   = UIColor.brown
+        border.alpha       = 0.35
+        border.lineWidth   = 5.0
         menuBackground.addChild(border)
 
-        
-        
-        if let theToiletScene = SKScene(fileNamed: "Toilet2") {
-            toiletNode = theToiletScene.childNode(withName: "MyToilet") as! SKSpriteNode
-            toiletNode.removeFromParent()
-        }
-        
-        let originalToiletSize = CGSize(width: 537, height: 454)
-        let newToiletSize      = CGSize(width: 207, height: 175)
-        
-        //        toiletNode.position = CGPoint(x: -175, y: 75)
-        toiletNode.scale(to: newToiletSize)
+        let toiletNode = getNiceToilet()
         
         let bw = border.frame.width
         let tw = toiletNode.frame.width
@@ -306,71 +348,63 @@ class HUD: SKNode {
         let tx = -(border.frame.width  / 2)
         let ty = border.frame.height / 2
 
-        
-        // D5X: -303.350006103516  D5Y: 178.350006103516
         toiletNode.position = CGPoint(x: tx, y: ty)
-        
         
         menuBackground.addChild(toiletNode)
 
         
+//        // DOT 1
+//        // X: 0, Y: 0
+//        let dot1 = SKShapeNode(circleOfRadius: 5)
+//        dot1.fillColor = UIColor.magenta
+//        dot1.position = CGPoint(x: 0, y: 0)
+//        dot1.zPosition = 500
+//        menuBackground.addChild(dot1)
+//
+//        // DOT 2
+//        // D2X: 303.350006103516  D2Y: 178.350006103516
+//        let dot2 = SKShapeNode(circleOfRadius: 5)
+//        dot2.fillColor = UIColor.cyan
+//        let d2x = border.frame.width  / 2 // 303
+//        let d2y = border.frame.height / 2 // 178
+//        print("\n\nD2X: \(d2x)  D2Y: \(d2y)\n\n")
+//        dot2.position = CGPoint(x: d2x, y: d2y)
+//        dot2.zPosition = 500
+//        menuBackground.addChild(dot2)
+//
+//        // DOT 3
+//        // D3X: -303.350006103516  D3Y: -178.350006103516
+//        let dot3 = SKShapeNode(circleOfRadius: 5)
+//        dot3.fillColor = UIColor.blue
+//        let d3x = -(border.frame.width  / 2)
+//        let d3y = -(border.frame.height / 2)
+//        print("\n\nD3X: \(d3x)  D3Y: \(d3y)\n\n")
+//        dot3.position = CGPoint(x: d3x, y: d3y)
+//        dot3.zPosition = 500
+//        menuBackground.addChild(dot3)
+//
+//        // DOT 4
+//        // D4X: 303.350006103516  D4Y: -178.350006103516
+//        let dot4 = SKShapeNode(circleOfRadius: 5)
+//        dot4.fillColor = UIColor.red
+//        let d4x = border.frame.width  / 2
+//        let d4y = -(border.frame.height / 2)
+//        print("\n\nD4X: \(d4x)  D4Y: \(d4y)\n\n")
+//        dot4.position = CGPoint(x: d4x, y: d4y)
+//        dot4.zPosition = 500
+//        menuBackground.addChild(dot4)
+//
+//        // DOT 5
+//        // D5X: -303.350006103516  D5Y: 178.350006103516
+//        let dot5 = SKShapeNode(circleOfRadius: 5)
+//        dot5.fillColor = UIColor.yellow
+//        let d5x = -(border.frame.width  / 2)
+//        let d5y = border.frame.height / 2
+//        print("\n\nD5X: \(d5x)  D5Y: \(d5y)\n\n")
+//        dot5.position = CGPoint(x: d5x, y: d5y)
+//        dot5.zPosition = 500
+//        menuBackground.addChild(dot5)
         
-        // DOT 1
-        // X: 0, Y: 0
-        let dot1 = SKShapeNode(circleOfRadius: 5)
-        dot1.fillColor = UIColor.magenta
-        dot1.position = CGPoint(x: 0, y: 0)
-        dot1.zPosition = 500
-        menuBackground.addChild(dot1)
-        
-        // DOT 2
-        // D2X: 303.350006103516  D2Y: 178.350006103516
-        let dot2 = SKShapeNode(circleOfRadius: 5)
-        dot2.fillColor = UIColor.cyan
-        let d2x = border.frame.width  / 2 // 303
-        let d2y = border.frame.height / 2 // 178
-        print("\n\nD2X: \(d2x)  D2Y: \(d2y)\n\n")
-        dot2.position = CGPoint(x: d2x, y: d2y)
-        dot2.zPosition = 500
-        menuBackground.addChild(dot2)
-        
-        // DOT 3
-        // D3X: -303.350006103516  D3Y: -178.350006103516
-        let dot3 = SKShapeNode(circleOfRadius: 5)
-        dot3.fillColor = UIColor.blue
-        let d3x = -(border.frame.width  / 2)
-        let d3y = -(border.frame.height / 2)
-        print("\n\nD3X: \(d3x)  D3Y: \(d3y)\n\n")
-        dot3.position = CGPoint(x: d3x, y: d3y)
-        dot3.zPosition = 500
-        menuBackground.addChild(dot3)
-        
-        // DOT 4
-        // D4X: 303.350006103516  D4Y: -178.350006103516
-        let dot4 = SKShapeNode(circleOfRadius: 5)
-        dot4.fillColor = UIColor.red
-        let d4x = border.frame.width  / 2
-        let d4y = -(border.frame.height / 2)
-        print("\n\nD4X: \(d4x)  D4Y: \(d4y)\n\n")
-        dot4.position = CGPoint(x: d4x, y: d4y)
-        dot4.zPosition = 500
-        menuBackground.addChild(dot4)
-        
-        // DOT 5
-        // D5X: -303.350006103516  D5Y: 178.350006103516
-        let dot5 = SKShapeNode(circleOfRadius: 5)
-        dot5.fillColor = UIColor.yellow
-        let d5x = -(border.frame.width  / 2)
-        let d5y = border.frame.height / 2
-        print("\n\nD5X: \(d5x)  D5Y: \(d5y)\n\n")
-        dot5.position = CGPoint(x: d5x, y: d5y)
-        dot5.zPosition = 500
-        menuBackground.addChild(dot5)
-        
-        
-        
-        
-
         return menuBackground
         
         
@@ -379,8 +413,8 @@ class HUD: SKNode {
     
     
 //    func addMessageBox(message: String, position: CGPoint, fontSize: CGFloat = HUDSettings.fontSize) {
-    func addMessageBox(title: String, message1: String?, message2: String?, bottomMessage: String?, size: CGSize = CGSize(width: 600, height: 350)) {
-        print("\n\nAdding Message Box \(title) to the scene. SIZE: \(size)\n\n")
+    func addMessageBox(title: String, message1: String?, message2: String?, bottomMessage: String?, size: CGSize = CGSize(width: 600, height: 200)) {
+//        print("\n\nAdding Message Box \(title) to the scene. SIZE: \(size)\n\n")
         
         let menuBackground = makeMenuBackground(size: size)
         addChild(menuBackground)
@@ -403,7 +437,7 @@ class HUD: SKNode {
 
         menuTitle.position = CGPoint(x: 0, y: foo)
         
-        print("\n\nW: \(menuTitle.frame.width) -- H: \(menuTitle.frame.height) - FOO: \(foo)\n\n")
+//        print("\n\nW: \(menuTitle.frame.width) -- H: \(menuTitle.frame.height) - FOO: \(foo)\n\n")
         
         addChild(menuTitle)
         
@@ -429,7 +463,7 @@ class HUD: SKNode {
             
             let y = messageLabel.frame.height
             
-            print("\n\nY: \(y)\n\n")
+//            print("\n\nY: \(y)\n\n")
             
             messageLabel.position = CGPoint(x: 0, y: -y)
             addChild(messageLabel)
@@ -441,37 +475,53 @@ class HUD: SKNode {
             messageLabel.fontSize = 30
             messageLabel.zPosition = 100
             messageLabel.text = bottomMessage
-            messageLabel.fontColor = UIColor.red
+            messageLabel.fontColor = UIColor.yellow
             
 //            let foo = -((menuBackground.calculateAccumulatedFrame().height / 2) - (menuTitle.frame.height / 2))
             let foo = -((size.height / 2) - (menuTitle.frame.height / 2))
             
-            print("\n\nFOO: \(foo)\n\n")
+//            print("\n\nFOO: \(foo)\n\n")
             
             messageLabel.position = CGPoint(x: 0, y: foo)
             addChild(messageLabel)
         }
 
-
-        
-        
-//        let label: SKLabelNode
-//        label           = SKLabelNode(fontNamed: HUDSettings.font)
-//        label.text      = message
-//        label.name      = message
-//        label.zPosition = 100
-//
-//        addChild(label)
-//
-//        label.fontColor = HUDSettings.fontColor
-//        label.fontSize = fontSize
-//        label.position = position
-//
         
     }
 
     
-    
+    func getNiceToilet() -> SKNode {
+        
+        // Pulse the start text in and out gently
+        let fumesPulse = SKAction.sequence([
+            SKAction.fadeAlpha(to: 0.3, duration: 0.9),
+            SKAction.fadeAlpha(to: 1, duration: 0.9)
+            ])
+        
+        let rotateLeft   = SKAction.rotate(byAngle: CGFloat(5.0).degreesToRadians(), duration: 1.0)
+        let rotateRight  = SKAction.rotate(byAngle: CGFloat(-5.0).degreesToRadians(), duration: 1.0)
+        let backAndForth = SKAction.sequence([rotateLeft, rotateRight])
+        let grouped      = SKAction.group([backAndForth, fumesPulse])
+        let fumeAction   = SKAction.repeatForever(grouped)
+        //        let fumeAction = SKAction.repeatForever(backAndForth)
+        
+        let toilet = SKSpriteNode(imageNamed: "toilet_plain1")
+        let fumes  = SKSpriteNode(imageNamed: "fumes1")
+        
+//        toilet.setScale(0.5)
+//        fumes.setScale(0.5)
+        
+        toilet.position = CGPoint(x: 0, y: 0)
+        fumes.position  = CGPoint(x: -30, y: 50)
+        fumes.run(fumeAction)
+        
+        let theToilet = SKNode()
+        theToilet.addChild(toilet)
+        theToilet.addChild(fumes)
+        
+        theToilet.name = "niceToilet"
+        return theToilet
+    }
     
 //    guard let scene = scene else { return }
 //
