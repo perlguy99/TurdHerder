@@ -30,7 +30,6 @@
 		8437C1231F18536B00EB3079 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1221F18536B00EB3079 /* HUD.swift */; };
 		84561FE01F0F1E46006EACD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */; };
 		84561FE21F0F1E46006EACD8 /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84561FE11F0F1E46006EACD8 /* Scene.sks */; };
-		84561FE41F0F1E46006EACD8 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FE31F0F1E46006EACD8 /* Scene.swift */; };
 		84561FE61F0F1E46006EACD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FE51F0F1E46006EACD8 /* ViewController.swift */; };
 		84561FE91F0F1E46006EACD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84561FE71F0F1E46006EACD8 /* Main.storyboard */; };
 		84561FEB1F0F1E46006EACD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84561FEA1F0F1E46006EACD8 /* Assets.xcassets */; };
@@ -106,7 +105,6 @@
 		84561FDC1F0F1E46006EACD8 /* Turd Herder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turd Herder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84561FE11F0F1E46006EACD8 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
-		84561FE31F0F1E46006EACD8 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		84561FE51F0F1E46006EACD8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		84561FE81F0F1E46006EACD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84561FEA1F0F1E46006EACD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				84E54EC81F58E2A900AB2BA9 /* GameScene.swift */,
 				8495F0471F47C2B900321494 /* MessageBox.swift */,
 				84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */,
-				84561FE31F0F1E46006EACD8 /* Scene.swift */,
 				8495F0491F47C50500321494 /* ToiletNode.swift */,
 				8437C1221F18536B00EB3079 /* HUD.swift */,
 				8437C1201F18529300EB3079 /* Types.swift */,
@@ -430,7 +427,6 @@
 				841DEEEA1F3EBFFB007C76C6 /* CGFloat+Extensions.swift in Sources */,
 				841DEEF31F3EBFFB007C76C6 /* SKTTimingFunctions.swift in Sources */,
 				8437C1231F18536B00EB3079 /* HUD.swift in Sources */,
-				84561FE41F0F1E46006EACD8 /* Scene.swift in Sources */,
 				841DEEF41F3EBFFB007C76C6 /* Vector3.swift in Sources */,
 				8495F0481F47C2B900321494 /* MessageBox.swift in Sources */,
 				841DEEF11F3EBFFB007C76C6 /* SKNode+Extensions.swift in Sources */,

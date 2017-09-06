@@ -70,7 +70,7 @@ class MenuScene: SKScene {
         // Build the start button
         let buttonWidth  = 750
         let buttonHeight = 275
-        startButton.texture = textureAtlas.textureNamed("green_button")
+        startButton.texture = textureAtlas.textureNamed("green_button").copy() as! SKTexture
         startButton.size = CGSize(width: buttonWidth, height: buttonHeight)
         
         // Name the start node for touch detection
@@ -143,6 +143,8 @@ class MenuScene: SKScene {
         for touch in (touches) {
             // find the location of the touch
             let location = touch.location(in: self)
+            
+            print("\n\nScene Size 1: \(self.scene? .size)\n\n")
             
             // Locate the node at this location
             let nodeTouched = atPoint(location)
