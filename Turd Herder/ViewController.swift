@@ -20,25 +20,14 @@ class ViewController: UIViewController, ARSKViewDelegate {
         // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and node count
-//        sceneView.showsFPS      = true
-//        sceneView.showsNodeCount = true
-        
         // Build the menu scene:
         let menuScene = MenuScene()
-        
-        menuScene.size = CGSize(width: 2048, height: 1536)
+        menuScene.size      = CGSize(width: 2048, height: 1536)
         menuScene.scaleMode = .fill
-        
-//        print(menuScene.size)
-//        print("Screen Size (nativeBounds): \(UIScreen.main.nativeBounds.size)")
-//        print("Screen Size (bounds): \(UIScreen.main.bounds.size)")
-//        print("Screen Size (nativeScale): \(UIScreen.main.nativeScale)")
 
         // Show the menu
         sceneView.presentScene(menuScene)
     }
-    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +35,6 @@ class ViewController: UIViewController, ARSKViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-//        let configuration = ARSessionConfiguration()
         
         // Run the view's session
         sceneView.session.run(configuration)
@@ -65,17 +53,10 @@ class ViewController: UIViewController, ARSKViewDelegate {
     }
     
     // MARK: - ARSKViewDelegate
-    
+
+    // The Anchor that gets returned
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
-        
         return TurdNode()
-        
-//        return SKSpriteNode(imageNamed: "turd")
-//        // Create and configure a node for the anchor added to the view's session.
-//        let labelNode = SKLabelNode(text: "👾")
-//        labelNode.horizontalAlignmentMode = .center
-//        labelNode.verticalAlignmentMode = .center
-//        return labelNode;
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {

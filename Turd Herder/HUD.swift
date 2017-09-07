@@ -189,19 +189,7 @@ class HUD: SKNode {
         addHUDImage(name: "tapAnywhere", position: .zero)
     }
     
-    
-    
-//    func presentMenu() {
-//        // Build the menu scene:
-//        let menuScene = MenuScene()
-//        
-////        menuScene.size =
-////        view!.bounds.size
-//        
-//        // Show the menu
-////        self.view!.presentScene(menuScene)
-//    }
-    
+
     
     func updateTimer() {
         let now          = Date()
@@ -240,23 +228,24 @@ class HUD: SKNode {
         
         // ----------------------
         // Build the start button
-        let buttonWidth  = 750
-        let buttonHeight = 275
+        let buttonWidth  = 700
+        let buttonHeight = 225
         
-        playAgainButton.texture = textureAtlas.textureNamed("green_button").copy() as? SKTexture
+        playAgainButton.texture = textureAtlas.textureNamed("Green_Normal").copy() as? SKTexture
         playAgainButton.size = CGSize(width: buttonWidth, height: buttonHeight)
         
         // Name the start node for touch detection
         playAgainButton.name  = "PlayAgainButton"
-//        playAgainButton.position = CGPoint(x: 0, y: 0)
         playAgainButton.position = position
+        
+        playAgainButton.position = CGPoint(x: 0, y: scene.frame.minY + playAgainButton.frame.size.height)
 
         
         // Add text to the button
         let startText = SKLabelNode(fontNamed: HUDSettings.font)
         startText.text = "Play Again?"
         startText.verticalAlignmentMode = .center
-        startText.fontColor = UIColor.red
+        startText.fontColor = UIColor.yellow
         startText.position = CGPoint(x: 0, y: 2)
         startText.fontSize = 100
         
@@ -274,30 +263,10 @@ class HUD: SKNode {
         // Build the start button
         // ----------------------
         
-
-        
-        
-        
-//        self.addChild(label)
-
         afterDelay(2.0) {
-//            self.addChild(label)
             self.addChild(playAgainButton)
         }
         
-        
-//        addChild(label)
-        
-//        label.afterDelay(2.0) {
-//            self.addChild(label)
-//        }
-        
-//        let action = SKAction.afterDelay(2.0) {
-//            self.add(message: HUDMessages.playAgain, position: CGPoint(x: scene.frame.midX, y: scene.frame.minY), fontSize: HUDSettings.fontSize, color: UIColor.magenta)
-//        }
-//
-//
-//        SKAction.run(action)
     }
     
     
@@ -330,7 +299,7 @@ class HUD: SKNode {
         
 //        print("\nSeconds Taken: \(seconds)\n")
         
-        let timeTaken             = Date().timeIntervalSince(startTime)
+//        let timeTaken             = Date().timeIntervalSince(startTime)
 //        timeTakenLabel?.text      = "Time taken:  \(Int(timeTaken)) seconds"
         
         // High score text
@@ -366,8 +335,6 @@ class HUD: SKNode {
     
     
     func addHUDImage(name: String, position: CGPoint) {
-//        print("\n\nAdding hudImage \(name) to the scene\n\n")
-        
         let image      = SKSpriteNode(imageNamed: name)
         image.name     = name
         image.position = position
@@ -378,10 +345,7 @@ class HUD: SKNode {
         
         hudImage = childNode(withName: name) as? SKSpriteNode
         
-//        hudImage?.run(SKAction.sequence([unhide, scale.reversed()]))
-        
         hudImage?.run(scale.reversed())
-        
     }
     
     
@@ -413,7 +377,7 @@ class HUD: SKNode {
         menuBackground.addChild(border)
 
         let toiletNode = getNiceToilet()
-        let tx         = -(border.frame.width  / 2)
+        let tx         = -((border.frame.width / 2) + 50)
         let ty         = border.frame.height / 2
 
         toiletNode.position = CGPoint(x: tx, y: ty)
@@ -424,7 +388,7 @@ class HUD: SKNode {
 
     
 //    func addMessageBox(title: String, message1: String?, message2: String?, bottomMessage: String?, size: CGSize = CGSize(width: 1200, height: 500)) {
-    func addMessageBox(title: String, message1: String?, message2: String?, size: CGSize = CGSize(width: 1200, height: 500)) {
+    func addMessageBox(title: String, message1: String?, message2: String?, size: CGSize = CGSize(width: 1200, height: 400)) {
         guard let scene = scene else { return }
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
@@ -466,8 +430,6 @@ class HUD: SKNode {
             menuBackground.addChild(messageLabel)
         }
 
-
-        
         addChild(menuBackground)
         
         addPlayAgainMessage(position: CGPoint(x: 0, y: menuBackground.frame.minY - 50))
@@ -496,6 +458,7 @@ class HUD: SKNode {
         
         toilet.position = CGPoint(x: 0, y: 0)
         fumes.position  = CGPoint(x: -30, y: 50)
+        fumes.zPosition = 500
         fumes.run(fumeAction)
         
         let theToilet = SKNode()

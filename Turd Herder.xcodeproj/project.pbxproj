@@ -218,12 +218,12 @@
 				843709281F5392EA00D057F5 /* Fonts */,
 				841DEEDE1F3EBF5D007C76C6 /* SKTUtils */,
 				84DD9DF91F2E80FD00D0A8E7 /* Sounds */,
-				84DD9DFA1F2E810D00D0A8E7 /* Nodes */,
 				84DD9DF81F2E80E600D0A8E7 /* Scenes */,
 				84561FE51F0F1E46006EACD8 /* ViewController.swift */,
 				84804FFD1F4674D0002F6B5F /* MenuScene.swift */,
 				84E54EC81F58E2A900AB2BA9 /* GameScene.swift */,
 				8495F0471F47C2B900321494 /* MessageBox.swift */,
+				84DD9DF61F2E80B800D0A8E7 /* TurdNode.swift */,
 				84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */,
 				8495F0491F47C50500321494 /* ToiletNode.swift */,
 				8437C1221F18536B00EB3079 /* HUD.swift */,
@@ -291,14 +291,6 @@
 				84A2A61A1F3F6D360064A82B /* fart41.wav */,
 			);
 			path = Sounds;
-			sourceTree = "<group>";
-		};
-		84DD9DFA1F2E810D00D0A8E7 /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-				84DD9DF61F2E80B800D0A8E7 /* TurdNode.swift */,
-			);
-			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

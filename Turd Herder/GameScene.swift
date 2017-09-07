@@ -10,15 +10,11 @@ import SpriteKit
 import ARKit
 import GameplayKit
 
-protocol EventListenerNode {
-    func didMoveToScene()
-}
-
 
 class GameScene: SKScene {
     var targetCreationRate:TimeInterval = 0.25
     
-    let maxTargets       = 10
+    let maxTargets       = 20
     var currentFartIndex = 0
     
     var hud = HUD()
@@ -98,30 +94,6 @@ class GameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
-        
-        
-        print("\(#file):\(#line) : \(#function)")
-        print("\n\nDid Move To...\n\n")
-        setupGame()
-        
-        
-        //        let toiletScene = SKScene(fileNamed: "Toilet")!
-        //        let theToilet = toiletScene.childNode(withName: "toilet_body") as! SKSpriteNode
-        //
-        //        theToilet.position = CGPoint(x: 100, y: 100)
-        //        theToilet.zPosition = 2
-        //
-        //        self.addChild(theToilet)
-        
-        
-        enumerateChildNodes(withName: "//*", using: { node, _ in
-            if let eventListenerNode = node as? EventListenerNode {
-                eventListenerNode.didMoveToScene()
-            }
-        })
-    }
-    
-    func setupGame() {
         startGame()
     }
     
@@ -148,6 +120,7 @@ class GameScene: SKScene {
     
     func setupHUD(startTime: Date) {
         self.addChild(hud)
+        
         hud.addTimer(startTime: startTime)
         hud.addRemainingTurdsLabel()
     }
@@ -160,16 +133,11 @@ class GameScene: SKScene {
             return
         }
         
-        print("Call to createTarget()")
-        
         let randomFart = Int.random(targetCreationFarts.count)
         run(targetCreationFarts[randomFart])
         
         targetsCreated += 1
         targetCount    += 1
-        
-        print("Targets Created: \(targetsCreated)")
-        print("Target Count: \(targetCount)\n")
         
         // find the scene view we are drawing into
         guard let sceneView = self.view as? ARSKView else { return }
@@ -198,42 +166,12 @@ class GameScene: SKScene {
         // create an anchor at the finished position
         let anchor = ARAnchor(transform: transform)
         sceneView.session.add(anchor: anchor)
-        
-        print("New Turd at: \(anchor.debugDescription)")
     }
-    
     
     
     func gameOver() {
-        print("\n\nFLUSHING\n\n")
+        print("\n\nGame Over... FLUSHING\n\n")
         run(toiletFlushHighScore)
-        
-        //        let messageBox = MessageBox()
-        //        messageBox.createMessageBox(size: CGSize(width: 400, height: 300), message: "Test")
-        //
-        //        messageBox.position = .zero
-        //        self.addChild(messageBox)
-        
-        
-        
-        
-        // Don't present it yet...
-        
-        
-        //        // Build the menu scene:
-        //        let menuScene = MenuScene()
-        //        menuScene.size = self.view!.bounds.size
-        //        // Show the menu
-        //        self.view!.presentScene(menuScene)
-    }
-    
-    
-    
-    
-    
-    
-    func restartGame() {
-        
     }
     
     
@@ -242,15 +180,14 @@ class GameScene: SKScene {
             gameState = .win
         }
     }
-    
-    
+
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         hud.updateTimer()
-        
         checkEndGame()
     }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
@@ -260,14 +197,12 @@ class GameScene: SKScene {
         let location = touch.location(in: self)
         let hit      = nodes(at: location)
         
-        
-        print("\n\nScene Size 1: \(self.scene? .size)\n\n")
-        
         // Locate the node at this location
         let nodeTouched = atPoint(location)
         
+        
+        // Play Again
         if nodeTouched.name == "PlayAgainButton" {
-            
             self.gameState = .restart
             
             print("PlayAgainButton TOUCHED")
@@ -278,23 +213,22 @@ class GameScene: SKScene {
         }
         
         
+        // Tapped a Turd
         if let sprite = hit.first as? TurdNode {
             let randomFart = Int.random(shortFarts.count)
             run(shortFarts[randomFart])
             sprite.wasTapped()
             targetCount -= 1
         }
-        
     }
-    
-    
     
 }
 
 
-extension SKReferenceNode {
-    func getBasedChildNode () -> SKNode? {
-        if let child = self.children.first?.children.first {return child}
-        else {return nil}
-    }
-}
+//extension SKReferenceNode {
+//    func getBasedChildNode () -> SKNode? {
+//        if let child = self.children.first?.children.first {return child}
+//        else {return nil}
+//    }
+//}
+
