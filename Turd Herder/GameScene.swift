@@ -84,12 +84,12 @@ class GameScene: SKScene {
         SKAction.playSoundFileNamed("fart37.wav", waitForCompletion: false),
         ]
     
-    let toiletFlushes = [
-        SKAction.playSoundFileNamed("toilet-flush1.wav", waitForCompletion: false),
-        SKAction.playSoundFileNamed("toilet-flush2.wav", waitForCompletion: false)
-    ]
+//    let toiletFlushes = [
+//        SKAction.playSoundFileNamed("toilet-flush1.wav", waitForCompletion: false),
+//        SKAction.playSoundFileNamed("toilet-flush2.wav", waitForCompletion: false)
+//    ]
     
-    let toiletFlushHighScore = SKAction.playSoundFileNamed("toilet-flush-highscore.wav", waitForCompletion: false)
+    let toiletFlushHighScore = SKAction.playSoundFileNamed("toilet_flush.wav", waitForCompletion: false)
     let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
     
     
@@ -105,7 +105,22 @@ class GameScene: SKScene {
         startTime      = Date()
         
         setupHUD(startTime: startTime)
-        startCreatingTargets()
+        
+        hud.doCountdown()
+        
+        
+        
+        
+        self.run(SKAction.afterDelay(3.0, runBlock: {
+            print("\n\n\n\n**************************************************\n\n")
+            self.startCreatingTargets()
+        }))
+        
+        
+//        SKAction.afterDelay(3) {
+//            self.startCreatingTargets()
+//        }
+        
     }
     
     
@@ -146,19 +161,20 @@ class GameScene: SKScene {
         let random = GKRandomSource.sharedRandom()
         
         // create a random X rotation
-        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
-//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
+//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
         
         // create a random Y rotation
-        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
-//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
+//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
         
         // combine them together
         let rotation = simd_mul(xRotation, yRotation)
         
         // move forward 1.5 meters into the screen
         var translation = matrix_identity_float4x4
-        translation.columns.3.z = -1.5
+//        translation.columns.3.z = -1.5
+        translation.columns.3.z = -2.0
         
         // combine that with the rotation
         let transform = simd_mul(rotation, translation)
@@ -202,7 +218,7 @@ class GameScene: SKScene {
         
         
         // Play Again
-        if nodeTouched.name == "PlayAgainButton" {
+        if nodeTouched.name == "playAgainButton" {
             self.gameState = .restart
             
             print("PlayAgainButton TOUCHED")

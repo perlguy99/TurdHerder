@@ -54,16 +54,45 @@ class HUD: SKNode {
     let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
     
     let winningTitles = [
-        "Great Job Turd Herder",
-        "Well Done Turd Herder",
-        "Awesome Turd Herding",
+        "Great Job Turd Herder!",
+        "Well Done Turd Herder!",
+        "Awesome Turd Herding!",
+        "Way To Round Them Up!",
+        "A True Turd Herding Master",
+        "You're a Master Turd Herder!",
+        "You Earned Your Brown Belt!",
     ]
     
     let winningMessages = [
         "You must have been practicing your turd herding skills!",
         "Whoa, you really ripped one that time!",
+        "Never kick a fresh turd on a hot day",
+        "This wasn't your first turd herding rodeo",
+        "♪♪♪ It's boots & craps & cowboy hats ♪♪♪",
+        "Never squat with your spurs on turd herder",
+        "If pooping is the call of nature, does that mean farting is a missed call?",
+        "Do clown farts smell funny?"
     ]
     
+    
+    let winningTitleImages = [
+        SKSpriteNode(imageNamed: "winning_title_01"),
+        SKSpriteNode(imageNamed: "winning_title_02"),
+        SKSpriteNode(imageNamed: "winning_title_03"),
+        SKSpriteNode(imageNamed: "winning_title_04"),
+        SKSpriteNode(imageNamed: "winning_title_05"),
+        SKSpriteNode(imageNamed: "winning_title_06"),
+        SKSpriteNode(imageNamed: "winning_title_07"),
+        SKSpriteNode(imageNamed: "winning_title_08"),
+        SKSpriteNode(imageNamed: "winning_title_09"),
+        SKSpriteNode(imageNamed: "winning_title_10"),
+        SKSpriteNode(imageNamed: "winning_title_11"),
+        SKSpriteNode(imageNamed: "winning_title_12"),
+        SKSpriteNode(imageNamed: "winning_title_13"),
+        SKSpriteNode(imageNamed: "winning_title_14"),
+        SKSpriteNode(imageNamed: "winning_title_15"),
+        SKSpriteNode(imageNamed: "winning_title_15"),
+    ]
 
     
     
@@ -113,7 +142,7 @@ class HUD: SKNode {
             
         case .start:
             print("++ updateUI.start")
-            add(message: HUDMessages.tapToStart, position: .zero)
+//            add(message: HUDMessages.tapToStart, position: .zero)
 
         case .playing:
             print("++ updateUI.playing")
@@ -121,20 +150,14 @@ class HUD: SKNode {
         case .win:
             print("++ updateUI.win")
             
-//            addHUDImage(name: "gameOver", position: .zero)
-//            addTimeTakenLabel()
-            
             remove(message: "Timer")
             remove(message: "RemainingTurdsLabel")
             remove(message: "MenuBackground")
             
-//            let randomMessage = Int.random(winningTitles.count)
-            let titleText = winningTitles[Int.random(winningTitles.count)]
+//            let titleText = winningTitles[Int.random(winningTitles.count)]
             
-            addMessageBox(title: titleText, message1: getTimeTakenText(), message2: "Message 2")
-            
-//            addPlayAgainMessage()
-            
+//            addMessageBox(title: titleText, message1: getTimeTakenText(), message2: "Message 2")
+            addGameOverScreen()
             
         case .restart:
             print("++ updateUI.restart")
@@ -157,7 +180,7 @@ class HUD: SKNode {
 
         case .start:
             print("-- clearUI.start")
-            remove(message: HUDMessages.tapToStart)
+//            remove(message: HUDMessages.tapToStart)
 
         case .playing:
             print("-- clearUI.playing")
@@ -212,61 +235,24 @@ class HUD: SKNode {
         guard let scene = scene else { return }
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        
-        let label: SKLabelNode
-        label           = SKLabelNode(fontNamed: HUDSettings.font)
-        label.text      = HUDMessages.playAgain
-        label.name      = HUDMessages.playAgain
-        label.zPosition = HUDSettings.messageZposition
-        label.fontColor = UIColor.magenta
-        label.fontSize  = HUDSettings.fontSize
-        label.position  = position
-        
-        textureAtlas = SKTextureAtlas(named: "HUD")
-        
-        let playAgainButton = SKSpriteNode()
-        
-        // ----------------------
-        // Build the start button
-        let buttonWidth  = 700
-        let buttonHeight = 225
-        
-        playAgainButton.texture = textureAtlas.textureNamed("Green_Normal").copy() as? SKTexture
-        playAgainButton.size = CGSize(width: buttonWidth, height: buttonHeight)
-        
-        // Name the start node for touch detection
-        playAgainButton.name  = "PlayAgainButton"
+        let playAgainButton = SKSpriteNode(imageNamed: "play_again")
+        playAgainButton.zPosition = 1000
+        playAgainButton.name = "playAgainButton"
+        playAgainButton.setScale(0)
         playAgainButton.position = position
-        
-        playAgainButton.position = CGPoint(x: 0, y: scene.frame.minY + playAgainButton.frame.size.height)
-
-        
-        // Add text to the button
-        let startText = SKLabelNode(fontNamed: HUDSettings.font)
-        startText.text = "Play Again?"
-        startText.verticalAlignmentMode = .center
-        startText.fontColor = UIColor.yellow
-        startText.position = CGPoint(x: 0, y: 2)
-        startText.fontSize = 100
-        
-        // Name the text node for touch detection
-        startText.name = "PlayAgainButton"
-        startText.zPosition = 5
-        playAgainButton.addChild(startText)
+        self.addChild(playAgainButton)
         
         // Pulse the start text in and out gently
         let pulseAction = SKAction.sequence([
-            SKAction.fadeAlpha(to: 0.5, duration: 0.9),
+            SKAction.fadeAlpha(to: 0.6, duration: 0.5),
             SKAction.fadeAlpha(to: 1, duration: 0.9)
             ])
-        startText.run(SKAction.repeatForever(pulseAction))
-        // Build the start button
-        // ----------------------
+        playAgainButton.run(SKAction.repeatForever(pulseAction))
         
-        afterDelay(2.0) {
-            self.addChild(playAgainButton)
-        }
+        let scaleReplayUp   = SKAction.scale(to: 1.75, duration: 1.0)
+        let scaleReplayDown = SKAction.scale(to: 1.50, duration: 0.5)
         
+        playAgainButton.run(SKAction.afterDelay(2.0, performAction: SKAction.sequence([scaleReplayUp, scaleReplayDown])))
     }
     
     
@@ -297,18 +283,77 @@ class HUD: SKNode {
         let minutes = Date().since(startTime, in: .minute)
         let seconds = Date().since(startTime, in: .second)
         
-//        print("\nSeconds Taken: \(seconds)\n")
-        
-//        let timeTaken             = Date().timeIntervalSince(startTime)
-//        timeTakenLabel?.text      = "Time taken:  \(Int(timeTaken)) seconds"
-        
-        // High score text
-        
-        
         timeTakenLabel?.text      = String(format: "Turd Herding Time - %02d:%02d", minutes, seconds)
         
         timeTakenLabel?.fontColor = .yellow
     }
+    
+
+    func getTimeTakenImage() -> SKSpriteNode {
+        let timeTakenImage = SKSpriteNode(imageNamed: "officialtime")
+        timeTakenImage.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+        let timeTakenSize = timeTakenImage.frame.size
+        
+        let minutes    = Date().since(startTime, in: .minute)
+        let seconds    = Date().since(startTime, in: .second)
+        let sec2       = seconds - (minutes * 60)
+        let timeString = String(format: "%02d:%02d", minutes, sec2)
+        var index      = CGFloat(0)
+
+        for char in timeString.characters {
+            if let theImage = getImageForCharacter(character: char) {
+                let xPos = 50 + ((timeTakenSize.width/2) + (CGFloat(CGFloat(50.0) * index)))
+                
+                timeTakenImage.addChild(theImage)
+                theImage.position = CGPoint(x: xPos, y: 0)
+                index += 1
+            }
+        }
+        return timeTakenImage
+    }
+    
+    
+    func getImageForCharacter(character: Character) -> SKSpriteNode? {
+        
+        if character == "0" {
+            return SKSpriteNode(imageNamed: "0").copy() as? SKSpriteNode
+        }
+        if character == "1" {
+            return SKSpriteNode(imageNamed: "1").copy() as? SKSpriteNode
+        }
+        if character == "2" {
+            return SKSpriteNode(imageNamed: "2").copy() as? SKSpriteNode
+        }
+        if character == "3" {
+            return SKSpriteNode(imageNamed: "3").copy() as? SKSpriteNode
+        }
+        if character == "4" {
+            return SKSpriteNode(imageNamed: "4").copy() as? SKSpriteNode
+        }
+        if character == "5" {
+            return SKSpriteNode(imageNamed: "5").copy() as? SKSpriteNode
+        }
+        if character == "6" {
+            return SKSpriteNode(imageNamed: "6").copy() as? SKSpriteNode
+        }
+        if character == "7" {
+            return SKSpriteNode(imageNamed: "7").copy() as? SKSpriteNode
+        }
+        if character == "8" {
+            return SKSpriteNode(imageNamed: "8").copy() as? SKSpriteNode
+        }
+        if character == "9" {
+            return SKSpriteNode(imageNamed: "9").copy() as? SKSpriteNode
+        }
+        if character == ":" {
+            return SKSpriteNode(imageNamed: "colon").copy() as? SKSpriteNode
+        }
+        
+        return nil
+    }
+    
+    
     
     
     func getTimeTakenText() -> String {
@@ -319,6 +364,7 @@ class HUD: SKNode {
 
         return String(format: "Turd Herding Time - %02d:%02d", minutes, sec2)
     }
+    
     
     func addTimer(startTime: Date) {
         guard let scene = scene else { return }
@@ -387,55 +433,69 @@ class HUD: SKNode {
     }
 
     
-//    func addMessageBox(title: String, message1: String?, message2: String?, bottomMessage: String?, size: CGSize = CGSize(width: 1200, height: 500)) {
-    func addMessageBox(title: String, message1: String?, message2: String?, size: CGSize = CGSize(width: 1200, height: 400)) {
-        guard let scene = scene else { return }
-        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    func getScaleForWinningTitleImage(image: SKSpriteNode) -> CGFloat {
         
-        // Create the background frame & images
-        let menuBackground = makeMenuBackground(size: size)
-        menuBackground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        menuBackground.position    = CGPoint(x: scene.frame.midX, y: scene.frame.midY)
+//        print("\n##############################################")
+        image.setScale(1.0)
         
-        // Create the title
-        let menuTitle: SKLabelNode
-        menuTitle           = SKLabelNode(fontNamed: HUDSettings.font)
-        menuTitle.zPosition = HUDSettings.messageZposition
-        menuTitle.fontColor = UIColor.yellow
-        menuTitle.fontSize  = HUDSettings.messageTitleSize
-        menuTitle.text      = title
-        menuTitle.position  = CGPoint(x: menuBackground.frame.midX, y: menuBackground.frame.maxY - menuTitle.frame.height)
-        menuBackground.addChild(menuTitle)
+        let imageWidth = image.frame.size.width
+//        print("Image Width: \(imageWidth.description)")
         
-        // Create Message1 Text
-        if let message1 = message1 {
-            let messageLabel = SKLabelNode(fontNamed: HUDSettings.font)
-            messageLabel.fontSize  = HUDSettings.messageFontSize
-            messageLabel.zPosition = HUDSettings.messageZposition
-            messageLabel.text      = message1
-            messageLabel.fontColor = UIColor.yellow
-            messageLabel.position  = CGPoint(x: menuBackground.frame.midX, y: menuBackground.frame.midY)
-            menuBackground.addChild(messageLabel)
-        }
+        // Added 100 for 50px padding on each side.
+        let myscale = ((sceneWidth - 100) / imageWidth)
+        
+//        print("My Scale: \(myscale.description)")
+        
+        print(image.frame)
+//        print("##############################################\n")
 
-        // Create Message2 Text
-        if let message2 = message2 {
-            let messageLabel = SKLabelNode(fontNamed: HUDSettings.font)
-            messageLabel.fontSize = HUDSettings.messageFontSize
-            messageLabel.zPosition = HUDSettings.messageZposition
-            messageLabel.text = message2
-            messageLabel.fontColor = UIColor.orange
-            
-            messageLabel.position  = CGPoint(x: menuBackground.frame.midX, y: menuBackground.frame.minY + messageLabel.frame.height)
-            menuBackground.addChild(messageLabel)
-        }
-
-        addChild(menuBackground)
-        
-        addPlayAgainMessage(position: CGPoint(x: 0, y: menuBackground.frame.minY - 50))
+        return myscale
         
     }
+    
+    
+    // Add the toilet
+    // add another message
+    // make the "play again" button twitch a bit.
+    
 
+    func addGameOverScreen() {
+        guard let scene = scene else { return }
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+        let winningTitleImage = winningTitleImages[Int.random(winningTitleImages.count)]
+        let imageScale        = getScaleForWinningTitleImage(image: winningTitleImage)
+        
+        winningTitleImage.name = "winningTitle"
+        winningTitleImage.zPosition = 1000
+        winningTitleImage.setScale(imageScale)
+        
+        let finalHeight = winningTitleImage.frame.size.height
+        let yPos = ((sceneHeight - 100) / 2) - finalHeight
+        
+        winningTitleImage.position = CGPoint(x: 0, y: yPos)
+        
+        scene.addChild(winningTitleImage)
+        
+        let yPlayAgain = ((sceneHeight - 100) / 2) - 150
+        addPlayAgainMessage(position: CGPoint(x: 0, y: -yPlayAgain))
+        
+        let timeTakenImage = getTimeTakenImage()
+        let ttiX           = ((timeTakenImage.calculateAccumulatedFrame().width - timeTakenImage.frame.width) / 2)
+        
+        timeTakenImage.position = CGPoint(x: -ttiX, y: 0)
+        timeTakenImage.zPosition = 1500
+        scene.addChild(timeTakenImage)
+    }
+    
+    func addMenuButtons() {
+        
+        
+        
+        
+        
+    }
+    
     
     func getNiceToilet() -> SKNode {
         
@@ -471,17 +531,34 @@ class HUD: SKNode {
     
     
     func doCountdown() {
-        
         guard let scene = scene else { return }
         
+        let three = SKSpriteNode(imageNamed: "3").copy() as? SKSpriteNode
+        let two   = SKSpriteNode(imageNamed: "2").copy() as? SKSpriteNode
+        let one   = SKSpriteNode(imageNamed: "1").copy() as? SKSpriteNode
+
+        three?.isHidden = true
+        two?.isHidden = true
+        one?.isHidden = true
         
-        let three = SKLabelNode(fontNamed: HUDSettings.font)
-        three.text      = "3"
-        three.fontSize  = 256.0
-        three.fontColor = SKColor.white
-        three.position  = .zero
+        three?.setScale(5.0)
+        two?.setScale(5.0)
+        one?.setScale(5.0)
+
+        scene.addChild(three!)
+        scene.addChild(two!)
+        scene.addChild(one!)
         
-        scene.addChild(three)
+        let scaleOut = SKAction.scale(to: 0, duration: 1)
+
+        let actionUnhide = SKAction.unhide()
+        scaleOut.timingMode = .easeInEaseOut
+        
+        print("\ndoCountdown()\n")
+        
+        three!.run(SKAction.sequence([actionUnhide, scaleOut, SKAction.removeFromParent()]))
+        two!.run(SKAction.sequence([SKAction.wait(forDuration: 1), actionUnhide, scaleOut, SKAction.removeFromParent()]))
+        one!.run(SKAction.sequence([SKAction.wait(forDuration: 2), actionUnhide, scaleOut, SKAction.removeFromParent()]))
     }
     
     
