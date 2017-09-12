@@ -10,6 +10,8 @@ import UIKit
 
 let sceneWidth  = CGFloat(2048.0)
 let sceneHeight = CGFloat(1536.0)
+//var GameSoundOn: Bool = true
+//var GameMusicOn: Bool = true
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Set our sound and music default values to true
+        UserDefaults.standard.register(defaults: [HUDKeys.musicState: true])
+        UserDefaults.standard.register(defaults: [HUDKeys.soundState: true])
+        
         return true
     }
 

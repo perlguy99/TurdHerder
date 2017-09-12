@@ -14,7 +14,7 @@ import GameplayKit
 class GameScene: SKScene {
     var targetCreationRate:TimeInterval = 0.25
     
-    let maxTargets       = 2
+    let maxTargets       = 10
     var currentFartIndex = 0
     
     var hud = HUD()
@@ -44,7 +44,6 @@ class GameScene: SKScene {
     
     
     // Sound effects
-    
     let shortFarts = [
         SKAction.playSoundFileNamed("fart2.mp3", waitForCompletion: false),
         SKAction.playSoundFileNamed("fart3.mp3", waitForCompletion: false),
@@ -77,26 +76,28 @@ class GameScene: SKScene {
         SKAction.playSoundFileNamed("fart40.wav", waitForCompletion: false),
         SKAction.playSoundFileNamed("fart41.wav", waitForCompletion: false),
         ]
-    
+
+
     let targetCreationFarts = [
-        SKAction.playSoundFileNamed("fart29.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart27.wav", waitForCompletion: false),
         SKAction.playSoundFileNamed("fart35.wav", waitForCompletion: false),
         SKAction.playSoundFileNamed("fart37.wav", waitForCompletion: false),
         ]
-    
-//    let toiletFlushes = [
-//        SKAction.playSoundFileNamed("toilet-flush1.wav", waitForCompletion: false),
-//        SKAction.playSoundFileNamed("toilet-flush2.wav", waitForCompletion: false)
-//    ]
-    
+
     let toiletFlushHighScore = SKAction.playSoundFileNamed("toilet_flush.wav", waitForCompletion: false)
     let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
-    
+
+    let backgroundMusicTrack = [
+        "8-Bit-Puzzler.mp3",
+        "Disco-Ants-Go-Clubbin_Looping.mp3",
+        "Farty-Crooks_Looping.mp3",
+        "Farty-McSty.mp3",
+    ]
     
     override func didMove(to view: SKView) {
+        hud.playBackgroundMusic(name: backgroundMusicTrack[3])
         startGame()
     }
-    
     
     func startGame() {
         targetCount    = 0
@@ -108,18 +109,10 @@ class GameScene: SKScene {
         
         hud.doCountdown()
         
-        
-        
-        
         self.run(SKAction.afterDelay(3.0, runBlock: {
             print("\n\n\n\n**************************************************\n\n")
             self.startCreatingTargets()
         }))
-        
-        
-//        SKAction.afterDelay(3) {
-//            self.startCreatingTargets()
-//        }
         
     }
     
@@ -148,8 +141,10 @@ class GameScene: SKScene {
             return
         }
         
-        let randomFart = Int.random(targetCreationFarts.count)
-        run(targetCreationFarts[randomFart])
+        if hud.gameSoundOn {
+            let randomFart = Int.random(targetCreationFarts.count)
+            run(targetCreationFarts[randomFart])
+        }
         
         targetsCreated += 1
         targetCount    += 1
@@ -161,12 +156,12 @@ class GameScene: SKScene {
         let random = GKRandomSource.sharedRandom()
         
         // create a random X rotation
-//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
-        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
+        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
         
         // create a random Y rotation
-//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
-        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
+        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
         
         // combine them together
         let rotation = simd_mul(xRotation, yRotation)
@@ -187,7 +182,13 @@ class GameScene: SKScene {
     
     func gameOver() {
         print("\n\nGame Over... FLUSHING\n\n")
-        run(toiletFlushHighScore)
+        hud.playBackgroundMusic(name: backgroundMusicTrack[2])
+        
+        if hud.gameSoundOn {
+            run(toiletFlushHighScore)
+        }
+        
+        hud.addHomeButton()
     }
     
     
@@ -210,6 +211,7 @@ class GameScene: SKScene {
         
         print("Game State: \(gameState)")
         
+        
         let location = touch.location(in: self)
         let hit      = nodes(at: location)
         
@@ -229,10 +231,25 @@ class GameScene: SKScene {
         }
         
         
+        // Main Menu
+        if nodeTouched.name == HUDButtons.about {
+            hud.stopBackgroundMusic()
+            
+            let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
+            scene.scaleMode = .fill
+            self.gameState = .initial
+            self.view?.presentScene(scene)
+        }
+        
+        
         // Tapped a Turd
         if let sprite = hit.first as? TurdNode {
-            let randomFart = Int.random(shortFarts.count)
-            run(shortFarts[randomFart])
+
+            if hud.gameSoundOn {
+                let randomFart = Int.random(shortFarts.count)
+                run(shortFarts[randomFart])
+            }
+            
             sprite.wasTapped()
             targetCount -= 1
         }
@@ -240,11 +257,4 @@ class GameScene: SKScene {
     
 }
 
-
-//extension SKReferenceNode {
-//    func getBasedChildNode () -> SKNode? {
-//        if let child = self.children.first?.children.first {return child}
-//        else {return nil}
-//    }
-//}
 

@@ -17,6 +17,15 @@ enum GameState: Int {
     case pause   = 5
 }
 
+enum GameSound: Int {
+    case on  = 0
+    case off = 1
+}
+
+enum GameMusic: Int {
+    case on  = 0
+    case off = 1
+}
 
 
 

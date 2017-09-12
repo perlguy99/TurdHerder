@@ -20,11 +20,7 @@
 		841DEEF31F3EBFFB007C76C6 /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEE91F3EBFBD007C76C6 /* SKTTimingFunctions.swift */; };
 		841DEEF41F3EBFFB007C76C6 /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEE61F3EBFBD007C76C6 /* Vector3.swift */; };
 		8422126C1F3CF88C00175FCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8422126A1F3CF88C00175FCC /* Assets.xcassets */; };
-		8437092B1F5393B400D057F5 /* turds.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843709271F5392E000D057F5 /* turds.ttf */; };
-		8437092E1F54E7AF00D057F5 /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8437092D1F54E75600D057F5 /* digital-7.ttf */; };
 		843709341F54ED6C00D057F5 /* FreckleFace-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843709311F54ECF100D057F5 /* FreckleFace-Regular.ttf */; };
-		843709351F54ED6C00D057F5 /* dingleSW.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843709331F54ED3200D057F5 /* dingleSW.ttf */; };
-		843709361F54ED6C00D057F5 /* StayPuft.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 843709321F54ED1700D057F5 /* StayPuft.ttf */; };
 		843709381F54EE8400D057F5 /* Setting.sks in Resources */ = {isa = PBXBuildFile; fileRef = 843709371F54EE8400D057F5 /* Setting.sks */; };
 		8437C1211F18529300EB3079 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1201F18529300EB3079 /* Types.swift */; };
 		8437C1231F18536B00EB3079 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1221F18536B00EB3079 /* HUD.swift */; };
@@ -77,6 +73,9 @@
 		84BA90471F65B64500CFC40B /* Farty-Crooks_Looping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84BA90431F65B5D600CFC40B /* Farty-Crooks_Looping.mp3 */; };
 		84BA90481F65B64500CFC40B /* Farty-McSty.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84BA90411F65B5D500CFC40B /* Farty-McSty.mp3 */; };
 		84BA90491F65B64500CFC40B /* toilet_flush.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84BA90401F65B59C00CFC40B /* toilet_flush.wav */; };
+		84BA904B1F67471900CFC40B /* Credits.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84BA904A1F67471900CFC40B /* Credits.sks */; };
+		84BF04A81F67484B00A7048D /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BF04A71F67484B00A7048D /* CreditsScene.swift */; };
+		84BF04AA1F674F8900A7048D /* FF_FontAttribute.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84BF04A91F67491900A7048D /* FF_FontAttribute.txt */; };
 		84C57C921F65727600DD1C83 /* TurdNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C57C911F65727600DD1C83 /* TurdNode.swift */; };
 		84E54EC91F58E2A900AB2BA9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E54EC81F58E2A900AB2BA9 /* GameScene.swift */; };
 /* End PBXBuildFile section */
@@ -96,11 +95,7 @@
 		841DEEE91F3EBFBD007C76C6 /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		8422126A1F3CF88C00175FCC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842EC5081F3006AE00868770 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		843709271F5392E000D057F5 /* turds.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = turds.ttf; sourceTree = "<group>"; };
-		8437092D1F54E75600D057F5 /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = "<group>"; };
 		843709311F54ECF100D057F5 /* FreckleFace-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FreckleFace-Regular.ttf"; sourceTree = "<group>"; };
-		843709321F54ED1700D057F5 /* StayPuft.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StayPuft.ttf; sourceTree = "<group>"; };
-		843709331F54ED3200D057F5 /* dingleSW.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dingleSW.ttf; sourceTree = "<group>"; };
 		843709371F54EE8400D057F5 /* Setting.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Setting.sks; sourceTree = "<group>"; };
 		8437C1201F18529300EB3079 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8437C1221F18536B00EB3079 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -156,6 +151,9 @@
 		84BA90421F65B5D600CFC40B /* Disco-Ants-Go-Clubbin_Looping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Disco-Ants-Go-Clubbin_Looping.mp3"; sourceTree = "<group>"; };
 		84BA90431F65B5D600CFC40B /* Farty-Crooks_Looping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Farty-Crooks_Looping.mp3"; sourceTree = "<group>"; };
 		84BA90441F65B5D700CFC40B /* 8-Bit-Puzzler.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "8-Bit-Puzzler.mp3"; sourceTree = "<group>"; };
+		84BA904A1F67471900CFC40B /* Credits.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Credits.sks; sourceTree = "<group>"; };
+		84BF04A71F67484B00A7048D /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
+		84BF04A91F67491900A7048D /* FF_FontAttribute.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = FF_FontAttribute.txt; sourceTree = "<group>"; };
 		84C57C911F65727600DD1C83 /* TurdNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TurdNode.swift; path = "Turd Herder/TurdNode.swift"; sourceTree = SOURCE_ROOT; };
 		84E54EC81F58E2A900AB2BA9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,11 +190,8 @@
 		843709281F5392EA00D057F5 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				84BF04A91F67491900A7048D /* FF_FontAttribute.txt */,
 				843709311F54ECF100D057F5 /* FreckleFace-Regular.ttf */,
-				843709331F54ED3200D057F5 /* dingleSW.ttf */,
-				843709321F54ED1700D057F5 /* StayPuft.ttf */,
-				8437092D1F54E75600D057F5 /* digital-7.ttf */,
-				843709271F5392E000D057F5 /* turds.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -227,6 +222,7 @@
 				84561FE51F0F1E46006EACD8 /* ViewController.swift */,
 				84C57C911F65727600DD1C83 /* TurdNode.swift */,
 				84804FFD1F4674D0002F6B5F /* MenuScene.swift */,
+				84BF04A71F67484B00A7048D /* CreditsScene.swift */,
 				84E54EC81F58E2A900AB2BA9 /* GameScene.swift */,
 				8495F0471F47C2B900321494 /* MessageBox.swift */,
 				84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */,
@@ -249,6 +245,7 @@
 				84561FE11F0F1E46006EACD8 /* Scene.sks */,
 				8422126A1F3CF88C00175FCC /* Assets.xcassets */,
 				843709371F54EE8400D057F5 /* Setting.sks */,
+				84BA904A1F67471900CFC40B /* Credits.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -359,16 +356,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84BF04AA1F674F8900A7048D /* FF_FontAttribute.txt in Resources */,
 				84BA90451F65B64500CFC40B /* 8-Bit-Puzzler.mp3 in Resources */,
 				84BA90461F65B64500CFC40B /* Disco-Ants-Go-Clubbin_Looping.mp3 in Resources */,
 				84BA90471F65B64500CFC40B /* Farty-Crooks_Looping.mp3 in Resources */,
 				84BA90481F65B64500CFC40B /* Farty-McSty.mp3 in Resources */,
 				84BA90491F65B64500CFC40B /* toilet_flush.wav in Resources */,
 				843709341F54ED6C00D057F5 /* FreckleFace-Regular.ttf in Resources */,
-				843709351F54ED6C00D057F5 /* dingleSW.ttf in Resources */,
-				843709361F54ED6C00D057F5 /* StayPuft.ttf in Resources */,
-				8437092E1F54E7AF00D057F5 /* digital-7.ttf in Resources */,
-				8437092B1F5393B400D057F5 /* turds.ttf in Resources */,
 				84A2A64F1F3F6DCC0064A82B /* fart21.wav in Resources */,
 				84A2A6421F3F6DCC0064A82B /* fart6.mp3 in Resources */,
 				84A2A63D1F3F6DCC0064A82B /* fart_walking_many.wav in Resources */,
@@ -381,6 +375,7 @@
 				84A2A64C1F3F6DCC0064A82B /* fart17.wav in Resources */,
 				84A2A6481F3F6DCC0064A82B /* fart12.mp3 in Resources */,
 				84A2A6471F3F6DCC0064A82B /* fart11.mp3 in Resources */,
+				84BA904B1F67471900CFC40B /* Credits.sks in Resources */,
 				84A2A6441F3F6DCC0064A82B /* fart8.mp3 in Resources */,
 				84A2A6461F3F6DCC0064A82B /* fart10.mp3 in Resources */,
 				84A2A63E1F3F6DCC0064A82B /* fart2.mp3 in Resources */,
@@ -440,6 +435,7 @@
 				841DEEED1F3EBFFB007C76C6 /* Int+Extensions.swift in Sources */,
 				84A2A6661F40254E0064A82B /* AFDateHelper.swift in Sources */,
 				8495F04A1F47C50500321494 /* ToiletNode.swift in Sources */,
+				84BF04A81F67484B00A7048D /* CreditsScene.swift in Sources */,
 				841DEEF01F3EBFFB007C76C6 /* SKColor+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

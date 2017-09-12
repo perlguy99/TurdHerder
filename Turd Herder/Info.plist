@@ -24,11 +24,7 @@
 	<string>This application will use the camera for Augmented Reality.</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>digital-7.ttf</string>
 		<string>FreckleFace-Regular.ttf</string>
-		<string>turds.ttf</string>
-		<string>dingleSW.ttf</string>
-		<string>StayPuft.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

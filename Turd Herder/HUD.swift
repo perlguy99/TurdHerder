@@ -20,6 +20,20 @@ enum HUDMessages {
     static let go         = "Go"
 }
 
+enum HUDButtons {
+    static let soundOn  = "ButtonSoundOn"
+    static let soundOff = "ButtonSoundOff"
+    static let musicOn  = "ButtonMusicOn"
+    static let musicOff = "ButtonMusicOff"
+    static let about    = "ButtonAbout"
+}
+
+
+enum HUDKeys {
+    static let bestTime   = "BestTime"
+    static let soundState = "SoundState"
+    static let musicState = "MusicState"
+}
 
 enum HUDSettings {
 //    static let font               = "turds"
@@ -44,14 +58,48 @@ class HUD: SKNode {
     var timerLabel: SKLabelNode?
     var startTime: Date!
     var timeTakenLabel: SKLabelNode?
-    
     var textureAtlas: SKTextureAtlas!
-    
     var hudImage: SKSpriteNode?
-    
     var bestTimeFlag: Bool?
     
     let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
+    
+    
+    var gameSoundOn: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: HUDKeys.soundState)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: HUDKeys.soundState)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    var gameMusicOn: Bool {
+        get {
+            print("Game Music On: \(UserDefaults.standard.bool(forKey: HUDKeys.musicState))")
+            
+            return UserDefaults.standard.bool(forKey: HUDKeys.musicState)
+        }
+        set {
+            print("Setting Game Music On state to: \(gameMusicOn)")
+            
+            UserDefaults.standard.set(newValue, forKey: HUDKeys.musicState)
+            UserDefaults.standard.synchronize()
+        }
+    }
+
+    
+    var bestTime: Int64 {
+        get {
+            return Int64(UserDefaults.standard.integer(forKey: HUDKeys.bestTime))
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: HUDKeys.bestTime)
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     
     let winningTitles = [
         "Great Job Turd Herder!",
@@ -112,6 +160,9 @@ class HUD: SKNode {
         clearUI(gameState: from)
         updateUI(gameState: to)
     }
+    
+    
+    
     
     
     
@@ -488,13 +539,108 @@ class HUD: SKNode {
         scene.addChild(timeTakenImage)
     }
     
-    func addMenuButtons() {
+    
+    // MARK: - Sounds
+    func playBackgroundMusic(name: String) {
+        guard let scene = scene else { return }
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
+        if let backgroundMusic = childNode(withName: "backgroundMusic") {
+            backgroundMusic.removeFromParent()
+        }
         
-        
-        
-        
+        if gameMusicOn {
+            let music = SKAudioNode(fileNamed: name)
+            music.name = "backgroundMusic"
+            music.autoplayLooped = true
+            addChild(music)
+        }
     }
+    
+    func stopBackgroundMusic() {
+        guard let scene = scene else { return }
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        if let backgroundMusic = childNode(withName: "backgroundMusic") {
+            backgroundMusic.removeFromParent()
+        }
+    }
+    
+    func addMenuButtons() {
+        guard let scene = scene else { return }
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+//        let buttonSoundOn  = SKSpriteNode(imageNamed: "sound_on_button")
+//        let buttonSoundOff = SKSpriteNode(imageNamed: "sound_off_button")
+//        let buttonMusicOn  = SKSpriteNode(imageNamed: "music_on_button")
+//        let buttonMusicOff = SKSpriteNode(imageNamed: "music_off_button")
+//        let buttonAbout    = SKSpriteNode(imageNamed: "about_button")
+
+//        let buttonSoundOn  = SKSpriteNode(imageNamed: "sound_on_0x01")
+//        let buttonSoundOff = SKSpriteNode(imageNamed: "sound_off_0x01")
+//        let buttonMusicOn  = SKSpriteNode(imageNamed: "music_on_0x01")
+//        let buttonMusicOff = SKSpriteNode(imageNamed: "music_off_0x01")
+//        let buttonAbout    = SKSpriteNode(imageNamed: "about_0x01")
+
+//        let buttonSoundOn  = SKSpriteNode(imageNamed: "sound_on_0x02")
+//        let buttonSoundOff = SKSpriteNode(imageNamed: "sound_off_0x02")
+//        let buttonMusicOn  = SKSpriteNode(imageNamed: "music_on_0x02")
+//        let buttonMusicOff = SKSpriteNode(imageNamed: "music_off_0x02")
+//
+//        let buttonAbout    = SKSpriteNode(imageNamed: "about_0x05")
+
+        let buttonSoundOn  = SKSpriteNode(imageNamed: "sound_on_f1")
+        let buttonSoundOff = SKSpriteNode(imageNamed: "sound_off_f1")
+        let buttonMusicOn  = SKSpriteNode(imageNamed: "music_on_f1")
+        let buttonMusicOff = SKSpriteNode(imageNamed: "music_off_f1")
+        let buttonAbout    = SKSpriteNode(imageNamed: "about_f1")
+
+        buttonSoundOn.setScale(0.25)
+        buttonSoundOff.setScale(0.25)
+        buttonMusicOn.setScale(0.25)
+        buttonMusicOff.setScale(0.25)
+        buttonAbout.setScale(0.25)
+        
+        buttonSoundOn.name  = HUDButtons.soundOn
+        buttonSoundOff.name = HUDButtons.soundOff
+        buttonMusicOn.name  = HUDButtons.musicOn
+        buttonMusicOff.name = HUDButtons.musicOff
+        buttonAbout.name    = HUDButtons.about
+        
+        buttonSoundOn.isHidden  = !gameSoundOn
+        buttonSoundOff.isHidden = gameSoundOn
+        buttonSoundOn.position  = CGPoint(x: -600, y: 100)
+        buttonSoundOff.position = CGPoint(x: -600, y: 100)
+        
+        buttonMusicOn.isHidden  = !gameMusicOn
+        buttonMusicOff.isHidden = gameMusicOn
+        buttonMusicOn.position  = CGPoint(x: -600, y: -100)
+        buttonMusicOff.position = CGPoint(x: -600, y: -100)
+        
+        buttonAbout.position    = CGPoint(x: -600, y: -300)
+        
+        scene.addChild(buttonSoundOn)
+        scene.addChild(buttonSoundOff)
+        scene.addChild(buttonMusicOn)
+        scene.addChild(buttonMusicOff)
+        scene.addChild(buttonAbout)
+    }
+
+    
+    func addHomeButton() {
+        guard let scene = scene else { return }
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let buttonBack    = SKSpriteNode(imageNamed: "back_f1")
+        buttonBack.setScale(0.25)
+        buttonBack.name    = HUDButtons.about
+        
+        buttonBack.position    = CGPoint(x: -600, y: -300)
+        
+        scene.addChild(buttonBack)
+    }
+
+    
     
     
     func getNiceToilet() -> SKNode {
@@ -551,14 +697,16 @@ class HUD: SKNode {
         
         let scaleOut = SKAction.scale(to: 0, duration: 1)
 
+        let toot = SKAction.playSoundFileNamed("fart29.wav", waitForCompletion: false)
+        
         let actionUnhide = SKAction.unhide()
         scaleOut.timingMode = .easeInEaseOut
         
         print("\ndoCountdown()\n")
         
-        three!.run(SKAction.sequence([actionUnhide, scaleOut, SKAction.removeFromParent()]))
-        two!.run(SKAction.sequence([SKAction.wait(forDuration: 1), actionUnhide, scaleOut, SKAction.removeFromParent()]))
-        one!.run(SKAction.sequence([SKAction.wait(forDuration: 2), actionUnhide, scaleOut, SKAction.removeFromParent()]))
+        three!.run(SKAction.sequence([actionUnhide, toot, scaleOut, SKAction.removeFromParent()]))
+        two!.run(SKAction.sequence([SKAction.wait(forDuration: 1), actionUnhide, toot, scaleOut, SKAction.removeFromParent()]))
+        one!.run(SKAction.sequence([SKAction.wait(forDuration: 2), actionUnhide, toot, scaleOut, SKAction.removeFromParent()]))
     }
     
     
