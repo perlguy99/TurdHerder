@@ -72,7 +72,7 @@ class CreditsScene: SKScene, UIWebViewDelegate {
         backgroundShape.addChild(fontLabel)
         
         
-        hud.addHomeButton()
+        hud.addBackButton()
         
         
     }
@@ -87,7 +87,7 @@ class CreditsScene: SKScene, UIWebViewDelegate {
             let nodeTouched = atPoint(location)
             
             // Check for a touch on the Start Button
-            if nodeTouched.name == HUDButtons.about {
+            if nodeTouched.name == HUDButtons.back {
                 
                 let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
                 scene.scaleMode = .fill

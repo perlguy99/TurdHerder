@@ -14,7 +14,7 @@ import GameplayKit
 class GameScene: SKScene {
     var targetCreationRate:TimeInterval = 0.25
     
-    let maxTargets       = 10
+    let maxTargets       = 2
     var currentFartIndex = 0
     
     var hud = HUD()
@@ -81,11 +81,12 @@ class GameScene: SKScene {
     let targetCreationFarts = [
         SKAction.playSoundFileNamed("fart27.wav", waitForCompletion: false),
         SKAction.playSoundFileNamed("fart35.wav", waitForCompletion: false),
-        SKAction.playSoundFileNamed("fart37.wav", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart13.mp3", waitForCompletion: false),
+        SKAction.playSoundFileNamed("fart20.wav", waitForCompletion: false),
         ]
 
     let toiletFlushHighScore = SKAction.playSoundFileNamed("toilet_flush.wav", waitForCompletion: false)
-    let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
+    let counterFart = SKAction.playSoundFileNamed("fart37.wav", waitForCompletion: false)
 
     let backgroundMusicTrack = [
         "8-Bit-Puzzler.mp3",
@@ -103,17 +104,19 @@ class GameScene: SKScene {
         targetCount    = 0
         targetsCreated = 0
         gameState      = .start
-        startTime      = Date()
+//        startTime      = Date()
         
-        setupHUD(startTime: startTime)
+        doCountdown()
         
-        hud.doCountdown()
+//        self.setupHUD(startTime: Date())
+        
+//        self.addChild(hud)
         
         self.run(SKAction.afterDelay(3.0, runBlock: {
-            print("\n\n\n\n**************************************************\n\n")
             self.startCreatingTargets()
+            self.setupHUD(startTime: Date())
+            self.hud.addNukeButton()
         }))
-        
     }
     
     
@@ -128,7 +131,6 @@ class GameScene: SKScene {
     
     func setupHUD(startTime: Date) {
         self.addChild(hud)
-        
         hud.addTimer(startTime: startTime)
         hud.addRemainingTurdsLabel()
     }
@@ -141,7 +143,7 @@ class GameScene: SKScene {
             return
         }
         
-        if hud.gameSoundOn {
+        if gameSoundOn {
             let randomFart = Int.random(targetCreationFarts.count)
             run(targetCreationFarts[randomFart])
         }
@@ -156,12 +158,12 @@ class GameScene: SKScene {
         let random = GKRandomSource.sharedRandom()
         
         // create a random X rotation
-        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
-//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
+//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
         
         // create a random Y rotation
-        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
-//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
+//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
         
         // combine them together
         let rotation = simd_mul(xRotation, yRotation)
@@ -184,11 +186,11 @@ class GameScene: SKScene {
         print("\n\nGame Over... FLUSHING\n\n")
         hud.playBackgroundMusic(name: backgroundMusicTrack[2])
         
-        if hud.gameSoundOn {
+        if gameSoundOn {
             run(toiletFlushHighScore)
         }
         
-        hud.addHomeButton()
+        hud.addBackButton()
     }
     
     
@@ -201,8 +203,55 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        hud.updateTimer()
+        if hud.startTime != nil {
+            hud.updateTimer()
+        }
+        
         checkEndGame()
+    }
+    
+    
+    func doCountdown() {
+        guard let scene = scene else { return }
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let three = SKSpriteNode(imageNamed: "3").copy() as? SKSpriteNode
+        let two   = SKSpriteNode(imageNamed: "2").copy() as? SKSpriteNode
+        let one   = SKSpriteNode(imageNamed: "1").copy() as? SKSpriteNode
+        
+        three?.isHidden = true
+        two?.isHidden = true
+        one?.isHidden = true
+        
+        three?.setScale(5.0)
+        two?.setScale(5.0)
+        one?.setScale(5.0)
+        
+        three?.position = .zero
+        two?.position   = .zero
+        one?.position   = .zero
+        
+        scene.addChild(three!)
+        scene.addChild(two!)
+        scene.addChild(one!)
+        
+        let scaleOut        = SKAction.scale(to: 0, duration: 1)
+        let actionUnhide    = SKAction.unhide()
+        scaleOut.timingMode = .easeInEaseOut
+        
+        print("\ndoCountdown()\n")
+        print(scene.size)
+        
+        if gameSoundOn {
+            three!.run(SKAction.sequence([actionUnhide, counterFart, scaleOut, SKAction.removeFromParent()]))
+            two!.run(SKAction.sequence([SKAction.wait(forDuration: 1), actionUnhide, counterFart, scaleOut, SKAction.removeFromParent()]))
+            one!.run(SKAction.sequence([SKAction.wait(forDuration: 2), actionUnhide, counterFart, scaleOut, SKAction.removeFromParent()]))
+        }
+        else {
+            three!.run(SKAction.sequence([actionUnhide, scaleOut, SKAction.removeFromParent()]))
+            two!.run(SKAction.sequence([SKAction.wait(forDuration: 1), actionUnhide, scaleOut, SKAction.removeFromParent()]))
+            one!.run(SKAction.sequence([SKAction.wait(forDuration: 2), actionUnhide, scaleOut, SKAction.removeFromParent()]))
+        }
     }
     
     
@@ -210,7 +259,6 @@ class GameScene: SKScene {
         guard let touch = touches.first else { return }
         
         print("Game State: \(gameState)")
-        
         
         let location = touch.location(in: self)
         let hit      = nodes(at: location)
@@ -240,12 +288,34 @@ class GameScene: SKScene {
             self.gameState = .initial
             self.view?.presentScene(scene)
         }
+
+        
+        if nodeTouched.name == HUDButtons.nuke {
+            
+            gameState = .pause
+            
+            let alert = UIAlertController(title: "Quit Turd Herding?", message: "Are you sure you want to quit?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
+                scene.scaleMode = .fill
+                self.gameState = .initial
+                self.view?.presentScene(scene)
+            }) )
+            
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in
+                self.gameState = .playing
+            }))
+            
+            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
+
         
         
         // Tapped a Turd
         if let sprite = hit.first as? TurdNode {
 
-            if hud.gameSoundOn {
+            if gameSoundOn {
                 let randomFart = Int.random(shortFarts.count)
                 run(shortFarts[randomFart])
             }

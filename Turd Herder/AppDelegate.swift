@@ -10,8 +10,28 @@ import UIKit
 
 let sceneWidth  = CGFloat(2048.0)
 let sceneHeight = CGFloat(1536.0)
-//var GameSoundOn: Bool = true
-//var GameMusicOn: Bool = true
+
+var gameSoundOn: Bool {
+    get {
+        return UserDefaults.standard.bool(forKey: HUDKeys.soundState)
+    }
+    set {
+        UserDefaults.standard.set(newValue, forKey: HUDKeys.soundState)
+        UserDefaults.standard.synchronize()
+    }
+}
+
+var gameMusicOn: Bool {
+    get {
+        return UserDefaults.standard.bool(forKey: HUDKeys.musicState)
+    }
+    set {
+        UserDefaults.standard.set(newValue, forKey: HUDKeys.musicState)
+        UserDefaults.standard.synchronize()
+    }
+}
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

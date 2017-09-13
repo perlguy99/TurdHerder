@@ -26,6 +26,8 @@ enum HUDButtons {
     static let musicOn  = "ButtonMusicOn"
     static let musicOff = "ButtonMusicOff"
     static let about    = "ButtonAbout"
+    static let nuke     = "ButtonNuke"
+    static let back     = "ButtonBack"
 }
 
 
@@ -36,11 +38,7 @@ enum HUDKeys {
 }
 
 enum HUDSettings {
-//    static let font               = "turds"
-    static let font               = "Freckle Face"
-//    static let font               = "Dingle Berries"
-//    static let font               = "StayPuft"
-    
+    static let font                      = "Freckle Face"
     static let fontColor: UIColor        = UIColor.brown
     static let messageFontColor: UIColor = UIColor.yellow
     static let titleSize: CGFloat        = 150
@@ -53,7 +51,6 @@ enum HUDSettings {
 
 
 class HUD: SKNode {
-    
     var remainingLabel: SKLabelNode?
     var timerLabel: SKLabelNode?
     var startTime: Date!
@@ -63,32 +60,6 @@ class HUD: SKNode {
     var bestTimeFlag: Bool?
     
     let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
-    
-    
-    var gameSoundOn: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: HUDKeys.soundState)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: HUDKeys.soundState)
-            UserDefaults.standard.synchronize()
-        }
-    }
-    
-    var gameMusicOn: Bool {
-        get {
-            print("Game Music On: \(UserDefaults.standard.bool(forKey: HUDKeys.musicState))")
-            
-            return UserDefaults.standard.bool(forKey: HUDKeys.musicState)
-        }
-        set {
-            print("Setting Game Music On state to: \(gameMusicOn)")
-            
-            UserDefaults.standard.set(newValue, forKey: HUDKeys.musicState)
-            UserDefaults.standard.synchronize()
-        }
-    }
-
     
     var bestTime: Int64 {
         get {
@@ -142,9 +113,7 @@ class HUD: SKNode {
         SKSpriteNode(imageNamed: "winning_title_15"),
     ]
 
-    
-    
-    
+
     override init() {
         super.init()
         name = "HUD"
@@ -163,23 +132,13 @@ class HUD: SKNode {
     
     
     
-    
-    
-    
-    func checkForBestTime() {
-        
+    func checkForBestTime(currentTime: Int64) {
         print("Checking for best time")
-        // get best time stored in user defaults
-//        if let bestTime = UserDefaults.standard.
         
-        
-        // compare it with the current score
-        
-        // Better time?
-        // Update the user defaults
-        // Set high score flag
-        
-        
+        if currentTime < bestTime {
+            bestTime = currentTime
+            bestTimeFlag = true
+        }
     }
     
     
@@ -204,15 +163,14 @@ class HUD: SKNode {
             remove(message: "Timer")
             remove(message: "RemainingTurdsLabel")
             remove(message: "MenuBackground")
+            remove(message: HUDButtons.back)
+            remove(message: HUDButtons.nuke)
             
-//            let titleText = winningTitles[Int.random(winningTitles.count)]
-            
-//            addMessageBox(title: titleText, message1: getTimeTakenText(), message2: "Message 2")
             addGameOverScreen()
             
         case .restart:
             print("++ updateUI.restart")
-            add(message: HUDMessages.lose, position: .zero)
+//            add(message: HUDMessages.lose, position: .zero)
 
         case .pause:
             print("++ updateUI.pause")
@@ -252,7 +210,7 @@ class HUD: SKNode {
     
     
     private func remove(message: String) {
-        print("\n\nRemoving \(message) from the scene\n\n")
+        print("\nRemoving \(message) from the scene\n")
         childNode(withName: message)?.removeFromParent()
     }
     
@@ -352,6 +310,8 @@ class HUD: SKNode {
         let timeString = String(format: "%02d:%02d", minutes, sec2)
         var index      = CGFloat(0)
 
+        checkForBestTime(currentTime: seconds)
+        
         for char in timeString.characters {
             if let theImage = getImageForCharacter(character: char) {
                 let xPos = 50 + ((timeTakenSize.width/2) + (CGFloat(CGFloat(50.0) * index)))
@@ -627,19 +587,37 @@ class HUD: SKNode {
     }
 
     
-    func addHomeButton() {
+    func addBackButton() {
         guard let scene = scene else { return }
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        let buttonBack    = SKSpriteNode(imageNamed: "back_f1")
+        let buttonBack    = SKSpriteNode(imageNamed: "back")
         buttonBack.setScale(0.25)
-        buttonBack.name    = HUDButtons.about
+        buttonBack.name    = HUDButtons.back
         
         buttonBack.position    = CGPoint(x: -600, y: -300)
         
         scene.addChild(buttonBack)
     }
 
+    
+    func addNukeButton() {
+        guard let scene = scene else { return }
+        scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let buttonBack    = SKSpriteNode(imageNamed: "nuke")
+        buttonBack.setScale(0.25)
+        buttonBack.name    = HUDButtons.nuke
+        
+        let bbX = scene.frame.minX + 100
+        let bbY = scene.frame.minY + 100
+        
+        print("\nbbX: \(bbX)  bbY: \(bbY)\n")
+        print("\nBBsize \(buttonBack.size)\n")
+        buttonBack.position    = CGPoint(x: bbX, y: bbY)
+        
+        scene.addChild(buttonBack)
+    }
     
     
     
@@ -674,40 +652,6 @@ class HUD: SKNode {
         theToilet.name = "niceToilet"
         return theToilet
     }
-    
-    
-    func doCountdown() {
-        guard let scene = scene else { return }
-        
-        let three = SKSpriteNode(imageNamed: "3").copy() as? SKSpriteNode
-        let two   = SKSpriteNode(imageNamed: "2").copy() as? SKSpriteNode
-        let one   = SKSpriteNode(imageNamed: "1").copy() as? SKSpriteNode
-
-        three?.isHidden = true
-        two?.isHidden = true
-        one?.isHidden = true
-        
-        three?.setScale(5.0)
-        two?.setScale(5.0)
-        one?.setScale(5.0)
-
-        scene.addChild(three!)
-        scene.addChild(two!)
-        scene.addChild(one!)
-        
-        let scaleOut = SKAction.scale(to: 0, duration: 1)
-
-        let toot = SKAction.playSoundFileNamed("fart29.wav", waitForCompletion: false)
-        
-        let actionUnhide = SKAction.unhide()
-        scaleOut.timingMode = .easeInEaseOut
-        
-        print("\ndoCountdown()\n")
-        
-        three!.run(SKAction.sequence([actionUnhide, toot, scaleOut, SKAction.removeFromParent()]))
-        two!.run(SKAction.sequence([SKAction.wait(forDuration: 1), actionUnhide, toot, scaleOut, SKAction.removeFromParent()]))
-        one!.run(SKAction.sequence([SKAction.wait(forDuration: 2), actionUnhide, toot, scaleOut, SKAction.removeFromParent()]))
-    }
-    
+   
     
 }

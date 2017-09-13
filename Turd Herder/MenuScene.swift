@@ -146,7 +146,7 @@ class MenuScene: SKScene {
         turd_logo.run(sequenceT)
         herder_logo.run(sequenceH)
 
-        if hud.gameSoundOn {
+        if gameSoundOn {
             let randomFart = Int.random(shortFarts.count)
             let sequenceS = SKAction.sequence([scaleUp, scaleDownS, shortFarts[randomFart], shakeS])
             stink_logo.run(SKAction.afterDelay(2.0, performAction: sequenceS))
@@ -184,10 +184,10 @@ class MenuScene: SKScene {
             }
             
             if node.name == HUDButtons.soundOn {
-                hud.gameSoundOn = !node.isHidden
+                gameSoundOn = !node.isHidden
             }
             if node.name == HUDButtons.musicOn {
-                hud.gameMusicOn = !node.isHidden
+                gameMusicOn = !node.isHidden
             }
         }
     }
@@ -248,7 +248,7 @@ class MenuScene: SKScene {
                 
                 swapMusicButtons()
                 
-                if hud.gameMusicOn == false {
+                if gameMusicOn == false {
                     hud.stopBackgroundMusic()
                 }
                 else {
@@ -261,7 +261,7 @@ class MenuScene: SKScene {
                 
                 swapMusicButtons()
                 
-                if hud.gameMusicOn == false {
+                if gameMusicOn == false {
                     hud.stopBackgroundMusic()
                 }
                 else {
