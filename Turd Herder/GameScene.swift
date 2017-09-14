@@ -14,14 +14,13 @@ import GameplayKit
 class GameScene: SKScene {
     var targetCreationRate:TimeInterval = 0.25
     
-    let maxTargets       = 2
+    let maxTargets       = 10
     var currentFartIndex = 0
     
     var hud = HUD()
     
     var toiletNode: ToiletNode!
     
-    var startTime: Date!
     var timer: Timer?
     var targetsCreated = 0
     var targetCount = 0 {
@@ -104,18 +103,14 @@ class GameScene: SKScene {
         targetCount    = 0
         targetsCreated = 0
         gameState      = .start
-//        startTime      = Date()
         
         doCountdown()
         
-//        self.setupHUD(startTime: Date())
-        
-//        self.addChild(hud)
-        
         self.run(SKAction.afterDelay(3.0, runBlock: {
             self.startCreatingTargets()
-            self.setupHUD(startTime: Date())
+            self.setupHUD()
             self.hud.addNukeButton()
+            self.hud.startTimer()
         }))
     }
     
@@ -129,9 +124,9 @@ class GameScene: SKScene {
     }
     
     
-    func setupHUD(startTime: Date) {
+    func setupHUD() {
         self.addChild(hud)
-        hud.addTimer(startTime: startTime)
+        hud.addTimer()
         hud.addRemainingTurdsLabel()
     }
     
@@ -158,12 +153,12 @@ class GameScene: SKScene {
         let random = GKRandomSource.sharedRandom()
         
         // create a random X rotation
-//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
-        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
+        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
         
         // create a random Y rotation
-//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
-        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
+        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
         
         // combine them together
         let rotation = simd_mul(xRotation, yRotation)
@@ -183,14 +178,18 @@ class GameScene: SKScene {
     
     
     func gameOver() {
-        print("\n\nGame Over... FLUSHING\n\n")
+//        print("\n\nGame Over... FLUSHING\n\n")
         hud.playBackgroundMusic(name: backgroundMusicTrack[2])
         
         if gameSoundOn {
             run(toiletFlushHighScore)
         }
         
-        hud.addBackButton()
+        
+        
+        // Add Menu button
+//        hud.addBackButton()
+        
     }
     
     
@@ -203,10 +202,11 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        if hud.startTime != nil {
-            hud.updateTimer()
-        }
+//        if hud.startTime != nil {
+//            hud.updateTimer()
+//        }
         
+        hud.updateTimer()
         checkEndGame()
     }
     
@@ -239,7 +239,7 @@ class GameScene: SKScene {
         let actionUnhide    = SKAction.unhide()
         scaleOut.timingMode = .easeInEaseOut
         
-        print("\ndoCountdown()\n")
+//        print("\ndoCountdown()\n")
         print(scene.size)
         
         if gameSoundOn {
@@ -258,7 +258,7 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
-        print("Game State: \(gameState)")
+//        print("Game State: \(gameState)")
         
         let location = touch.location(in: self)
         let hit      = nodes(at: location)
@@ -271,7 +271,7 @@ class GameScene: SKScene {
         if nodeTouched.name == "playAgainButton" {
             self.gameState = .restart
             
-            print("PlayAgainButton TOUCHED")
+//            print("PlayAgainButton TOUCHED")
             
             let scene = GameScene(size: CGSize(width: 2048, height: 1536))
             scene.scaleMode = .fill
@@ -291,6 +291,10 @@ class GameScene: SKScene {
 
         
         if nodeTouched.name == HUDButtons.nuke {
+//            print("Nuke button touched")
+//            print("\n-------------------------------")
+//            print(scene?.children)
+//            print("-------------------------------\n")
             
             gameState = .pause
             
