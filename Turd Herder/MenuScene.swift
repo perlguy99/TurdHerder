@@ -28,9 +28,6 @@ class MenuScene: SKScene {
         ]
 
     
-    // Grab the HUD sprite atlas
-    let textureAtlas:SKTextureAtlas = SKTextureAtlas(named: "HUD")
-    
     // Instantiate a sprite node for the start button
     let startButton = SKSpriteNode()
     
@@ -57,24 +54,11 @@ class MenuScene: SKScene {
         self.addChild(hud)
         
         hud.playBackgroundMusic(name: backgroundMusicTrack[2])
-//        if hud.gameMusicOn {
-//            hud.playBackgroundMusic(name: backgroundMusicTrack[2])
-//        }
-        
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-//        placeDot(position: CGPoint(x: 0, y: 0), color: UIColor.purple)
-//        let topY = sceneHeight/2.0
-//        let topX = sceneWidth/2.0
-//        placeDot(position: CGPoint(x: 0, y: topY) , color: UIColor.green)
-//        placeDot(position: CGPoint(x: 0, y: -topY) , color: UIColor.blue)
-//        placeDot(position: CGPoint(x: -topX, y: 0) , color: UIColor.yellow)
-//        placeDot(position: CGPoint(x: topX, y: 0) , color: UIColor.magenta)
-
         // ----------------------
         // Build the start button
-//        let buttonWidth  = 700
         let buttonHeight = 225
         
         let startGameButton   = SKSpriteNode(imageNamed: "start_game")
@@ -233,18 +217,15 @@ class MenuScene: SKScene {
 
             
             if nodeTouched.name == HUDButtons.soundOn {
-                print("Sound On Button Tapped")
                 swapSoundButtons()
             }
             
             if nodeTouched.name == HUDButtons.soundOff {
-                print("Sound Off Button Tapped")
                 swapSoundButtons()
             }
 
             
             if nodeTouched.name == HUDButtons.musicOn {
-                print("Music On Button Tapped")
                 
                 swapMusicButtons()
                 
@@ -257,7 +238,6 @@ class MenuScene: SKScene {
             }
 
             if nodeTouched.name == HUDButtons.musicOff {
-                print("Music Off Button Tapped")
                 
                 swapMusicButtons()
                 
