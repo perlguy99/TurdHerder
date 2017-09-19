@@ -7,12 +7,15 @@
 //
 
 import SpriteKit
+import StoreKit
 
 class CreditsScene: SKScene, UIWebViewDelegate {
 
     let hud = HUD()
     
     override func didMove(to view: SKView) {
+//        SKStoreReviewController.requestReview()
+        
         self.name = "CreditsScene"
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
