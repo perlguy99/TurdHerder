@@ -19,9 +19,6 @@ class ViewController: UIViewController, ARSKViewDelegate {
         
         runSession()
         
-//        // Set the view's delegate
-//        sceneView.delegate = self
-        
         // Build the menu scene:
         let menuScene = MenuScene()
         menuScene.size = CGSize(width: 2048, height: 1536)
@@ -34,7 +31,6 @@ class ViewController: UIViewController, ARSKViewDelegate {
 
     
     public func runSession() {
-//        print("runSesion")
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -50,8 +46,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
-//        print("session.pause() from viewWillDisappear")
-        sceneView.session.pause()
+//        sceneView.session.pause()
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,36 +68,11 @@ class ViewController: UIViewController, ARSKViewDelegate {
     
     
     func sessionWasInterrupted(_ session: ARSession) {
-        
-//        sceneView.session.pause()
-//        sceneView.scene?.removeAllChildren()
-//        sceneView.session.pause()
-        
-//        if let scene = sceneView.scene {
-//            let children = scene.children
-//
-//            scene.removeAllChildren()
-//            print("____________________")
-//            print(children)
-//            print("____________________")
-//        }
-        
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
 //        sceneView.session.pause()
-        
-//        print("sessionWasInterrupted")
-        
-//        sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//            node.removeFromParentNode()
-//        }
-//
-//        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
-//        print("sessionInterruptionEnded")
-//        runSession()
     }
 }

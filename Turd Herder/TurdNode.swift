@@ -11,11 +11,21 @@ import SpriteKit
 
 class TurdNode: SKSpriteNode {
 
+    let turdImages = [
+        SKTexture(imageNamed: "turd01"),
+        SKTexture(imageNamed: "turd02"),
+        SKTexture(imageNamed: "turd03"),
+        SKTexture(imageNamed: "turd04"),
+        SKTexture(imageNamed: "turd05")
+        ]
+    
+        
     init() {
-        let texture = SKTexture(imageNamed: "turd")
+//        let texture = SKTexture(imageNamed: "turd")
+        
+        let texture = turdImages[Int.random(turdImages.count)]
         
         let poopSize = CGSize(width: 125, height: 125)
-//        super.init(texture: texture, color: .clear, size: texture.size())
         super.init(texture: texture, color: .clear, size: poopSize)
         
         name = "turd"
@@ -23,7 +33,6 @@ class TurdNode: SKSpriteNode {
         let smoke:SKEmitterNode = smokeRising()
         smoke.position          = self.position
         self.addChild(smoke)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

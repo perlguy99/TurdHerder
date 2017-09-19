@@ -181,9 +181,9 @@ class HUD: SKNode {
             addGameOverScreen()
             checkForBestTime()
             
-//            if bestTimeFlag == true {
+            if bestTimeFlag == true {
                 addHighScoreImage()
-//            }
+            }
             
         case .restart: break
 //            print("++ updateUI.restart")
@@ -264,7 +264,7 @@ class HUD: SKNode {
     }
     
     func updateTurdsRemainingLabel(turds: Int) {
-        remainingLabel?.text = "Turds Remaining: \(turds)"
+        remainingLabel?.text = "T*rds Remaining: \(turds)"
     }
     
 
