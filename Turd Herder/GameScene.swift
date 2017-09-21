@@ -14,7 +14,7 @@ import GameplayKit
 class GameScene: SKScene {
     var targetCreationRate:TimeInterval = 0.25
     
-    let maxTargets       = 10
+    let maxTargets       = 1
     var currentFartIndex = 0
     
     var hud = HUD()
@@ -156,12 +156,12 @@ class GameScene: SKScene {
         let random = GKRandomSource.sharedRandom()
         
         // create a random X rotation
-        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
-//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
+//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
         
         // create a random Y rotation
-        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
-//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
+//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
         
         // combine them together
         let rotation = simd_mul(xRotation, yRotation)

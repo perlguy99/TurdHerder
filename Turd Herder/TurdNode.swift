@@ -9,6 +9,8 @@
 import UIKit
 import SpriteKit
 
+//guard let highScoreStars = SKEmitterNode(fileNamed: "HighScore") else { return }
+
 class TurdNode: SKSpriteNode {
 
     let turdImages = [
@@ -30,9 +32,15 @@ class TurdNode: SKSpriteNode {
         
         name = "turd"
         
-        let smoke:SKEmitterNode = smokeRising()
-        smoke.position          = self.position
-        self.addChild(smoke)
+        guard let smoke2 = SKEmitterNode(fileNamed: "Smoke2") else { return }
+        
+        smoke2.position = self.position
+        self.addChild(smoke2)
+        
+//        let smoke:SKEmitterNode = smokeRising()
+//        smoke.position          = self.position
+//        self.addChild(smoke)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
