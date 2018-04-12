@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_0" orientation="landscape">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -17,27 +17,27 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turd03" translatesAutoresizingMaskIntoConstraints="NO" id="I9l-An-TBB">
-                                <rect key="frame" x="103.5" y="20.5" width="361" height="279"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turd02" translatesAutoresizingMaskIntoConstraints="NO" id="I9l-An-TBB">
+                                <rect key="frame" x="-21" y="144" width="361" height="279"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="361" id="6fS-pA-Dk6"/>
                                     <constraint firstAttribute="height" constant="279" id="T2a-md-UCO"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="turd_logo" translatesAutoresizingMaskIntoConstraints="NO" id="eWp-lj-dN0">
-                                <rect key="frame" x="123" y="8" width="322" height="163"/>
+                                <rect key="frame" x="-1" y="28" width="322" height="163"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017 Copyright Brent Michalski" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9V-DB-0kb">
-                                <rect key="frame" x="165" y="279" width="238" height="21"/>
+                                <rect key="frame" x="41" y="527" width="238" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="herder_logo" translatesAutoresizingMaskIntoConstraints="NO" id="eq8-cs-WSB">
-                                <rect key="frame" x="112.5" y="110" width="343" height="176"/>
+                                <rect key="frame" x="-11.5" y="130" width="343" height="176"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="343" id="MSX-6A-0FA"/>
                                     <constraint firstAttribute="height" constant="176" id="XDS-xx-yyH"/>
@@ -64,7 +64,7 @@
     </scenes>
     <resources>
         <image name="herder_logo" width="475" height="176"/>
-        <image name="turd03" width="100" height="119"/>
+        <image name="turd02" width="100" height="119"/>
         <image name="turd_logo" width="322" height="163"/>
     </resources>
 </document>
