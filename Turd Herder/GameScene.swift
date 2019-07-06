@@ -14,7 +14,7 @@ import GameplayKit
 class GameScene: SKScene {
     var targetCreationRate:TimeInterval = 0.25
     
-    let maxTargets       = 2
+    let maxTargets       = 1
     var currentFartIndex = 0
     
     var hud = HUD()
