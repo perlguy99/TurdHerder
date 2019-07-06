@@ -9,6 +9,8 @@
 import UIKit
 import SpriteKit
 
+//guard let highScoreStars = SKEmitterNode(fileNamed: "HighScore") else { return }
+
 class TurdNode: SKSpriteNode {
 
     let turdImages = [
