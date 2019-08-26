@@ -9,8 +9,6 @@
 import UIKit
 import SpriteKit
 
-//guard let highScoreStars = SKEmitterNode(fileNamed: "HighScore") else { return }
-
 class TurdNode: SKSpriteNode {
 
     let turdImages = [
@@ -20,13 +18,10 @@ class TurdNode: SKSpriteNode {
         SKTexture(imageNamed: "turd04"),
         SKTexture(imageNamed: "turd05")
         ]
+        
     
-        
     init() {
-//        let texture = SKTexture(imageNamed: "turd")
-        
-        let texture = turdImages[Int.random(turdImages.count)]
-        
+        let texture  = turdImages[Int.random(turdImages.count)]
         let poopSize = CGSize(width: 125, height: 125)
         super.init(texture: texture, color: .clear, size: poopSize)
         
@@ -36,6 +31,7 @@ class TurdNode: SKSpriteNode {
         smoke.position          = self.position
         self.addChild(smoke)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

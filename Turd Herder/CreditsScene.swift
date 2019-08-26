@@ -14,7 +14,6 @@ class CreditsScene: SKScene, UIWebViewDelegate {
     let hud = HUD()
     
     override func didMove(to view: SKView) {
-//        SKStoreReviewController.requestReview()
         
         self.name = "CreditsScene"
         

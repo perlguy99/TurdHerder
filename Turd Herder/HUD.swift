@@ -30,7 +30,6 @@ enum HUDButtons {
     static let back     = "ButtonBack"
 }
 
-
 enum HUDKeys {
     static let bestTime   = "BestTime"
     static let soundState = "SoundState"
@@ -49,7 +48,6 @@ enum HUDSettings {
 }
 
 
-
 class HUD: SKNode {
     var remainingLabel: SKLabelNode?
     var timerLabel: SKLabelNode?
@@ -60,9 +58,9 @@ class HUD: SKNode {
     
     let counterFart = SKAction.playSoundFileNamed("AirBiscuit.mp3", waitForCompletion: false)
     
-    var gameTimer = Timer()
+    var gameTimer      = Timer()
     var isTimerRunning = false
-    var gameTime: Int = 0
+    var gameTime : Int = 0
     
     var bestTime: Int {
         get {
@@ -73,7 +71,6 @@ class HUD: SKNode {
             UserDefaults.standard.synchronize()
         }
     }
-    
     
     let winningTitles = [
         "Great Job Turd Herder!",
@@ -95,7 +92,6 @@ class HUD: SKNode {
         "If pooping is the call of nature, does that mean farting is a missed call?",
         "Do clown farts smell funny?"
     ]
-    
     
     let winningTitleImages = [
         SKSpriteNode(imageNamed: "winning_title_01"),
@@ -123,6 +119,7 @@ class HUD: SKNode {
         
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -134,10 +131,7 @@ class HUD: SKNode {
     }
     
     
-    
     func checkForBestTime() {
-        
-//        print("\nGame Time: \(gameTime)  -- Best Time \(bestTime)\n")
         
         if bestTime == 0 {
             bestTime = gameTime
@@ -151,48 +145,61 @@ class HUD: SKNode {
     }
     
     
-    
     private func updateUI(gameState: GameState) {
         // Uses the "TO" GameState value
         // add messages for the new state
         switch gameState {
         case .initial: break
-//            print("++ updateUI.initial")
             
         case .start:
             gameTime = 0
-//            print("++ updateUI.start")
             bestTimeFlag = false
 
         case .playing:
-//            print("++ updateUI.playing")
             startTimer()
             
         case .win:
-//            print("++ updateUI.win")
-            
-            remove(message: "Timer")
-            remove(message: "RemainingTurdsLabel")
-            remove(message: "MenuBackground")
-            remove(message: HUDButtons.back)
-            remove(message: HUDButtons.nuke)
-            
-            stopTimer()
-            addGameOverScreen()
-            checkForBestTime()
-            
-            if bestTimeFlag == true {
-                addHighScoreImage()
-            }
+  
+            winEvents()
+//            remove(message: "Timer")
+//            remove(message: "RemainingTurdsLabel")
+//            remove(message: "MenuBackground")
+//            remove(message: HUDButtons.back)
+//            remove(message: HUDButtons.nuke)
+//
+//            stopTimer()
+//            addGameOverScreen()
+//            checkForBestTime()
+//
+//            if bestTimeFlag == true {
+//                addHighScoreImage()
+//            }
             
         case .restart: break
 //            print("++ updateUI.restart")
 
         case .pause:
-//            print("++ updateUI.pause")
             pauseTimer()
             
         }
+    }
+    
+    
+    func winEvents() {
+        remove(message: "Timer")
+        remove(message: "RemainingTurdsLabel")
+        remove(message: "MenuBackground")
+        remove(message: HUDButtons.back)
+        remove(message: HUDButtons.nuke)
+        
+        stopTimer()
+        addGameOverScreen()
+        checkForBestTime()
+        
+        if bestTimeFlag == true {
+            addHighScoreImage()
+        }
+
     }
     
     
@@ -263,11 +270,11 @@ class HUD: SKNode {
         timerLabel?.text = timeText
     }
     
+    
     func updateTurdsRemainingLabel(turds: Int) {
         remainingLabel?.text = "T*rds Remaining: \(turds)"
     }
     
-
     
     func addPlayAgainMessage(position: CGPoint = .zero) {
         guard let scene = scene else { return }
@@ -275,9 +282,10 @@ class HUD: SKNode {
         
         let playAgainButton = SKSpriteNode(imageNamed: "play_again")
         playAgainButton.zPosition = 1000
-        playAgainButton.name = "playAgainButton"
+        playAgainButton.name      = "playAgainButton"
+        playAgainButton.position  = position
         playAgainButton.setScale(0)
-        playAgainButton.position = position
+
         self.addChild(playAgainButton)
         
         // Pulse the start text in and out gently
@@ -319,7 +327,7 @@ class HUD: SKNode {
         let timeString = String(format: "%02d:%02d", newMinutes, newSeconds)
         var index      = CGFloat(0)
 
-        for char in timeString.characters {
+        for char in timeString {
             if let theImage = getImageForCharacter(character: char) {
                 let xPos = 50 + ((timeTakenSize.width/2) + (CGFloat(CGFloat(50.0) * index)))
                 
@@ -419,7 +427,7 @@ class HUD: SKNode {
         let winningTitleImage = winningTitleImages[Int.random(winningTitleImages.count)]
         let imageScale        = getScaleForWinningTitleImage(image: winningTitleImage)
         
-        winningTitleImage.name = "winningTitle"
+        winningTitleImage.name      = "winningTitle"
         winningTitleImage.zPosition = 1000
         winningTitleImage.setScale(imageScale)
         
@@ -436,7 +444,7 @@ class HUD: SKNode {
         let timeTakenImage = getTimeTakenImage()
         let ttiX           = ((timeTakenImage.calculateAccumulatedFrame().width - timeTakenImage.frame.width) / 2)
         
-        timeTakenImage.position = CGPoint(x: -ttiX, y: 0)
+        timeTakenImage.position  = CGPoint(x: -ttiX, y: 0)
         timeTakenImage.zPosition = 1500
         scene.addChild(timeTakenImage)
     }
@@ -448,15 +456,15 @@ class HUD: SKNode {
         
         guard let highScoreStars = SKEmitterNode(fileNamed: "HighScore") else { return }
         
-        let bestTimeTurd = SKSpriteNode(imageNamed: "best_time_turd")
-        bestTimeTurd.name    = "BestTimeTurd"
+        let bestTimeTurd  = SKSpriteNode(imageNamed: "best_time_turd")
+        bestTimeTurd.name = "BestTimeTurd"
         
         highScoreStars.zPosition = -1
-        highScoreStars.position = bestTimeTurd.position
+        highScoreStars.position  = bestTimeTurd.position
         bestTimeTurd.addChild(highScoreStars)
         
-        let bestTimeLabel = SKSpriteNode(imageNamed: "new_best_time")
-        let btY = bestTimeTurd.frame.minY
+        let bestTimeLabel = SKSpriteNode(imageNamed : "new_best_time")
+        let btY           = bestTimeTurd.frame.minY
         print(btY)
         bestTimeLabel.position = CGPoint(x: 0, y: btY - 20)
         
@@ -484,7 +492,7 @@ class HUD: SKNode {
         
         if gameMusicOn {
             let music = SKAudioNode(fileNamed: name)
-            music.name = "backgroundMusic"
+            music.name           = "backgroundMusic"
             music.autoplayLooped = true
             scene.addChild(music)
         }
@@ -519,7 +527,6 @@ class HUD: SKNode {
         buttonSoundOff.isHidden = gameSoundOn
         buttonMusicOn.isHidden  = !gameMusicOn
         buttonMusicOff.isHidden = gameMusicOn
-
         
         let bbX = scene.frame.minX + 100
         let bbY = scene.frame.minY + 100
@@ -546,7 +553,7 @@ class HUD: SKNode {
         buttonBack.setScale(0.25)
         buttonBack.name    = HUDButtons.back
         
-        buttonBack.position    = CGPoint(x: -600, y: -300)
+        buttonBack.position = CGPoint(x: -600, y: -300)
         
         scene.addChild(buttonBack)
     }
@@ -556,13 +563,13 @@ class HUD: SKNode {
         guard let scene = scene else { return }
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        let buttonBack    = SKSpriteNode(imageNamed: "back")
-        buttonBack.name    = HUDButtons.back
+        let buttonBack  = SKSpriteNode(imageNamed: "back")
+        buttonBack.name = HUDButtons.back
         
         let bbX = scene.frame.minX + 100
         let bbY = scene.frame.minY + 100
 
-        buttonBack.position    = CGPoint(x: bbX, y: bbY)
+        buttonBack.position = CGPoint(x: bbX, y: bbY)
         
         scene.addChild(buttonBack)
     }
@@ -572,20 +579,20 @@ class HUD: SKNode {
         guard let scene = scene else { return }
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
-        let buttonNuke    = SKSpriteNode(imageNamed: "nuke")
-        buttonNuke.name    = HUDButtons.nuke
+        let buttonNuke  = SKSpriteNode(imageNamed: "nuke")
+        buttonNuke.name = HUDButtons.nuke
         
         let bbX = scene.frame.minX + 100
         let bbY = scene.frame.minY + 100
         
-        buttonNuke.position    = CGPoint(x: bbX, y: bbY)
+        buttonNuke.position = CGPoint(x: bbX, y: bbY)
         
         scene.addChild(buttonNuke)
     }
     
     
-    
     func getNiceToilet() -> SKNode {
+        print("getNiceToilet()")
         
         // Pulse the start text in and out gently
         let fumesPulse = SKAction.sequence([

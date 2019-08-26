@@ -9,7 +9,6 @@
 import SpriteKit
 
 class ToiletNode {
-
     
     class func getToilet() -> SKNode {
         
@@ -24,7 +23,6 @@ class ToiletNode {
         let backAndForth = SKAction.sequence([rotateLeft, rotateRight])
         let grouped      = SKAction.group([backAndForth, fumesPulse])
         let fumeAction   = SKAction.repeatForever(grouped)
-        //        let fumeAction = SKAction.repeatForever(backAndForth)
         
         let toilet = SKSpriteNode(imageNamed: "toilet_plain1")
         let fumes  = SKSpriteNode(imageNamed: "fumes1")
@@ -41,6 +39,5 @@ class ToiletNode {
         theToilet.name = "Toilet"
         return theToilet
     }
-    
     
 }

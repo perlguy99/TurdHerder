@@ -24,8 +24,8 @@
 		843709381F54EE8400D057F5 /* Setting.sks in Resources */ = {isa = PBXBuildFile; fileRef = 843709371F54EE8400D057F5 /* Setting.sks */; };
 		8437C1211F18529300EB3079 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1201F18529300EB3079 /* Types.swift */; };
 		8437C1231F18536B00EB3079 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8437C1221F18536B00EB3079 /* HUD.swift */; };
-		8441D0461F733F1900BE8D0E /* Splat2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8441D0451F733F1900BE8D0E /* Splat2.sks */; };
-		8441D0481F733F3600BE8D0E /* Flies1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8441D0471F733F3600BE8D0E /* Flies1.sks */; };
+		8441D0461F733F1900BE8D0E /* (null) in Resources */ = {isa = PBXBuildFile; };
+		8441D0481F733F3600BE8D0E /* (null) in Resources */ = {isa = PBXBuildFile; };
 		84561FE01F0F1E46006EACD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */; };
 		84561FE21F0F1E46006EACD8 /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 84561FE11F0F1E46006EACD8 /* Scene.sks */; };
 		84561FE61F0F1E46006EACD8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84561FE51F0F1E46006EACD8 /* ViewController.swift */; };
@@ -103,7 +103,7 @@
 		843709371F54EE8400D057F5 /* Setting.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Setting.sks; sourceTree = "<group>"; };
 		8437C1201F18529300EB3079 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8437C1221F18536B00EB3079 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
-		84561FDC1F0F1E46006EACD8 /* T_rd Herder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "T_rd Herder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		84561FDC1F0F1E46006EACD8 /* Turd Herder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turd Herder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84561FE11F0F1E46006EACD8 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
 		84561FE51F0F1E46006EACD8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +113,6 @@
 		84561FEF1F0F1E46006EACD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		847D61561F73438D0002617C /* Smoke2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke2.sks; sourceTree = "<group>"; };
 		84804FFD1F4674D0002F6B5F /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
-		8495F0471F47C2B900321494 /* MessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBox.swift; sourceTree = "<group>"; };
 		8495F0491F47C50500321494 /* ToiletNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToiletNode.swift; sourceTree = "<group>"; };
 		84A2A61A1F3F6D360064A82B /* fart41.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fart41.wav; sourceTree = "<group>"; };
 		84A2A61B1F3F6D370064A82B /* fart2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fart2.mp3; sourceTree = "<group>"; };
@@ -212,7 +211,7 @@
 		84561FDD1F0F1E46006EACD8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84561FDC1F0F1E46006EACD8 /* T_rd Herder.app */,
+				84561FDC1F0F1E46006EACD8 /* Turd Herder.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,7 +228,6 @@
 				84804FFD1F4674D0002F6B5F /* MenuScene.swift */,
 				84BF04A71F67484B00A7048D /* CreditsScene.swift */,
 				84E54EC81F58E2A900AB2BA9 /* GameScene.swift */,
-				8495F0471F47C2B900321494 /* MessageBox.swift */,
 				84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */,
 				8495F0491F47C50500321494 /* ToiletNode.swift */,
 				8437C1221F18536B00EB3079 /* HUD.swift */,
@@ -252,8 +250,6 @@
 				8422126A1F3CF88C00175FCC /* Assets.xcassets */,
 				843709371F54EE8400D057F5 /* Setting.sks */,
 				84BA904A1F67471900CFC40B /* Credits.sks */,
-				8441D0451F733F1900BE8D0E /* Splat2.sks */,
-				8441D0471F733F3600BE8D0E /* Flies1.sks */,
 				847D61561F73438D0002617C /* Smoke2.sks */,
 			);
 			path = Scenes;
@@ -317,6 +313,7 @@
 				84561FD81F0F1E46006EACD8 /* Sources */,
 				84561FD91F0F1E46006EACD8 /* Frameworks */,
 				84561FDA1F0F1E46006EACD8 /* Resources */,
+				84EBE88A231488BA003B994A /* Increment Build Number */,
 			);
 			buildRules = (
 			);
@@ -324,7 +321,7 @@
 			);
 			name = "Turd Herder";
 			productName = "Turd Herder";
-			productReference = 84561FDC1F0F1E46006EACD8 /* T_rd Herder.app */;
+			productReference = 84561FDC1F0F1E46006EACD8 /* Turd Herder.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -334,12 +331,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Brent Michalski";
 				TargetAttributes = {
 					84561FDB1F0F1E46006EACD8 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Manual;
+						LastSwiftMigration = 1100;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -393,7 +391,7 @@
 				84A2A6411F3F6DCC0064A82B /* fart5.mp3 in Resources */,
 				84A2A6551F3F6DCC0064A82B /* fart28.wav in Resources */,
 				84A2A6501F3F6DCC0064A82B /* fart23.mp3 in Resources */,
-				8441D0461F733F1900BE8D0E /* Splat2.sks in Resources */,
+				8441D0461F733F1900BE8D0E /* (null) in Resources */,
 				84A2A65E1F3F6DCC0064A82B /* fart41.wav in Resources */,
 				84A2A65C1F3F6DCC0064A82B /* fart39.wav in Resources */,
 				84A2A6571F3F6DCC0064A82B /* fart34.wav in Resources */,
@@ -408,7 +406,7 @@
 				84A2A6591F3F6DCC0064A82B /* fart36.wav in Resources */,
 				840421EE1F4288740026730E /* AirBiscuit.mp3 in Resources */,
 				84561FE21F0F1E46006EACD8 /* Scene.sks in Resources */,
-				8441D0481F733F3600BE8D0E /* Flies1.sks in Resources */,
+				8441D0481F733F3600BE8D0E /* (null) in Resources */,
 				84561FEE1F0F1E46006EACD8 /* LaunchScreen.storyboard in Resources */,
 				84A2A65B1F3F6DCC0064A82B /* fart38.wav in Resources */,
 				84561FEB1F0F1E46006EACD8 /* Assets.xcassets in Resources */,
@@ -423,6 +421,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84EBE88A231488BA003B994A /* Increment Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84561FD81F0F1E46006EACD8 /* Sources */ = {
@@ -489,12 +508,16 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -521,12 +544,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -544,12 +568,16 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -570,10 +598,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -582,16 +611,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 833AT2F722;
 				INFOPLIST_FILE = "Turd Herder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "net.perlguy.Turd-Herder";
-				PRODUCT_NAME = "T_rd Herder";
-				PROVISIONING_PROFILE = "858e7308-7be0-4e77-9261-f26e5ff0d53b";
-				PROVISIONING_PROFILE_SPECIFIER = "Turd Herder Distribution";
-				SWIFT_VERSION = 4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.perlguy.The-Turd-Herder";
+				PRODUCT_NAME = "Turd Herder";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -600,16 +629,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 833AT2F722;
 				INFOPLIST_FILE = "Turd Herder/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "net.perlguy.Turd-Herder";
-				PRODUCT_NAME = "T_rd Herder";
-				PROVISIONING_PROFILE = "858e7308-7be0-4e77-9261-f26e5ff0d53b";
-				PROVISIONING_PROFILE_SPECIFIER = "Turd Herder Distribution";
-				SWIFT_VERSION = 4.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.perlguy.The-Turd-Herder";
+				PRODUCT_NAME = "Turd Herder";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

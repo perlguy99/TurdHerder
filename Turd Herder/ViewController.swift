@@ -10,35 +10,44 @@ import UIKit
 import SpriteKit
 import ARKit
 
+var arViewControllerInstance = ViewController()
+
+
+// TODO: Make turds easier to tap
+// TODO: Make Pause and Resume work
+// TODO: Verify turds get laid using current ARKit methods
+
 class ViewController: UIViewController, ARSKViewDelegate {
     
     @IBOutlet var sceneView: ARSKView!
     
+    // Create a session configuration
+    let configuration = ARWorldTrackingConfiguration()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        runSession()
+        arViewControllerInstance = self
+        sceneView.delegate       = self
+        
+        resetTracking()
         
         // Build the menu scene:
-        let menuScene = MenuScene()
-        menuScene.size = CGSize(width: 2048, height: 1536)
+        let menuScene       = MenuScene()
+        menuScene.size      = CGSize(width : 2048, height : 1536)
         menuScene.scaleMode = .fill
 
         // Show the menu
         sceneView.presentScene(menuScene)
     }
     
-
     
-    public func runSession() {
-        // Set the view's delegate
-        sceneView.delegate = self
+    public func resetTracking() {
         
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
+        print("resetTracking()")
         
         // Run the view's session
-        sceneView.session.run(configuration)
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     
@@ -69,10 +78,13 @@ class ViewController: UIViewController, ARSKViewDelegate {
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-//        sceneView.session.pause()
+        print("pause")
+        sceneView.session.pause()
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
+        print("resume")
+        sceneView.session.run(configuration)
     }
 }

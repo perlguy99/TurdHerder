@@ -28,27 +28,19 @@ class MenuScene: SKScene {
         ]
 
     
+    func buildStartButton() -> SKSpriteNode {
+        let startGameButton = SKSpriteNode(imageNamed : "start_game")
+
+        startGameButton.zPosition = 1000
+        startGameButton.position  = .zero
+        startGameButton.name      = "startGameButton"
+        startGameButton.setScale(0)
+
+        return startGameButton
+    }
+
+    
     // Instantiate a sprite node for the start button
-    let startButton = SKSpriteNode()
-    
-    func getDot() -> SKShapeNode {
-        let dot1 = SKShapeNode(circleOfRadius: 20)
-        dot1.fillColor = UIColor.magenta
-        dot1.zPosition = 500
-
-        return dot1
-    }
-
-    func placeDot(position: CGPoint, color: UIColor = UIColor.magenta) {
-        let dot = SKShapeNode(circleOfRadius: 20)
-        dot.fillColor = color
-        dot.zPosition = 1500
-        dot.position = position
-        addChild(dot)
-    }
-
-    
-    
     override func didMove(to view: SKView) {
         self.name = "MenuScene"
         self.addChild(hud)
@@ -59,13 +51,8 @@ class MenuScene: SKScene {
         
         // ----------------------
         // Build the start button
-        let buttonHeight = 225
-        
-        let startGameButton   = SKSpriteNode(imageNamed: "start_game")
-        startGameButton.zPosition = 1000
-        startGameButton.position = .zero
-        startGameButton.name = "startGameButton"
-        startGameButton.setScale(0)
+        let buttonHeight    = 225
+        let startGameButton = buildStartButton()
         self.addChild(startGameButton)
         
         // Pulse the start text in and out gently
@@ -96,17 +83,16 @@ class MenuScene: SKScene {
         stink_logo.zPosition = 1000
         stink_logo.name = "stink_logo"
         
-        let titleXt = CGFloat(-400.0)
-        let titleYt = CGFloat((buttonHeight/2) + 350)
-        let titleXh = CGFloat(400.0)
-        let titleYh = CGFloat((buttonHeight/2) + 350)
-
-        let titleXs = CGFloat(0)
-        let titleYs = CGFloat((buttonHeight/2) + 125)
+        let titleXturd     = CGFloat(-400.0)
+        let titleYturd     = CGFloat((buttonHeight/2) + 350)
+        let titleXherder   = CGFloat(400.0)
+        let titleYherder   = CGFloat((buttonHeight/2) + 350)
+        let titleXstink    = CGFloat(0)
+        let titleYstink    = CGFloat((buttonHeight/2) + 125)
         
-        turd_logo.position   = CGPoint(x: titleXt, y: titleYt)
-        herder_logo.position = CGPoint(x: titleXh, y: titleYh)
-        stink_logo.position  = CGPoint(x: titleXs, y: titleYs)
+        turd_logo.position   = CGPoint(x : titleXturd,   y : titleYturd)
+        herder_logo.position = CGPoint(x : titleXherder, y : titleYherder)
+        stink_logo.position  = CGPoint(x : titleXstink,  y : titleYstink)
         
         self.addChild(turd_logo)
         self.addChild(herder_logo)
@@ -119,34 +105,32 @@ class MenuScene: SKScene {
         scaleDown.timingMode = .easeInEaseOut
         scaleUp.timingMode   = .easeInEaseOut
         
-        let shakeT = SKAction.screenShakeWithNode(turd_logo, amount: CGPoint(x: 20, y: 20), oscillations: 15, duration: 2)
-        let shakeH = SKAction.screenShakeWithNode(herder_logo, amount: CGPoint(x: 20, y: 20), oscillations: 15, duration: 2)
-        let shakeS = SKAction.screenShakeWithNode(stink_logo, amount: CGPoint(x: 20, y: 20), oscillations: 15, duration: 2)
+        let shakeTurd   = SKAction.screenShakeWithNode(turd_logo, amount: CGPoint(x: 20, y: 20), oscillations: 15, duration: 2)
+        let shakeHerder = SKAction.screenShakeWithNode(herder_logo, amount: CGPoint(x: 20, y: 20), oscillations: 15, duration: 2)
+        let shakeStink  = SKAction.screenShakeWithNode(stink_logo, amount: CGPoint(x: 20, y: 20), oscillations: 15, duration: 2)
         
-        let sequenceT = SKAction.sequence([scaleUp, scaleDown, shakeT])
-        let sequenceH = SKAction.sequence([scaleUp, scaleDown, shakeH])
+        let sequenceTurd   = SKAction.sequence([scaleUp, scaleDown, shakeTurd])
+        let sequenceHerder = SKAction.sequence([scaleUp, scaleDown, shakeHerder])
 
         // Run the sequences
-        turd_logo.run(sequenceT)
-        herder_logo.run(sequenceH)
+        turd_logo.run(sequenceTurd)
+        herder_logo.run(sequenceHerder)
 
         if gameSoundOn {
             let randomFart = Int.random(shortFarts.count)
-            let sequenceS = SKAction.sequence([scaleUp, scaleDownS, shortFarts[randomFart], shakeS])
+            let sequenceS  = SKAction.sequence([scaleUp, scaleDownS, shortFarts[randomFart], shakeStink])
             stink_logo.run(SKAction.afterDelay(2.0, performAction: sequenceS))
         }
         else {
-            let sequenceS = SKAction.sequence([scaleUp, scaleDownS, shakeS])
+            let sequenceS = SKAction.sequence([scaleUp, scaleDownS, shakeStink])
             stink_logo.run(SKAction.afterDelay(2.0, performAction: sequenceS))
         }
-        
         
         // Now, scale the start button into position
         let scaleStartUp   = SKAction.scale(to: 1.50, duration: 1.0)
         let scaleStartDown = SKAction.scale(to: 1.25, duration: 0.5)
         
         startGameButton.run(SKAction.afterDelay(3.0, performAction: SKAction.sequence([scaleStartUp, scaleStartDown])))
-        
         
         let theToilet = ToiletNode.getToilet()
         theToilet.position = CGPoint(x: 0, y: -350)
@@ -157,8 +141,34 @@ class MenuScene: SKScene {
     }
     
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in (touches) {
+            // find the location of the touch
+            let location = touch.location(in: self)
+            
+            // Locate the node at this location
+            let nodeTouched = atPoint(location)
+            
+            switch nodeTouched.name {
+            case "startGameButton":
+                startGame()
+            case HUDButtons.about:
+                showAbout()
+            case HUDButtons.soundOn:
+                swapSoundButtons()
+            case HUDButtons.soundOff:
+                swapSoundButtons()
+            case HUDButtons.musicOn:
+                turnMusicOn()
+            case HUDButtons.musicOff:
+                turnMusicOff()
+            default: break
+            }
+        }
+    }
 
-    fileprivate func buttonSwapper(nodeName: String) {
+
+    fileprivate func buttonToggle(nodeName: String) {
         if let node = childNode(withName: nodeName) {
             if node.isHidden == true {
                 node.isHidden = false
@@ -175,83 +185,69 @@ class MenuScene: SKScene {
             }
         }
     }
+
     
     func swapSoundButtons() {
-        buttonSwapper(nodeName: HUDButtons.soundOn)
-        buttonSwapper(nodeName: HUDButtons.soundOff)
+        print("swapSoundButtons()")
+        buttonToggle(nodeName: HUDButtons.soundOn)
+        buttonToggle(nodeName: HUDButtons.soundOff)
     }
 
     
     func swapMusicButtons() {
-        buttonSwapper(nodeName: HUDButtons.musicOn)
-        buttonSwapper(nodeName: HUDButtons.musicOff)
+        print("swapMusicButtons()")
+        buttonToggle(nodeName: HUDButtons.musicOn)
+        buttonToggle(nodeName: HUDButtons.musicOff)
     }
-
-
+   
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in (touches) {
-            // find the location of the touch
-            let location = touch.location(in: self)
-            
-            // Locate the node at this location
-            let nodeTouched = atPoint(location)
-            
-            // Check for a touch on the Start Button
-            if nodeTouched.name == "startGameButton" {
-
-                hud.stopBackgroundMusic()
-                
-                let scene = GameScene(size: CGSize(width: 2048, height: 1536))
-                scene.scaleMode = .fill
-                self.view?.presentScene(scene)
-            }
-            
-
-            if nodeTouched.name == HUDButtons.about {
-                
-                let scene = CreditsScene(size: CGSize(width: 2048, height: 1536))
-                scene.scaleMode = .fill
-                self.view?.presentScene(scene)
-            }
-
-            
-            if nodeTouched.name == HUDButtons.soundOn {
-                swapSoundButtons()
-            }
-            
-            if nodeTouched.name == HUDButtons.soundOff {
-                swapSoundButtons()
-            }
-
-            
-            if nodeTouched.name == HUDButtons.musicOn {
-                
-                swapMusicButtons()
-                
-                if gameMusicOn == false {
-                    hud.stopBackgroundMusic()
-                }
-                else {
-                    hud.playBackgroundMusic(name: backgroundMusicTrack[2])
-                }
-            }
-
-            if nodeTouched.name == HUDButtons.musicOff {
-                
-                swapMusicButtons()
-                
-                if gameMusicOn == false {
-                    hud.stopBackgroundMusic()
-                }
-                else {
-                    hud.playBackgroundMusic(name: backgroundMusicTrack[2])
-                }
-                
-            }
+    func showAbout() {
+        print("showAbout()")
+        
+        let scene = CreditsScene(size: CGSize(width: 2048, height: 1536))
+        scene.scaleMode = .fill
+        self.view?.presentScene(scene)
+    }
+    
+    
+    func startGame() {
+        print("startGame()")
+        
+        hud.stopBackgroundMusic()
+        
+        let scene = GameScene(size: CGSize(width: 2048, height: 1536))
+        scene.scaleMode = .fill
+        self.view?.presentScene(scene)
+    }
+    
+    
+    func turnMusicOn() {
+        print("turnMusicOn()")
+        
+        swapMusicButtons()
+        
+        if gameMusicOn == false {
+            hud.stopBackgroundMusic()
+        }
+        else {
+            hud.playBackgroundMusic(name: backgroundMusicTrack[2])
         }
     }
+ 
     
+    func turnMusicOff() {
+        print("turnMusicOff()")
+        
+        swapMusicButtons()
+        
+        if gameMusicOn == false {
+            hud.stopBackgroundMusic()
+        }
+        else {
+            hud.playBackgroundMusic(name: backgroundMusicTrack[2])
+        }
+        
+    }
     
     
 }

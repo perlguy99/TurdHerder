@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "A9FBBAAF-1768-4359-A56F-F2146C6C0A26"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
          <BreakpointContent
+            uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -13,6 +15,7 @@
             moduleName = "">
             <Locations>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a6cb8555b4d4bad4"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -22,6 +25,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - f632b85f393de564"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -31,6 +35,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a8dca29dd955f5a0"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -40,6 +45,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a0e6c4a5bc6c2cf1"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -49,6 +55,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - d9bd571edb57878a"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -58,6 +65,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a24ba28c7171afd"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -67,6 +75,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - cb0c9b7df96e1009"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -76,6 +85,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 7a08c3c30bca7ff8"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -85,6 +95,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 7c5284076064817c"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -94,6 +105,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 7cbdf1974e085e14"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -103,6 +115,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - cdcc4428865c5412"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -112,6 +125,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - d1f738c5399112bc"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -121,6 +135,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - f7060b6a047f188c"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -130,6 +145,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a839670f8968ea58"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -139,6 +155,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 2fe32be91e2dee8b"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -148,6 +165,7 @@
                   offsetFromSymbolStart = "0">
                </Location>
                <Location
+                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a1135509dac2357a"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -162,11 +180,60 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
+            uuid = "08F4CAC5-9805-4599-B4CE-153D16E22809"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CE10896-6C47-4BBF-9920-CC1E5D829C66"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turd Herder/AppDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EDEDB4DC-B425-49B2-AEA2-880143F99CD7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turd Herder/GameScene.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "startGame()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D4B72144-DD90-4B71-9C23-FD118C6452F1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Turd Herder/HUD.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "595"
+            endingLineNumber = "595"
+            landmarkName = "getNiceToilet()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

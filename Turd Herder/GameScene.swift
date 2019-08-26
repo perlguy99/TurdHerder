@@ -12,18 +12,16 @@ import GameplayKit
 
 
 class GameScene: SKScene {
-    var targetCreationRate:TimeInterval = 0.25
-    
-    let maxTargets       = 10
-    var currentFartIndex = 0
-    
-    var hud = HUD()
+    var targetCreationRate :TimeInterval = 0.25
+    let maxTargets                       = 10
+    var currentFartIndex                 = 0
+    var hud                              = HUD()
     
     var toiletNode: ToiletNode!
     
     var timer: Timer?
     var targetsCreated = 0
-    var targetCount = 0 {
+    var targetCount    = 0 {
         didSet {
             hud.updateTurdsRemainingLabel(turds: targetCount)
         }
@@ -100,11 +98,11 @@ class GameScene: SKScene {
     }
     
     func startGame() {
+        arViewControllerInstance.resetTracking()
+        
         targetCount    = 0
         targetsCreated = 0
         gameState      = .start
-        
-        
         
         doCountdown()
         
@@ -116,6 +114,20 @@ class GameScene: SKScene {
             self.hud.playBackgroundMusic(name: self.backgroundMusicTrack[3])
         }))
     }
+    
+    
+    
+//    public func resetTracking() {
+//        
+//        print("resetTracking() 2222")
+//
+//        // Create a session configuration
+//        let configuration = ARWorldTrackingConfiguration()
+//
+//        // Run the view's session
+//        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+//    }
+    
     
     
     func startCreatingTargets() {
@@ -141,10 +153,7 @@ class GameScene: SKScene {
             return
         }
         
-        if gameSoundOn {
-            let randomFart = Int.random(targetCreationFarts.count)
-            run(targetCreationFarts[randomFart])
-        }
+        playFartSound()
         
         targetsCreated += 1
         targetCount    += 1
@@ -180,6 +189,14 @@ class GameScene: SKScene {
     }
     
     
+    func playFartSound() {
+        if !gameSoundOn { return }
+
+        let randomFart = Int.random(targetCreationFarts.count)
+        run(targetCreationFarts[randomFart])
+    }
+    
+    
     func gameOver() {
         hud.playBackgroundMusic(name: backgroundMusicTrack[2])
         
@@ -212,8 +229,8 @@ class GameScene: SKScene {
         let one   = SKSpriteNode(imageNamed: "1").copy() as? SKSpriteNode
         
         three?.isHidden = true
-        two?.isHidden = true
-        one?.isHidden = true
+        two?.isHidden   = true
+        one?.isHidden   = true
         
         three?.setScale(5.0)
         two?.setScale(5.0)
@@ -290,13 +307,12 @@ class GameScene: SKScene {
             
             let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
             scene.scaleMode = .fill
-            self.gameState = .initial
+            self.gameState  = .initial
             self.view?.presentScene(scene)
         }
 
         
         if nodeTouched.name == HUDButtons.nuke {
-
             gameState = .pause
             hideTurds()
             
@@ -305,7 +321,7 @@ class GameScene: SKScene {
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
                 let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
                 scene.scaleMode = .fill
-                self.gameState = .initial
+                self.gameState  = .initial
                 self.view?.presentScene(scene)
             }) )
             
@@ -316,8 +332,6 @@ class GameScene: SKScene {
 
             self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
         }
-
-        
         
         // Tapped a Turd
         if let sprite = hit.first as? TurdNode {
