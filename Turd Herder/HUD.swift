@@ -272,7 +272,7 @@ class HUD: SKNode {
     
     
     func updateTurdsRemainingLabel(turds: Int) {
-        remainingLabel?.text = "T*rds Remaining: \(turds)"
+        remainingLabel?.text = "Turds Remaining: \(turds)"
     }
     
     

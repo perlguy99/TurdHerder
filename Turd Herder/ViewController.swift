@@ -43,7 +43,6 @@ class ViewController: UIViewController, ARSKViewDelegate {
     
     
     public func resetTracking() {
-        
         print("resetTracking()")
         
         // Run the view's session
@@ -81,6 +80,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
         print("pause")
         sceneView.session.pause()
     }
+    
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required

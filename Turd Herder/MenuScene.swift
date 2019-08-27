@@ -67,13 +67,13 @@ class MenuScene: SKScene {
         
         // ----------------------
         // Main Title
-        let turd_logo   = SKSpriteNode(imageNamed: "turd_logo")
+        let turd_logo   = SKSpriteNode(imageNamed: "turd_logo_old")
         let herder_logo = SKSpriteNode(imageNamed: "herder_logo")
         let stink_logo  = SKSpriteNode(imageNamed: "dont_make_a_stink")
         
         turd_logo.setScale(0)
         turd_logo.zPosition = 1000
-        turd_logo.name = "turd_logo"
+        turd_logo.name = "turd_logo_old"
         
         herder_logo.setScale(0)
         herder_logo.zPosition = 1000
