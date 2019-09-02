@@ -12,8 +12,6 @@ import ARKit
 
 var arViewControllerInstance = ViewController()
 
-
-// TODO: Make turds easier to tap
 // TODO: Make Pause and Resume work
 // TODO: Verify turds get laid using current ARKit methods
 
@@ -41,7 +39,6 @@ class ViewController: UIViewController, ARSKViewDelegate {
         sceneView.presentScene(menuScene)
     }
     
-    
     public func resetTracking() {
         print("resetTracking()")
         
@@ -62,12 +59,14 @@ class ViewController: UIViewController, ARSKViewDelegate {
         // Release any cached data, images, etc that aren't in use.
     }
     
+    
     // MARK: - ARSKViewDelegate
 
     // The Anchor that gets returned
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
         return TurdNode()
     }
+    
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user

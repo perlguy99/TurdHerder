@@ -9,12 +9,13 @@
 import Foundation
 
 enum GameState: Int {
-    case initial = 0
-    case start   = 1
-    case playing = 2
-    case win     = 3
-    case restart = 4
-    case pause   = 5
+    case initial  = 0
+    case start    = 1
+    case playing  = 2
+    case win      = 3
+    case restart  = 4
+    case pause    = 5
+    case nocamera = 6
 }
 
 enum GameSound: Int {

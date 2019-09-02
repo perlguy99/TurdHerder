@@ -7,6 +7,8 @@
 //
 
 import SpriteKit
+import ARKit
+import GameplayKit
 
 class MenuScene: SKScene {
     let hud = HUD()
@@ -27,6 +29,7 @@ class MenuScene: SKScene {
         SKAction.playSoundFileNamed("fart8.mp3", waitForCompletion: false),
         ]
 
+    var startGameButton: SKSpriteNode!
     
     func buildStartButton() -> SKSpriteNode {
         let startGameButton = SKSpriteNode(imageNamed : "start_game")
@@ -45,6 +48,8 @@ class MenuScene: SKScene {
         self.name = "MenuScene"
         self.addChild(hud)
         
+        
+        
         hud.playBackgroundMusic(name: backgroundMusicTrack[2])
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -52,7 +57,9 @@ class MenuScene: SKScene {
         // ----------------------
         // Build the start button
         let buttonHeight    = 225
-        let startGameButton = buildStartButton()
+//        let startGameButton = buildStartButton()
+        startGameButton = buildStartButton()
+        
         self.addChild(startGameButton)
         
         // Pulse the start text in and out gently
@@ -72,16 +79,16 @@ class MenuScene: SKScene {
         let stink_logo  = SKSpriteNode(imageNamed: "dont_make_a_stink")
         
         turd_logo.setScale(0)
-        turd_logo.zPosition = 1000
-        turd_logo.name = "turd_logo_old"
+        turd_logo.zPosition   = 1000
+        turd_logo.name        = "turd_logo_old"
         
         herder_logo.setScale(0)
         herder_logo.zPosition = 1000
-        herder_logo.name = "herder_logo"
+        herder_logo.name      = "herder_logo"
         
         stink_logo.setScale(0)
-        stink_logo.zPosition = 1000
-        stink_logo.name = "stink_logo"
+        stink_logo.zPosition  = 1000
+        stink_logo.name       = "stink_logo"
         
         let titleXturd     = CGFloat(-400.0)
         let titleYturd     = CGFloat((buttonHeight/2) + 350)
@@ -126,11 +133,7 @@ class MenuScene: SKScene {
             stink_logo.run(SKAction.afterDelay(2.0, performAction: sequenceS))
         }
         
-        // Now, scale the start button into position
-        let scaleStartUp   = SKAction.scale(to: 1.50, duration: 1.0)
-        let scaleStartDown = SKAction.scale(to: 1.25, duration: 0.5)
-        
-        startGameButton.run(SKAction.afterDelay(3.0, performAction: SKAction.sequence([scaleStartUp, scaleStartDown])))
+        checkForCamera()
         
         let theToilet = ToiletNode.getToilet()
         theToilet.position = CGPoint(x: 0, y: -350)
@@ -139,6 +142,45 @@ class MenuScene: SKScene {
         
         hud.addMenuButtons()
     }
+    
+    
+    func showStartGameButton() {
+        // Now, scale the start button into position
+        let scaleStartUp   = SKAction.scale(to: 1.50, duration: 1.0)
+        let scaleStartDown = SKAction.scale(to: 1.25, duration: 0.5)
+        
+        startGameButton.run(SKAction.afterDelay(3.0, performAction: SKAction.sequence([scaleStartUp, scaleStartDown])))
+    }
+    
+    
+    func hideStartGameButton() {
+        startGameButton.setScale(0)
+    }
+    
+    
+    func checkForCamera() {
+        let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch cameraAuthorizationStatus {
+        case .notDetermined:
+//            print("\nCAMERA NOT DETERMINED")
+            hideStartGameButton()
+            requestCameraPermission()
+        case .authorized:
+//            print("\nCAMERA AUTHORIZED")
+            showStartGameButton()
+            
+        case .restricted, .denied:
+//            print("\nCAMERA RESTRICTED or DENIED")
+            hideStartGameButton()
+            showCameraRequired()
+            
+        @unknown default:
+//            print("\nDEFAULT")
+            break
+        }
+    }
+    
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -210,6 +252,15 @@ class MenuScene: SKScene {
     }
     
     
+    func showCameraRequired() {
+        print("showCameraRequired()")
+        
+        let scene = CameraRequiredScene(size: CGSize(width: 2048, height: 1536))
+        scene.scaleMode = .fill
+        self.view?.presentScene(scene)
+    }
+    
+    
     func startGame() {
         print("startGame()")
         
@@ -247,6 +298,19 @@ class MenuScene: SKScene {
             hud.playBackgroundMusic(name: backgroundMusicTrack[2])
         }
         
+    }
+    
+    
+    func requestCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { accessGranted in
+
+            if accessGranted == true {
+                self.showStartGameButton()
+            }
+            else {
+                self.showCameraRequired()
+            }
+        })
     }
     
     

@@ -149,38 +149,34 @@ class HUD: SKNode {
         // Uses the "TO" GameState value
         // add messages for the new state
         switch gameState {
-        case .initial: break
+        case .initial:
+            print("-- updateUI.initial")
+            break
             
         case .start:
-            gameTime = 0
+            print("-- updateUI.start")
+            gameTime     = 0
             bestTimeFlag = false
 
         case .playing:
+            print("-- updateUI.playing")
             startTimer()
             
         case .win:
-  
+            print("-- updateUI.win")
             winEvents()
-//            remove(message: "Timer")
-//            remove(message: "RemainingTurdsLabel")
-//            remove(message: "MenuBackground")
-//            remove(message: HUDButtons.back)
-//            remove(message: HUDButtons.nuke)
-//
-//            stopTimer()
-//            addGameOverScreen()
-//            checkForBestTime()
-//
-//            if bestTimeFlag == true {
-//                addHighScoreImage()
-//            }
             
-        case .restart: break
-//            print("++ updateUI.restart")
+        case .restart:
+            print("-- updateUI.restart")
+            break
+            
+        case .nocamera:
+            print("-- updateUI.nocamera")
+            break
 
         case .pause:
+            print("-- updateUI.pause")
             pauseTimer()
-            
         }
     }
     
@@ -208,24 +204,33 @@ class HUD: SKNode {
         // clear previous state messages
         switch gameState {
             
-        case .initial: break
-//            print("-- clearUI.initial")
+        case .initial:
+            print("-- clearUI.initial")
+            break
 
-        case .start: break
-//            print("-- clearUI.start")
+        case .start:
+            print("-- clearUI.start")
+            break
 
-        case .playing: break
-//            print("-- clearUI.playing")
+        case .playing:
+            print("-- clearUI.playing")
+            break
             
         case .win:
-//            print("-- clearUI.win")
+            print("-- clearUI.win")
             remove(message: HUDMessages.win)
             
-        case .restart: break
-//            print("-- clearUI.restart")
+        case .restart:
+            print("-- clearUI.restart")
+            break
             
-        case .pause: break
-//            print("-- clearUI.pause")
+        case .nocamera:
+            print("-- clearUI.nocamera")
+            break
+            
+        case .pause:
+            print("-- clearUI.pause")
+            break
             
         }
         
@@ -511,31 +516,31 @@ class HUD: SKNode {
         guard let scene = scene else { return }
         scene.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        let buttonSoundOn  = SKSpriteNode(imageNamed: "sound_on_f1")
-        let buttonSoundOff = SKSpriteNode(imageNamed: "sound_off_f1")
-        let buttonMusicOn  = SKSpriteNode(imageNamed: "music_on_f1")
-        let buttonMusicOff = SKSpriteNode(imageNamed: "music_off_f1")
-        let buttonAbout    = SKSpriteNode(imageNamed: "about_f1")
+        let buttonSoundOn       = SKSpriteNode(imageNamed : "sound_on_f1")
+        let buttonSoundOff      = SKSpriteNode(imageNamed : "sound_off_f1")
+        let buttonMusicOn       = SKSpriteNode(imageNamed : "music_on_f1")
+        let buttonMusicOff      = SKSpriteNode(imageNamed : "music_off_f1")
+        let buttonAbout         = SKSpriteNode(imageNamed : "about_f1")
 
-        buttonSoundOn.name  = HUDButtons.soundOn
-        buttonSoundOff.name = HUDButtons.soundOff
-        buttonMusicOn.name  = HUDButtons.musicOn
-        buttonMusicOff.name = HUDButtons.musicOff
-        buttonAbout.name    = HUDButtons.about
+        buttonSoundOn.name      = HUDButtons.soundOn
+        buttonSoundOff.name     = HUDButtons.soundOff
+        buttonMusicOn.name      = HUDButtons.musicOn
+        buttonMusicOff.name     = HUDButtons.musicOff
+        buttonAbout.name        = HUDButtons.about
         
         buttonSoundOn.isHidden  = !gameSoundOn
         buttonSoundOff.isHidden = gameSoundOn
         buttonMusicOn.isHidden  = !gameMusicOn
         buttonMusicOff.isHidden = gameMusicOn
         
-        let bbX = scene.frame.minX + 100
-        let bbY = scene.frame.minY + 100
+        let bbX                 = scene.frame.minX + 100
+        let bbY                 = scene.frame.minY + 100
         
-        buttonSoundOn.position  = CGPoint(x: bbX, y: bbY + 400)
-        buttonSoundOff.position = CGPoint(x: bbX, y: bbY + 400)
-        buttonMusicOn.position  = CGPoint(x: bbX, y: bbY + 200)
-        buttonMusicOff.position = CGPoint(x: bbX, y: bbY + 200)
-        buttonAbout.position    = CGPoint(x: bbX, y: bbY)
+        buttonSoundOn.position  = CGPoint(x : bbX, y : bbY + 400)
+        buttonSoundOff.position = CGPoint(x : bbX, y : bbY + 400)
+        buttonMusicOn.position  = CGPoint(x : bbX, y : bbY + 200)
+        buttonMusicOff.position = CGPoint(x : bbX, y : bbY + 200)
+        buttonAbout.position    = CGPoint(x : bbX, y : bbY)
         
         scene.addChild(buttonSoundOn)
         scene.addChild(buttonSoundOff)

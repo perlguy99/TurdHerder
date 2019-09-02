@@ -94,6 +94,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         startGame()
+        
+        srand48(Int(Date.timeIntervalSinceReferenceDate))
     }
     
     
@@ -132,6 +134,10 @@ class GameScene: SKScene {
     }
     
     
+    
+    // TODO: Light estimation?
+    // https://www.raywenderlich.com/378-augmented-reality-and-arkit-tutorial
+    
     func createTarget() {
         if targetsCreated == maxTargets {
             timer?.invalidate()
@@ -145,7 +151,8 @@ class GameScene: SKScene {
         targetCount    += 1
         
         // find the scene view we are drawing into
-        guard let sceneView = self.view as? ARSKView else { return }
+        guard let sceneView    = self.view as? ARSKView else { return }
+//        guard let currentFrame = sceneView.session.currentFrame else { return }
         
         // get access to a random number generator
         let random = GKRandomSource.sharedRandom()
@@ -163,11 +170,20 @@ class GameScene: SKScene {
         
         // move forward x meters into the screen
         var translation = matrix_identity_float4x4
-//        translation.columns.3.z = -1.5
-        translation.columns.3.z = -2.0
+        translation.columns.3.z = -1.75
+        
+        
+        // New randomization methods
+//        translation.columns.3.x =  Float(drand48() * 2 - 1)
+//        translation.columns.3.z = -Float(drand48() * 2 - 1) - Float(1.5)
+//        translation.columns.3.y =  Float(drand48() * 2 - 1)
+//        let transform2 = currentFrame.camera.transform * translation
+        
+//        sceneView.session.currentFrame
         
         // combine that with the rotation
         let transform = simd_mul(rotation, translation)
+        
         
         // create an anchor at the finished position
         let anchor = ARAnchor(transform: transform)
@@ -288,35 +304,10 @@ class GameScene: SKScene {
         // Main Menu
         if nodeTouched.name == HUDButtons.about {
             showAbout()
-//            hud.stopBackgroundMusic()
-//
-//            let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
-//            scene.scaleMode = .fill
-//            self.gameState  = .initial
-//            self.view?.presentScene(scene)
         }
         
         if nodeTouched.name == HUDButtons.nuke {
             nukeTapped()
-            
-//            gameState = .pause
-//            hideTurds()
-//
-//            let alert = UIAlertController(title: "Quit Turd Herding?", message: "Are you sure you want to quit?", preferredStyle: .alert)
-//
-//            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-//                let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
-//                scene.scaleMode = .fill
-//                self.gameState  = .initial
-//                self.view?.presentScene(scene)
-//            }))
-//
-//            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in
-//                self.unHideTurds()
-//                self.gameState = .playing
-//            }))
-//
-//            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
         }
         
         // Tapped a Turd
@@ -351,7 +342,6 @@ class GameScene: SKScene {
         }))
 
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
-
     }
     
     
