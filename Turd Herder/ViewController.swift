@@ -12,9 +12,6 @@ import ARKit
 
 var arViewControllerInstance = ViewController()
 
-// TODO: Make Pause and Resume work
-// TODO: Verify turds get laid using current ARKit methods
-
 class ViewController: UIViewController, ARSKViewDelegate {
     
     @IBOutlet var sceneView: ARSKView!
@@ -41,8 +38,6 @@ class ViewController: UIViewController, ARSKViewDelegate {
     
     
     public func resetTracking() {
-        print("resetTracking()")
-        
         // Run the view's session
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
@@ -77,14 +72,17 @@ class ViewController: UIViewController, ARSKViewDelegate {
     
     func sessionWasInterrupted(_ session: ARSession) {
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        print("pause")
-        sceneView.session.pause()
+//        print("pause")
     }
     
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
-        print("resume")
-        sceneView.session.run(configuration)
+        
+        if let foo = sceneView.scene as? GameScene {
+            foo.gameState = .restart
+        }
+        
+        resetTracking()
     }
 }

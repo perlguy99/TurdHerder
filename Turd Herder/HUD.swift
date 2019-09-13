@@ -150,32 +150,32 @@ class HUD: SKNode {
         // add messages for the new state
         switch gameState {
         case .initial:
-            print("-- updateUI.initial")
+//            print("-- updateUI.initial")
             break
             
         case .start:
-            print("-- updateUI.start")
+//            print("-- updateUI.start")
             gameTime     = 0
             bestTimeFlag = false
 
         case .playing:
-            print("-- updateUI.playing")
+//            print("-- updateUI.playing")
             startTimer()
             
         case .win:
-            print("-- updateUI.win")
+//            print("-- updateUI.win")
             winEvents()
             
         case .restart:
-            print("-- updateUI.restart")
+//            print("-- updateUI.restart")
             break
             
         case .nocamera:
-            print("-- updateUI.nocamera")
+//            print("-- updateUI.nocamera")
             break
 
         case .pause:
-            print("-- updateUI.pause")
+//            print("-- updateUI.pause")
             pauseTimer()
         }
     }
@@ -205,31 +205,31 @@ class HUD: SKNode {
         switch gameState {
             
         case .initial:
-            print("-- clearUI.initial")
+//            print("-- clearUI.initial")
             break
 
         case .start:
-            print("-- clearUI.start")
+//            print("-- clearUI.start")
             break
 
         case .playing:
-            print("-- clearUI.playing")
+//            print("-- clearUI.playing")
             break
             
         case .win:
-            print("-- clearUI.win")
+//            print("-- clearUI.win")
             remove(message: HUDMessages.win)
             
         case .restart:
-            print("-- clearUI.restart")
+//            print("-- clearUI.restart")
             break
             
         case .nocamera:
-            print("-- clearUI.nocamera")
+//            print("-- clearUI.nocamera")
             break
             
         case .pause:
-            print("-- clearUI.pause")
+//            print("-- clearUI.pause")
             break
             
         }
@@ -420,7 +420,7 @@ class HUD: SKNode {
         // Added 100 for 50px padding on each side.
         let myscale = ((sceneWidth - 100) / imageWidth)
         
-        print(image.frame)
+//        print(image.frame)
         return myscale
     }
 
@@ -470,7 +470,7 @@ class HUD: SKNode {
         
         let bestTimeLabel = SKSpriteNode(imageNamed : "new_best_time")
         let btY           = bestTimeTurd.frame.minY
-        print(btY)
+//        print(btY)
         bestTimeLabel.position = CGPoint(x: 0, y: btY - 20)
         
         bestTimeTurd.addChild(bestTimeLabel)
@@ -597,7 +597,7 @@ class HUD: SKNode {
     
     
     func getNiceToilet() -> SKNode {
-        print("getNiceToilet()")
+//        print("getNiceToilet()")
         
         // Pulse the start text in and out gently
         let fumesPulse = SKAction.sequence([

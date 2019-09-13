@@ -34,6 +34,10 @@ class GameScene: SKScene {
                 if gameState == .win {
                     gameOver()
                 }
+                
+                if gameState == .restart {
+                    showMenuScene()
+                }
             }
         }
     }
@@ -94,6 +98,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         startGame()
         
+        // Seed the random number generator
         srand48(Int(Date.timeIntervalSinceReferenceDate))
     }
     
@@ -133,31 +138,6 @@ class GameScene: SKScene {
     }
 
     
-//    func createShapeRect() -> SKShapeNode {
-//        let shape         = SKShapeNode()
-//        shape.path        = UIBezierPath(roundedRect : CGRect(x : -128, y : -128, width : 50, height : 25), cornerRadius : 64).cgPath
-//        shape.fillColor   = .red
-//        shape.strokeColor = .blue
-//        shape.lineWidth   = 2
-//
-//        return shape
-//    }
-//
-//
-//    func createCone() -> SCNNode {
-////        let foo = SKShapeNode()
-//
-//        let cone     = SCNCone(topRadius : 0.5, bottomRadius : 1.0, height : 4.0)
-//        let material = SCNMaterial()
-//
-//        material.diffuse.contents = UIColor.red
-//        cone.materials            = [material]
-//
-//        let coneNode = SCNNode(geometry: cone)
-//        return coneNode
-//    }
-    
-    
     func createTarget() {
         if targetsCreated == maxTargets {
             timer?.invalidate()
@@ -192,7 +172,7 @@ class GameScene: SKScene {
         var translation = matrix_identity_float4x4
         translation.columns.3.z = -1.75
         
-        // New randomization methods
+        // New randomization methods - didn't seem to work as well
 //        translation.columns.3.x =  Float(drand48() * 2 - 1)
 //        translation.columns.3.z = -Float(drand48() * 2 - 1) - Float(1.5)
 //        translation.columns.3.y =  Float(drand48() * 2 - 1)
@@ -238,7 +218,7 @@ class GameScene: SKScene {
             targetCount = turds
         }
         
-        if targetsCreated == maxTargets && targetCount == 0 {
+        if targetsCreated == maxTargets && targetCount == 0 && gameState != .restart {
             gameState = .win
         }
     }
@@ -332,6 +312,21 @@ class GameScene: SKScene {
     }
 
     
+    func showMenuScene() {
+        let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
+        scene.scaleMode = .fill
+        self.gameState  = .initial
+        self.view?.presentScene(scene)
+    }
+    
+    
+    func showStartingScene() {
+        let scene       = GameScene(size : CGSize(width : 2048, height : 1536))
+        scene.scaleMode = .fill
+        self.view?.presentScene(scene)
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
@@ -344,9 +339,7 @@ class GameScene: SKScene {
         // Play Again
         if nodeTouched.name == "playAgainButton" {
             self.gameState  = .restart
-            let scene       = GameScene(size : CGSize(width : 2048, height : 1536))
-            scene.scaleMode = .fill
-            self.view?.presentScene(scene)
+            showStartingScene()
         }
         
         // Main Menu
@@ -378,10 +371,7 @@ class GameScene: SKScene {
         let alert = UIAlertController(title: "Quit Turd Herding?", message: "Are you sure you want to quit?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-            let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
-            scene.scaleMode = .fill
-            self.gameState  = .initial
-            self.view?.presentScene(scene)
+            self.showMenuScene()
         }))
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in

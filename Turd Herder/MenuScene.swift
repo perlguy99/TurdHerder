@@ -228,22 +228,18 @@ class MenuScene: SKScene {
 
     
     func swapSoundButtons() {
-        print("swapSoundButtons()")
         buttonToggle(nodeName: HUDButtons.soundOn)
         buttonToggle(nodeName: HUDButtons.soundOff)
     }
 
     
     func swapMusicButtons() {
-        print("swapMusicButtons()")
         buttonToggle(nodeName: HUDButtons.musicOn)
         buttonToggle(nodeName: HUDButtons.musicOff)
     }
    
     
     func showAbout() {
-        print("showAbout()")
-        
         let scene = CreditsScene(size: CGSize(width: 2048, height: 1536))
         scene.scaleMode = .fill
         self.view?.presentScene(scene)
@@ -251,8 +247,6 @@ class MenuScene: SKScene {
     
     
     func showCameraRequired() {
-        print("showCameraRequired()")
-        
         let scene = CameraRequiredScene(size: CGSize(width: 2048, height: 1536))
         scene.scaleMode = .fill
         self.view?.presentScene(scene)
@@ -260,8 +254,6 @@ class MenuScene: SKScene {
     
     
     func startGame() {
-        print("startGame()")
-        
         hud.stopBackgroundMusic()
         
         let scene = GameScene(size: CGSize(width: 2048, height: 1536))
@@ -271,8 +263,6 @@ class MenuScene: SKScene {
     
     
     func turnMusicOn() {
-        print("turnMusicOn()")
-        
         swapMusicButtons()
         
         if gameMusicOn == false {
@@ -285,8 +275,6 @@ class MenuScene: SKScene {
  
     
     func turnMusicOff() {
-        print("turnMusicOff()")
-        
         swapMusicButtons()
         
         if gameMusicOn == false {
