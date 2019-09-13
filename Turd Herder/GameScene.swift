@@ -10,7 +10,6 @@ import SpriteKit
 import ARKit
 import GameplayKit
 
-
 class GameScene: SKScene {
     var targetCreationRate :TimeInterval = 0.25
     let maxTargets                       = 10
@@ -132,11 +131,32 @@ class GameScene: SKScene {
         hud.addTimer()
         hud.addRemainingTurdsLabel()
     }
+
     
+//    func createShapeRect() -> SKShapeNode {
+//        let shape         = SKShapeNode()
+//        shape.path        = UIBezierPath(roundedRect : CGRect(x : -128, y : -128, width : 50, height : 25), cornerRadius : 64).cgPath
+//        shape.fillColor   = .red
+//        shape.strokeColor = .blue
+//        shape.lineWidth   = 2
+//
+//        return shape
+//    }
+//
+//
+//    func createCone() -> SCNNode {
+////        let foo = SKShapeNode()
+//
+//        let cone     = SCNCone(topRadius : 0.5, bottomRadius : 1.0, height : 4.0)
+//        let material = SCNMaterial()
+//
+//        material.diffuse.contents = UIColor.red
+//        cone.materials            = [material]
+//
+//        let coneNode = SCNNode(geometry: cone)
+//        return coneNode
+//    }
     
-    
-    // TODO: Light estimation?
-    // https://www.raywenderlich.com/378-augmented-reality-and-arkit-tutorial
     
     func createTarget() {
         if targetsCreated == maxTargets {
@@ -148,10 +168,10 @@ class GameScene: SKScene {
         playFartSound()
         
         targetsCreated += 1
-        targetCount    += 1
+//        targetCount    += 1
         
         // find the scene view we are drawing into
-        guard let sceneView    = self.view as? ARSKView else { return }
+        guard let sceneView = self.view as? ARSKView else { return }
 //        guard let currentFrame = sceneView.session.currentFrame else { return }
         
         // get access to a random number generator
@@ -172,7 +192,6 @@ class GameScene: SKScene {
         var translation = matrix_identity_float4x4
         translation.columns.3.z = -1.75
         
-        
         // New randomization methods
 //        translation.columns.3.x =  Float(drand48() * 2 - 1)
 //        translation.columns.3.z = -Float(drand48() * 2 - 1) - Float(1.5)
@@ -183,7 +202,6 @@ class GameScene: SKScene {
         
         // combine that with the rotation
         let transform = simd_mul(rotation, translation)
-        
         
         // create an anchor at the finished position
         let anchor = ARAnchor(transform: transform)
@@ -209,6 +227,17 @@ class GameScene: SKScene {
     
     
     func checkEndGame() {
+        if let children = scene?.children {
+            var turds = 0
+            
+            for node in children {
+                if node.name == "turd" {
+                    turds += 1
+                }
+            }
+            targetCount = turds
+        }
+        
         if targetsCreated == maxTargets && targetCount == 0 {
             gameState = .win
         }
@@ -219,6 +248,24 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         hud.updateTimer()
         checkEndGame()
+        
+        // https://www.raywenderlich.com/378-augmented-reality-and-arkit-tutorial
+//        // Ambient light estimation
+//        guard let sceneView = self.view as? ARSKView, let currentFrame = sceneView.session.currentFrame, let lightEstimate = currentFrame.lightEstimate else {
+//            return
+//        }
+//
+//        let neutralIntensity : CGFloat = 1000
+//        let ambientIntensity           = min(lightEstimate.ambientIntensity, neutralIntensity)
+//        let blendFactor                = 1 - ambientIntensity / neutralIntensity
+//
+//        for node in children {
+//            if let turd = node as? SKSpriteNode {
+//                turd.color = .black
+//                turd.colorBlendFactor = blendFactor
+//            }
+//        }
+//        // Ambient light estimation
     }
     
     
@@ -272,6 +319,7 @@ class GameScene: SKScene {
             }
         }
     }
+    
 
     func unHideTurds() {
         if let children = scene?.children {
@@ -318,7 +366,7 @@ class GameScene: SKScene {
             }
             
             sprite.wasTapped()
-            targetCount -= 1
+//            targetCount -= 1
         }
     }
     

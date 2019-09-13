@@ -48,8 +48,6 @@ class MenuScene: SKScene {
         self.name = "MenuScene"
         self.addChild(hud)
         
-        
-        
         hud.playBackgroundMusic(name: backgroundMusicTrack[2])
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)

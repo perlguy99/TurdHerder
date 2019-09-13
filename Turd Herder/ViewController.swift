@@ -39,6 +39,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
         sceneView.presentScene(menuScene)
     }
     
+    
     public func resetTracking() {
         print("resetTracking()")
         
