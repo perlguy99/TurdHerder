@@ -35,7 +35,7 @@ class GameScene: SKScene {
                     gameOver()
                 }
                 
-                if gameState == .restart {
+                if gameState == .unpause {
                     showMenuScene()
                 }
             }
@@ -212,13 +212,14 @@ class GameScene: SKScene {
             
             for node in children {
                 if node.name == "turd" {
+//                    node.
                     turds += 1
                 }
             }
             targetCount = turds
         }
         
-        if targetsCreated == maxTargets && targetCount == 0 && gameState != .restart {
+        if targetsCreated == maxTargets && targetCount == 0 && gameState != .unpause {
             gameState = .win
         }
     }
@@ -313,6 +314,7 @@ class GameScene: SKScene {
 
     
     func showMenuScene() {
+        print("Show Menu Scene")
         let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
         scene.scaleMode = .fill
         self.gameState  = .initial
@@ -320,7 +322,8 @@ class GameScene: SKScene {
     }
     
     
-    func showStartingScene() {
+    func showGameScene() {
+        print("Show Game Scene")
         let scene       = GameScene(size : CGSize(width : 2048, height : 1536))
         scene.scaleMode = .fill
         self.view?.presentScene(scene)
@@ -339,7 +342,7 @@ class GameScene: SKScene {
         // Play Again
         if nodeTouched.name == "playAgainButton" {
             self.gameState  = .restart
-            showStartingScene()
+            showGameScene()
         }
         
         // Main Menu

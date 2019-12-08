@@ -16,6 +16,7 @@ enum GameState: Int {
     case restart  = 4
     case pause    = 5
     case nocamera = 6
+    case unpause  = 7
 }
 
 enum GameSound: Int {

@@ -17,7 +17,8 @@ class ViewController: UIViewController, ARSKViewDelegate {
     @IBOutlet var sceneView: ARSKView!
     
     // Create a session configuration
-    let configuration = ARWorldTrackingConfiguration()
+//    let configuration = ARWorldTrackingConfiguration()
+    let configuration = AROrientationTrackingConfiguration()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +81,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
         if let foo = sceneView.scene as? GameScene {
-            foo.gameState = .restart
+            foo.gameState = .unpause
         }
         
         resetTracking()

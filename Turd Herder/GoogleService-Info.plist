@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>788731394812-qq6tav04nt368kccf5emicl80d28iht4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.788731394812-qq6tav04nt368kccf5emicl80d28iht4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBKtmHUTxDvQJfMvbV-GNemjZ_qiFA0FpQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>788731394812</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>net.perlguy.The-Turd-Herder</string>
+	<key>PROJECT_ID</key>
+	<string>turd-herder</string>
+	<key>STORAGE_BUCKET</key>
+	<string>turd-herder.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:788731394812:ios:df45093eeca1f668673579</string>
+	<key>DATABASE_URL</key>
+	<string>https://turd-herder.firebaseio.com</string>
+</dict>
+</plist>

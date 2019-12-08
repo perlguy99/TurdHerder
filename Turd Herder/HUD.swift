@@ -177,6 +177,9 @@ class HUD: SKNode {
         case .pause:
 //            print("-- updateUI.pause")
             pauseTimer()
+            
+        case .unpause:
+            break
         }
     }
     
@@ -230,6 +233,9 @@ class HUD: SKNode {
             
         case .pause:
 //            print("-- clearUI.pause")
+            break
+            
+        case .unpause:
             break
             
         }
