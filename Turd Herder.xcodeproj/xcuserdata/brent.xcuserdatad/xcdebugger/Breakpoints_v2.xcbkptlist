@@ -207,16 +207,6 @@
             </Actions>
             <Locations>
                <Location
-                  uuid = "45622859-5645-408D-8DA3-9857AA84F99A - dc2f8c5e001177f0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "UIApplicationMain"
-                  moduleName = "UIKitCore"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
                   uuid = "45622859-5645-408D-8DA3-9857AA84F99A - ca8a62ba89de0751"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"

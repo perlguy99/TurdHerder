@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 let sceneWidth  = CGFloat(2048.0)
 let sceneHeight = CGFloat(1536.0)
@@ -41,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
         
         // Set our sound and music default values to true
         UserDefaults.standard.register(defaults: [HUDKeys.musicState: true])
