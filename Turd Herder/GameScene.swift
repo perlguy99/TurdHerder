@@ -10,20 +10,17 @@ import SpriteKit
 import ARKit
 import GameplayKit
 
-
 class GameScene: SKScene {
-    var targetCreationRate:TimeInterval = 0.25
-    
-    let maxTargets       = 1
-    var currentFartIndex = 0
-    
-    var hud = HUD()
+    var targetCreationRate :TimeInterval = 0.25
+    let maxTargets                       = 10
+    var currentFartIndex                 = 0
+    var hud                              = HUD()
     
     var toiletNode: ToiletNode!
     
     var timer: Timer?
     var targetsCreated = 0
-    var targetCount = 0 {
+    var targetCount    = 0 {
         didSet {
             hud.updateTurdsRemainingLabel(turds: targetCount)
         }
@@ -37,10 +34,13 @@ class GameScene: SKScene {
                 if gameState == .win {
                     gameOver()
                 }
+                
+                if gameState == .unpause {
+                    showMenuScene()
+                }
             }
         }
     }
-    
     
     // Sound effects
     let shortFarts = [
@@ -85,7 +85,7 @@ class GameScene: SKScene {
         ]
 
     let toiletFlushHighScore = SKAction.playSoundFileNamed("toilet_flush.wav", waitForCompletion: false)
-    let counterFart = SKAction.playSoundFileNamed("fart37.wav", waitForCompletion: false)
+    let counterFart          = SKAction.playSoundFileNamed("fart37.wav", waitForCompletion: false)
 
     let backgroundMusicTrack = [
         "8-Bit-Puzzler.mp3",
@@ -93,18 +93,22 @@ class GameScene: SKScene {
         "Farty-Crooks_Looping.mp3",
         "Farty-McSty.mp3",
     ]
+
     
     override func didMove(to view: SKView) {
-        
         startGame()
+        
+        // Seed the random number generator
+        srand48(Int(Date.timeIntervalSinceReferenceDate))
     }
     
+    
     func startGame() {
+        arViewControllerInstance.resetTracking()
+        
         targetCount    = 0
         targetsCreated = 0
         gameState      = .start
-        
-        
         
         doCountdown()
         
@@ -132,7 +136,7 @@ class GameScene: SKScene {
         hud.addTimer()
         hud.addRemainingTurdsLabel()
     }
-    
+
     
     func createTarget() {
         if targetsCreated == maxTargets {
@@ -141,35 +145,40 @@ class GameScene: SKScene {
             return
         }
         
-        if gameSoundOn {
-            let randomFart = Int.random(targetCreationFarts.count)
-            run(targetCreationFarts[randomFart])
-        }
+        playFartSound()
         
         targetsCreated += 1
-        targetCount    += 1
+//        targetCount    += 1
         
         // find the scene view we are drawing into
         guard let sceneView = self.view as? ARSKView else { return }
+//        guard let currentFrame = sceneView.session.currentFrame else { return }
         
         // get access to a random number generator
         let random = GKRandomSource.sharedRandom()
         
         // create a random X rotation
-//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
-        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
+        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 1, 0, 0))
+//        let xRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 1, 0, 0))
         
         // create a random Y rotation
-//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
-        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
+        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(Float.pi * 2 * random.nextUniform(), 0, 1, 0))
+//        let yRotation = simd_float4x4(SCNMatrix4MakeRotation(0, 0, 1, 0))
         
         // combine them together
         let rotation = simd_mul(xRotation, yRotation)
         
-        // move forward 1.5 meters into the screen
+        // move forward x meters into the screen
         var translation = matrix_identity_float4x4
-//        translation.columns.3.z = -1.5
-        translation.columns.3.z = -2.0
+        translation.columns.3.z = -1.75
+        
+        // New randomization methods - didn't seem to work as well
+//        translation.columns.3.x =  Float(drand48() * 2 - 1)
+//        translation.columns.3.z = -Float(drand48() * 2 - 1) - Float(1.5)
+//        translation.columns.3.y =  Float(drand48() * 2 - 1)
+//        let transform2 = currentFrame.camera.transform * translation
+        
+//        sceneView.session.currentFrame
         
         // combine that with the rotation
         let transform = simd_mul(rotation, translation)
@@ -177,6 +186,14 @@ class GameScene: SKScene {
         // create an anchor at the finished position
         let anchor = ARAnchor(transform: transform)
         sceneView.session.add(anchor: anchor)
+    }
+    
+    
+    func playFartSound() {
+        if !gameSoundOn { return }
+
+        let randomFart = Int.random(targetCreationFarts.count)
+        run(targetCreationFarts[randomFart])
     }
     
     
@@ -190,7 +207,19 @@ class GameScene: SKScene {
     
     
     func checkEndGame() {
-        if targetsCreated == maxTargets && targetCount == 0 {
+        if let children = scene?.children {
+            var turds = 0
+            
+            for node in children {
+                if node.name == "turd" {
+//                    node.
+                    turds += 1
+                }
+            }
+            targetCount = turds
+        }
+        
+        if targetsCreated == maxTargets && targetCount == 0 && gameState != .unpause {
             gameState = .win
         }
     }
@@ -200,6 +229,24 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         hud.updateTimer()
         checkEndGame()
+        
+        // https://www.raywenderlich.com/378-augmented-reality-and-arkit-tutorial
+//        // Ambient light estimation
+//        guard let sceneView = self.view as? ARSKView, let currentFrame = sceneView.session.currentFrame, let lightEstimate = currentFrame.lightEstimate else {
+//            return
+//        }
+//
+//        let neutralIntensity : CGFloat = 1000
+//        let ambientIntensity           = min(lightEstimate.ambientIntensity, neutralIntensity)
+//        let blendFactor                = 1 - ambientIntensity / neutralIntensity
+//
+//        for node in children {
+//            if let turd = node as? SKSpriteNode {
+//                turd.color = .black
+//                turd.colorBlendFactor = blendFactor
+//            }
+//        }
+//        // Ambient light estimation
     }
     
     
@@ -212,8 +259,8 @@ class GameScene: SKScene {
         let one   = SKSpriteNode(imageNamed: "1").copy() as? SKSpriteNode
         
         three?.isHidden = true
-        two?.isHidden = true
-        one?.isHidden = true
+        two?.isHidden   = true
+        one?.isHidden   = true
         
         three?.setScale(5.0)
         two?.setScale(5.0)
@@ -253,6 +300,7 @@ class GameScene: SKScene {
             }
         }
     }
+    
 
     func unHideTurds() {
         if let children = scene?.children {
@@ -265,6 +313,23 @@ class GameScene: SKScene {
     }
 
     
+    func showMenuScene() {
+        print("Show Menu Scene")
+        let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
+        scene.scaleMode = .fill
+        self.gameState  = .initial
+        self.view?.presentScene(scene)
+    }
+    
+    
+    func showGameScene() {
+        print("Show Game Scene")
+        let scene       = GameScene(size : CGSize(width : 2048, height : 1536))
+        scene.scaleMode = .fill
+        self.view?.presentScene(scene)
+    }
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
@@ -274,62 +339,60 @@ class GameScene: SKScene {
         // Locate the node at this location
         let nodeTouched = atPoint(location)
         
-        
         // Play Again
         if nodeTouched.name == "playAgainButton" {
-            self.gameState = .restart
-            let scene = GameScene(size: CGSize(width: 2048, height: 1536))
-            scene.scaleMode = .fill
-            self.view?.presentScene(scene)
+            self.gameState  = .restart
+            showGameScene()
         }
-        
         
         // Main Menu
         if nodeTouched.name == HUDButtons.about {
-            hud.stopBackgroundMusic()
-            
-            let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
-            scene.scaleMode = .fill
-            self.gameState = .initial
-            self.view?.presentScene(scene)
+            showAbout()
         }
-
         
         if nodeTouched.name == HUDButtons.nuke {
-
-            gameState = .pause
-            hideTurds()
-            
-            let alert = UIAlertController(title: "Quit Turd Herding?", message: "Are you sure you want to quit?", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-                let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
-                scene.scaleMode = .fill
-                self.gameState = .initial
-                self.view?.presentScene(scene)
-            }) )
-            
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in
-                self.unHideTurds()
-                self.gameState = .playing
-            }))
-
-            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            nukeTapped()
         }
-
-        
         
         // Tapped a Turd
         if let sprite = hit.first as? TurdNode {
-
             if gameSoundOn {
                 let randomFart = Int.random(shortFarts.count)
                 run(shortFarts[randomFart])
             }
             
             sprite.wasTapped()
-            targetCount -= 1
+//            targetCount -= 1
         }
+    }
+    
+    
+    func nukeTapped() {
+        gameState = .pause
+        hideTurds()
+        
+        let alert = UIAlertController(title: "Quit Turd Herding?", message: "Are you sure you want to quit?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            self.showMenuScene()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in
+            self.unHideTurds()
+            self.gameState = .playing
+        }))
+
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func showAbout() {
+        hud.stopBackgroundMusic()
+        
+        let scene = MenuScene(size: CGSize(width: 2048, height: 1536))
+        scene.scaleMode = .fill
+        self.gameState  = .initial
+        self.view?.presentScene(scene)
     }
     
 }

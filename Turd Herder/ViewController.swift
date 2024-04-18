@@ -10,39 +10,37 @@ import UIKit
 import SpriteKit
 import ARKit
 
+var arViewControllerInstance = ViewController()
+
 class ViewController: UIViewController, ARSKViewDelegate {
     
     @IBOutlet var sceneView: ARSKView!
     
+    // Create a session configuration
+//    let configuration = ARWorldTrackingConfiguration()
+    let configuration = AROrientationTrackingConfiguration()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        runSession()
+        arViewControllerInstance = self
+        sceneView.delegate       = self
         
-//        // Set the view's delegate
-//        sceneView.delegate = self
+        resetTracking()
         
         // Build the menu scene:
-        let menuScene = MenuScene()
-        menuScene.size = CGSize(width: 2048, height: 1536)
+        let menuScene       = MenuScene()
+        menuScene.size      = CGSize(width : 2048, height : 1536)
         menuScene.scaleMode = .fill
 
         // Show the menu
         sceneView.presentScene(menuScene)
     }
     
-
     
-    public func runSession() {
-//        print("runSesion")
-        // Set the view's delegate
-        sceneView.delegate = self
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        
+    public func resetTracking() {
         // Run the view's session
-        sceneView.session.run(configuration)
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
     
@@ -50,14 +48,14 @@ class ViewController: UIViewController, ARSKViewDelegate {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
-//        print("session.pause() from viewWillDisappear")
-        sceneView.session.pause()
+//        sceneView.session.pause()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.
     }
+    
     
     // MARK: - ARSKViewDelegate
 
@@ -66,6 +64,7 @@ class ViewController: UIViewController, ARSKViewDelegate {
         return TurdNode()
     }
     
+    
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
         
@@ -73,36 +72,18 @@ class ViewController: UIViewController, ARSKViewDelegate {
     
     
     func sessionWasInterrupted(_ session: ARSession) {
-        
-//        sceneView.session.pause()
-//        sceneView.scene?.removeAllChildren()
-//        sceneView.session.pause()
-        
-//        if let scene = sceneView.scene {
-//            let children = scene.children
-//
-//            scene.removeAllChildren()
-//            print("____________________")
-//            print(children)
-//            print("____________________")
-//        }
-        
         // Inform the user that the session has been interrupted, for example, by presenting an overlay
-//        sceneView.session.pause()
-        
-//        print("sessionWasInterrupted")
-        
-//        sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
-//            node.removeFromParentNode()
-//        }
-//
-//        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
-        
+//        print("pause")
     }
+    
     
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
-//        print("sessionInterruptionEnded")
-//        runSession()
+        
+        if let foo = sceneView.scene as? GameScene {
+            foo.gameState = .unpause
+        }
+        
+        resetTracking()
     }
 }

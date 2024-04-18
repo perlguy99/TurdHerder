@@ -9,29 +9,29 @@
 import UIKit
 import SpriteKit
 
-//guard let highScoreStars = SKEmitterNode(fileNamed: "HighScore") else { return }
-
 class TurdNode: SKSpriteNode {
 
-    init() {
-        let texture = SKTexture(imageNamed: "turd")
+    let turdImages = [
+        SKTexture(imageNamed: "turd01"),
+        SKTexture(imageNamed: "turd02"),
+        SKTexture(imageNamed: "turd03"),
+        SKTexture(imageNamed: "turd04"),
+        SKTexture(imageNamed: "turd05")
+        ]
         
+    
+    init() {
+        let texture  = turdImages[Int.random(turdImages.count)]
         let poopSize = CGSize(width: 125, height: 125)
-//        super.init(texture: texture, color: .clear, size: texture.size())
         super.init(texture: texture, color: .clear, size: poopSize)
         
         name = "turd"
         
-        guard let smoke2 = SKEmitterNode(fileNamed: "Smoke2") else { return }
-        
-        smoke2.position = self.position
-        self.addChild(smoke2)
-        
-//        let smoke:SKEmitterNode = smokeRising()
-//        smoke.position          = self.position
-//        self.addChild(smoke)
-        
+        let smoke:SKEmitterNode = smokeRising()
+        smoke.position          = self.position
+        self.addChild(smoke)
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

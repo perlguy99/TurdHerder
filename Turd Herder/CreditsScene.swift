@@ -7,35 +7,24 @@
 //
 
 import SpriteKit
+import StoreKit
 
 class CreditsScene: SKScene, UIWebViewDelegate {
 
     let hud = HUD()
     
     override func didMove(to view: SKView) {
+        
         self.name = "CreditsScene"
         
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.addChild(hud)
         
-////        let frame = CGRect(x: (view.frame.size.width / 2) - 400, y: (view.frame.size.height / 2) - 300, width: 800, height: 600)
-//        let frame = CGRect(x: 0, y: 0, width: 800, height: 600)
-//        let webView = UIWebView(frame: frame)
-//        webView.backgroundColor = UIColor.clear
-//        webView.loadRequest(URLRequest(url: URL(fileURLWithPath: Bundle.main.path(forResource: "FF_FontAttribute", ofType: "txt")!)))
-//        webView.delegate = self
-//        view.addSubview(webView)
-        
         let turdGuy = SKSpriteNode(imageNamed: "credits_turd")
         turdGuy.zPosition = 1000
         turdGuy.setScale(0.23)
         addChild(turdGuy)
-        
-//        let backgroundShape = SKShapeNode(rectOf: CGSize(width: 1200, height: 800) , cornerRadius: 8.0)
-//        backgroundShape.fillColor = UIColor.brown
-//        backgroundShape.alpha = 0.5
-//        self.addChild(backgroundShape)
         
         let yPos = scene?.frame.maxY
         
@@ -87,11 +76,8 @@ class CreditsScene: SKScene, UIWebViewDelegate {
         fontLabel.position = CGPoint(x: 0, y: yPos! - 575)
         fontLabel.zPosition = 1500
         self.addChild(fontLabel)
-        
-        
+
         hud.addBackButton()
-        
-        
     }
     
     
