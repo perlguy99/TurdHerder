@@ -11,6 +11,7 @@ Have at it! Play with it, let’s make it a community Turd Herder and make it mu
 
 If you have it in your heart, buy me a cup of coffee please! I’m currently looking for work so anything and everything helps!  
 
+![My Venmo QR Code](myVenmoQRsmall.png)
 
 
 Enjoy Turd Herder!
