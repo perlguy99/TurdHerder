@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		731E306EE91D69B4A2E5FA9C /* Pods_Turd_Herder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4CD83890160E1B1FF84A7CF /* Pods_Turd_Herder.framework */; };
 		840421EE1F4288740026730E /* AirBiscuit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 840421ED1F4288700026730E /* AirBiscuit.mp3 */; };
 		841DEEEA1F3EBFFB007C76C6 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEDF1F3EBF82007C76C6 /* CGFloat+Extensions.swift */; };
 		841DEEEB1F3EBFFB007C76C6 /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841DEEE21F3EBFA1007C76C6 /* CGPoint+Extensions.swift */; };
@@ -71,9 +70,7 @@
 		84A2A65C1F3F6DCC0064A82B /* fart39.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A6261F3F6D380064A82B /* fart39.wav */; };
 		84A2A65D1F3F6DCC0064A82B /* fart40.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A62D1F3F6D390064A82B /* fart40.wav */; };
 		84A2A65E1F3F6DCC0064A82B /* fart41.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A61A1F3F6D360064A82B /* fart41.wav */; };
-		84A2A6661F40254E0064A82B /* AFDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A2A6651F40254E0064A82B /* AFDateHelper.swift */; };
 		84A2A66C1F4037970064A82B /* toilet-flush-highscore.wav in Resources */ = {isa = PBXBuildFile; fileRef = 84A2A66B1F4037430064A82B /* toilet-flush-highscore.wav */; };
-		84B956A7239DA7A10073AD98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B956A6239DA7A10073AD98 /* GoogleService-Info.plist */; };
 		84BA90451F65B64500CFC40B /* 8-Bit-Puzzler.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84BA90441F65B5D700CFC40B /* 8-Bit-Puzzler.mp3 */; };
 		84BA90461F65B64500CFC40B /* Disco-Ants-Go-Clubbin_Looping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84BA90421F65B5D600CFC40B /* Disco-Ants-Go-Clubbin_Looping.mp3 */; };
 		84BA90471F65B64500CFC40B /* Farty-Crooks_Looping.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 84BA90431F65B5D600CFC40B /* Farty-Crooks_Looping.mp3 */; };
@@ -87,7 +84,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		40E4D03162C41852BFB58BEE /* Pods-Turd Herder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turd Herder.debug.xcconfig"; path = "Target Support Files/Pods-Turd Herder/Pods-Turd Herder.debug.xcconfig"; sourceTree = "<group>"; };
 		840421ED1F4288700026730E /* AirBiscuit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = AirBiscuit.mp3; sourceTree = "<group>"; };
 		841DEEDF1F3EBF82007C76C6 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		841DEEE01F3EBFA1007C76C6 /* CGVector+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -107,7 +103,6 @@
 		843709371F54EE8400D057F5 /* Setting.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Setting.sks; sourceTree = "<group>"; };
 		8437C1201F18529300EB3079 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8437C1221F18536B00EB3079 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
-		8449F8C2239F02BC009DD80B /* TheTurdHerderProfile1.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = TheTurdHerderProfile1.mobileprovision; sourceTree = "<group>"; };
 		84561FDC1F0F1E46006EACD8 /* Turd Herder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Turd Herder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84561FDF1F0F1E46006EACD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84561FE11F0F1E46006EACD8 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
@@ -154,9 +149,7 @@
 		84A2A6391F3F6D3C0064A82B /* fart37.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fart37.wav; sourceTree = "<group>"; };
 		84A2A63A1F3F6D3C0064A82B /* fart26.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fart26.wav; sourceTree = "<group>"; };
 		84A2A63B1F3F6D3C0064A82B /* fart29.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fart29.wav; sourceTree = "<group>"; };
-		84A2A6651F40254E0064A82B /* AFDateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFDateHelper.swift; sourceTree = "<group>"; };
 		84A2A66B1F4037430064A82B /* toilet-flush-highscore.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "toilet-flush-highscore.wav"; sourceTree = "<group>"; };
-		84B956A6239DA7A10073AD98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84BA90401F65B59C00CFC40B /* toilet_flush.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = toilet_flush.wav; sourceTree = "<group>"; };
 		84BA90411F65B5D500CFC40B /* Farty-McSty.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Farty-McSty.mp3"; sourceTree = "<group>"; };
 		84BA90421F65B5D600CFC40B /* Disco-Ants-Go-Clubbin_Looping.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Disco-Ants-Go-Clubbin_Looping.mp3"; sourceTree = "<group>"; };
@@ -168,19 +161,7 @@
 		84C57C911F65727600DD1C83 /* TurdNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TurdNode.swift; path = "Turd Herder/TurdNode.swift"; sourceTree = SOURCE_ROOT; };
 		84E54EC81F58E2A900AB2BA9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A4CD83890160E1B1FF84A7CF /* Pods_Turd_Herder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turd_Herder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BADA8C770E2C93E4DA35E0F3 /* Pods-Turd Herder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turd Herder.release.xcconfig"; path = "Target Support Files/Pods-Turd Herder/Pods-Turd Herder.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		84561FD91F0F1E46006EACD8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				731E306EE91D69B4A2E5FA9C /* Pods_Turd_Herder.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		841DEEDE1F3EBF5D007C76C6 /* SKTUtils */ = {
@@ -213,10 +194,8 @@
 		84561FD31F0F1E46006EACD8 = {
 			isa = PBXGroup;
 			children = (
-				8449F8C2239F02BC009DD80B /* TheTurdHerderProfile1.mobileprovision */,
 				84561FDE1F0F1E46006EACD8 /* Turd Herder */,
 				84561FDD1F0F1E46006EACD8 /* Products */,
-				DEC4571F7B90FD92D6CF89C4 /* Pods */,
 				9DDBB61F3E61CD458E38F69E /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -250,8 +229,6 @@
 				84561FEA1F0F1E46006EACD8 /* Assets.xcassets */,
 				84561FEC1F0F1E46006EACD8 /* LaunchScreen.storyboard */,
 				84561FEF1F0F1E46006EACD8 /* Info.plist */,
-				84B956A6239DA7A10073AD98 /* GoogleService-Info.plist */,
-				84A2A6651F40254E0064A82B /* AFDateHelper.swift */,
 			);
 			path = "Turd Herder";
 			sourceTree = "<group>";
@@ -326,15 +303,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DEC4571F7B90FD92D6CF89C4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				40E4D03162C41852BFB58BEE /* Pods-Turd Herder.debug.xcconfig */,
-				BADA8C770E2C93E4DA35E0F3 /* Pods-Turd Herder.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,12 +310,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84561FF21F0F1E46006EACD8 /* Build configuration list for PBXNativeTarget "Turd Herder" */;
 			buildPhases = (
-				B2CF5B662923F50FF0A3B377 /* [CP] Check Pods Manifest.lock */,
 				84561FD81F0F1E46006EACD8 /* Sources */,
-				84561FD91F0F1E46006EACD8 /* Frameworks */,
 				84561FDA1F0F1E46006EACD8 /* Resources */,
 				84EBE88A231488BA003B994A /* Increment Build Number */,
-				6E9A7D7FCAEC6286525A248E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -409,7 +374,6 @@
 				84A2A64F1F3F6DCC0064A82B /* fart21.wav in Resources */,
 				84A2A6421F3F6DCC0064A82B /* fart6.mp3 in Resources */,
 				84A2A63D1F3F6DCC0064A82B /* fart_walking_many.wav in Resources */,
-				84B956A7239DA7A10073AD98 /* GoogleService-Info.plist in Resources */,
 				84A2A64B1F3F6DCC0064A82B /* fart16.wav in Resources */,
 				84A2A63F1F3F6DCC0064A82B /* fart3.mp3 in Resources */,
 				84A2A6431F3F6DCC0064A82B /* fart7.mp3 in Resources */,
@@ -458,26 +422,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6E9A7D7FCAEC6286525A248E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Turd Herder/Pods-Turd Herder-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Turd Herder/Pods-Turd Herder-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		84EBE88A231488BA003B994A /* Increment Build Number */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -495,28 +439,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
-		};
-		B2CF5B662923F50FF0A3B377 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Turd Herder-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -543,7 +465,6 @@
 				84E54EC91F58E2A900AB2BA9 /* GameScene.swift in Sources */,
 				8437C1211F18529300EB3079 /* Types.swift in Sources */,
 				841DEEED1F3EBFFB007C76C6 /* Int+Extensions.swift in Sources */,
-				84A2A6661F40254E0064A82B /* AFDateHelper.swift in Sources */,
 				8495F04A1F47C50500321494 /* ToiletNode.swift in Sources */,
 				84BF04A81F67484B00A7048D /* CreditsScene.swift in Sources */,
 				841DEEF01F3EBFFB007C76C6 /* SKColor+Extensions.swift in Sources */,
@@ -687,7 +608,6 @@
 		};
 		84561FF31F0F1E46006EACD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40E4D03162C41852BFB58BEE /* Pods-Turd Herder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -709,7 +629,6 @@
 		};
 		84561FF41F0F1E46006EACD8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BADA8C770E2C93E4DA35E0F3 /* Pods-Turd Herder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";

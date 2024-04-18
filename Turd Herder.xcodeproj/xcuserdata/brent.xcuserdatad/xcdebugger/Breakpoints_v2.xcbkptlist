@@ -14,166 +14,6 @@
             symbolName = "setFilter:"
             moduleName = "">
             <Locations>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a6cb8555b4d4bad4"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SKEffectNode setFilter:]"
-                  moduleName = "SpriteKit"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - f632b85f393de564"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[_UIVisualEffectFilterEntry setFilter:]"
-                  moduleName = "UIKit"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a8dca29dd955f5a0"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CATransition setFilter:]"
-                  moduleName = "QuartzCore"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a0e6c4a5bc6c2cf1"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NWStatisticsManager setFilter:]"
-                  moduleName = "NetworkStatistics"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - d9bd571edb57878a"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[NSSQLConnectionManager setFilter:]"
-                  moduleName = "CoreData"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a24ba28c7171afd"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PLFilteredAlbum setFilter:]"
-                  moduleName = "PhotoLibraryServices"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - cb0c9b7df96e1009"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PLFilteredAlbumList setFilter:]"
-                  moduleName = "PhotoLibraryServices"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 7a08c3c30bca7ff8"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[PLAggregateAlbumList setFilter:]"
-                  moduleName = "PhotoLibraryServices"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 7c5284076064817c"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GEOPBTransitIncidentEntity setFilter:]"
-                  moduleName = "GeoServices"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 7cbdf1974e085e14"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GEOPDComponentInfo setFilter:]"
-                  moduleName = "GeoServices"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - cdcc4428865c5412"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ACDAccountStore setFilter:]"
-                  moduleName = "AccountsDaemon"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - d1f738c5399112bc"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CNContactCustomDataSource setFilter:]"
-                  moduleName = "ContactsUI"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - f7060b6a047f188c"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CNAccountsAndGroupsDataSource setFilter:]"
-                  moduleName = "ContactsUI"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a839670f8968ea58"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CNContactStoreSnapshot setFilter:]"
-                  moduleName = "ContactsUI"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - 2fe32be91e2dee8b"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CNContactStoreDataSource setFilter:]"
-                  moduleName = "ContactsUI"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "2D36842D-A92C-4B61-9C46-4EF479B93366 - a1135509dac2357a"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[CNContactAsyncDataSource setFilter:]"
-                  moduleName = "ContactsUI"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
-               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -207,14 +47,13 @@
             </Actions>
             <Locations>
                <Location
-                  uuid = "45622859-5645-408D-8DA3-9857AA84F99A - ca8a62ba89de0751"
+                  uuid = "45622859-5645-408D-8DA3-9857AA84F99A - dc2f8c5e001177f0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "UIKit.UIApplicationMain(Swift.Int32, Swift.Optional&lt;Swift.UnsafeMutablePointer&lt;Swift.UnsafeMutablePointer&lt;Swift.Int8&gt;&gt;&gt;, Swift.Optional&lt;Swift.String&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Int32"
-                  moduleName = "libswiftUIKit.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  offsetFromSymbolStart = "0">
+                  symbolName = "UIApplicationMain"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes">
                </Location>
             </Locations>
          </BreakpointContent>
